@@ -73,7 +73,7 @@ function renderLegacyTables(raw){
  return raw;
 }
 function renderScriptText(raw){
- let html=escHTML(renderLegacyTables(String(raw)));
+ let rendered=renderLegacyTables(String(raw)),tables=[];let p=0;while((p=rendered.indexOf('<table class="script-table">',p))>=0){let q=rendered.indexOf("</table>",p);if(q<0)break;q+=8;tables.push(rendered.slice(p,q));rendered=rendered.slice(0,p)+"@@SCRIPT_TABLE_"+(tables.length-1)+"@@"+rendered.slice(q);p+=24;}let html=escHTML(rendered);tables.forEach((t,i)=>{html=html.replace("@@SCRIPT_TABLE_"+i+"@@",t);});
  html=html.replace(/^#{1,3}\s+(.+)$/gm,'<h3>$1</h3>');
  html=html.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
  html=html.replace(/\*(.+?)\*/g,'<em>$1</em>');
