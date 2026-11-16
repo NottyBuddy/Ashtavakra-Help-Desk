@@ -44,32 +44,43 @@ function openFullMasterScript(){
 function escHTML(x){return String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function escHTML(x){return String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function renderLegacyTables(raw){
- const marker=/\n\s*\|\s*\|\s*\n\s*\|\s*-\s*\|\s*/g;
+ const marker=/\|\s*\|\s*\n\s*\|\s*-\s*\|/g;
  const clean=x=>String(x).replace(/\*\*/g,"").replace(/\*/g,"").replace(/\\\./g,".").replace(/\s+/g," ").trim();
  const specs=[
-  {start:"The Six Mandatory Discovery Questions",end:"BRANCH 1: FUTURE LEAD",head:["Parameter","Approved English Question","Expected Output / Control"],cols:3},
+  {start:"The Six Mandatory Discovery Questions",end:"BRANCH 1: FUTURE LEAD",head:["Parameter","Approved English Question","Expected Output / Control"],cols:3,removeStart:true},
   {start:"BRANCH 1: FUTURE LEAD",end:"PARAMETER CATEGORY",head:["BRANCH 1: FUTURE LEAD","BRANCH 2: ACTIVE LEAD","BRANCH 3: UNSERVICEABLE"],cols:3},
   {start:"PARAMETER CATEGORY",end:"CRM STAGE CLASSIFICATION & HANDOVER MATRIX",head:["PARAMETER CATEGORY","ENFORCEMENT DETAILS"],cols:2,drop:["STANDARD OPERATING PROTOCOL & OPERATIONAL RULES"]},
-  {start:"CRM STAGE CLASSIFICATION & HANDOVER MATRIX",end:"If Customer Is Not Familiar with the Brand",head:["STAGE CODE","STAGE DESCRIPTION","QUALIFICATION TRIGGER","REQUIRED NEXT ACTION & ROUTING"],cols:4,drop:["CRM STAGE CLASSIFICATION & HANDOVER MATRIX"]}
+  {start:"CRM STAGE CLASSIFICATION & HANDOVER MATRIX",end:"If Customer Is Not Familiar with the Brand",head:["STAGE CODE","STAGE DESCRIPTION","QUALIFICATION TRIGGER","REQUIRED NEXT ACTION & ROUTING"],cols:4,removeStart:true,crm:true}
  ];
  for(const spec of specs){
   const at=raw.indexOf(spec.start); if(at<0)continue;
   const next=spec.end?raw.indexOf(spec.end,at+spec.start.length):-1;
-  const end=next>at?next:raw.length;
-  const block=raw.slice(at,end);
+  const finish=next>at?next:raw.length;
+  const block=raw.slice(at,finish);
   let cells=block.split(marker).map(clean).filter(Boolean);
-  cells=cells.filter(v=>v!==clean(spec.start)&&!(spec.drop||[]).some(d=>v===clean(d)));
+  if(spec.removeStart)cells=cells.filter(v=>v!==clean(spec.start));
+  cells=cells.filter(v=>!(spec.drop||[]).some(d=>v===clean(d)));
   const h=spec.head.map(clean);
-  let headerAt=cells.findIndex((v,i)=>h.every((x,j)=>clean(cells[i+j])===x));
+  const headerAt=cells.findIndex((v,i)=>h.every((x,j)=>clean(cells[i+j])===x));
   if(headerAt<0)continue;
   const rows=cells.slice(headerAt+h.length);
+  let bodyRows=[];
+  if(spec.crm){
+   for(let i=0;i<rows.length;){
+    if(!/^C\d+$/i.test(rows[i])){i++;continue;}
+    const code=rows[i++],description=rows[i++]||"",trigger=rows[i++]||"",actions=[];
+    while(i<rows.length&&!/^C\d+$/i.test(rows[i]))actions.push(rows[i++]);
+    bodyRows.push([code,description,trigger,actions.join("<br>")]);
+   }
+  }else{
+   for(let i=0;i+spec.cols<=rows.length;i+=spec.cols)bodyRows.push(rows.slice(i,i+spec.cols));
+  }
   let table='<table class="script-table"><thead><tr>'+h.map(x=>'<th>'+escHTML(x)+'</th>').join('')+'</tr></thead><tbody>';
-  for(let i=0;i+spec.cols<=rows.length;i+=spec.cols){
-   const group=rows.slice(i,i+spec.cols);
-   if(group.every(Boolean))table+='<tr>'+group.map(x=>'<td>'+escHTML(x)+'</td>').join('')+'</tr>';
+  for(const group of bodyRows){
+   if(group.length===spec.cols)table+='<tr>'+group.map(x=>'<td>'+(spec.crm?String(x).split("<br>").map(escHTML).join("<br>"):escHTML(x))+'</td>').join('')+'</tr>';
   }
   table+='</tbody></table>';
-  raw=raw.slice(0,at)+spec.start+'\n'+table+raw.slice(end);
+  raw=raw.slice(0,at)+spec.start+'\n'+table+raw.slice(finish);
  }
  return raw;
 }
