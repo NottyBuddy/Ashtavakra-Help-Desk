@@ -56,8 +56,7 @@ function renderLegacyTables(raw){
   const at=raw.indexOf(spec.start); if(at<0)continue;
   const next=spec.end?raw.indexOf(spec.end,at+spec.start.length):-1;
   const finish=next>at?next:raw.length;
-  const block=raw.slice(at,finish);
-  let cells=block.split(marker).map(clean).filter(Boolean);
+  let cells=raw.slice(at,finish).split(marker).map(clean).filter(Boolean);
   if(spec.removeStart)cells=cells.filter(v=>v!==clean(spec.start));
   cells=cells.filter(v=>!(spec.drop||[]).some(d=>v===clean(d)));
   const h=spec.head.map(clean);
