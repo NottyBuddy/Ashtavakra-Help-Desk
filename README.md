@@ -6,7 +6,10 @@ A GitHub-hosted recreation of the IndiFrame Agent Portal knowledge hub.
 
 - Responsive navigation and home dashboard
 - 20-section Scripts library populated with source-based guidance, call prompts, lead-stage rules, renovation handling, scenarios, objections, follow-ups, closing, qualification and CRM handover
-- CX Questions page: 100 supplied questions mapped to the relevant script section
+- Scenario E: location outside direct service area / authorized Green Fortune partner routing, with C7 / ROUTE TO B2F handover
+- Telugu reference script in English letters, paired with English prompts for opening, discovery, serviceability and closing
+- Confirmed retry policy: maximum 15 call attempts across 9 calendar days; record the exact disposition after every attempt
+- CX Questions page: 100 supplied questions mapped to relevant script sections
 - Product guide with window types, glass options, colours and qualification guidance
 - Process SOP timeline with operational controls
 - FAQ and objection-handling reference
@@ -23,9 +26,8 @@ These are intentionally excluded from the navigation and standalone modules:
 
 ## Source-content notes
 
-- The reviewed source documents conflict on unreachable-lead cadence: one finalized SOP states a maximum of 9 attempts over 12 calendar days; another script page mentions 15 attempts over 9 days. The portal flags this conflict and directs agents to the current Operations instruction until formally confirmed.
+- Telugu transliteration is a practical English-letter rendering of the approved English call flow. Have a fluent Telugu speaker / Process Team review the wording before treating the translation as formally approved.
 - A separate approved Inbound / Walk-in script was not found in the reviewed source set. The section identifies this gap instead of inventing an approved script.
-- A verified Telugu reference script in English letters was not found in the reviewed source set. The section identifies this gap instead of publishing an unverified translation.
 - Process SOP is marked Under Review in the supplied portal reference. Sample / under-review content must not be represented as approved.
 
 ## Run locally
