@@ -42,34 +42,44 @@ function openFullMasterScript(){
   window.scrollTo(0,0);
 }
 function escHTML(x){return String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function legacyCellTable(raw){
- const marker=/\\n\\s*\\|\\s*\\|\\s*\\n\\s*\\|\\s*-\\s*\\|\\s*/g;
- const lines=raw.split(marker);
- if(lines.length<6)return null;
- const clean=x=>x.replace(/\\*\\*/g,"").replace(/\\*/g,"").replace(/\\s+/g," ").trim();
- const cells=lines.map(clean).filter(Boolean);
- const idx=cells.findIndex(x=>/^(Parameter|PARAMETER CATEGORY)$/.test(x));
- if(idx<0)return null;
- let end=cells.findIndex((x,i)=>i>idx&&/^(PARAMETER CATEGORY|STANDARD OPERATING PROTOCOL|CRM STAGE CLASSIFICATION)/.test(x));
- if(end<0)end=cells.length;
- const out=[];
- const a=cells.slice(idx,end);
- if(a[0]==="Parameter"&&a[1]==="Approved English Question"&&a[2]==="Expected Output / Control"){
-  let html='<table class="script-table"><thead><tr><th>Parameter</th><th>Approved English Question</th><th>Expected Output / Control</th></tr></thead><tbody>';
-  for(let i=3;i+2<a.length;i+=3)html+='<tr>'+a.slice(i,i+3).map(v=>'<td>'+escHTML(v)+'</td>').join('')+'</tr>';
-  out.push(html+'</tbody></table>');
+function escHTML(x){return String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function renderLegacyTables(raw){
+ const marker=/\n\s*\|\s*\|\s*\n\s*\|\s*-\s*\|\s*/g;
+ const clean=x=>x.replace(/\*\*/g,"").replace(/\*/g,"").replace(/\s+/g," ").trim();
+ const specs=[
+  {start:"The Six Mandatory Discovery Questions",head:["Parameter","Approved English Question","Expected Output / Control"],cols:3},
+  {start:"BRANCH 1: FUTURE LEAD",head:["BRANCH 1: FUTURE LEAD","BRANCH 2: ACTIVE LEAD","BRANCH 3: UNSERVICEABLE"],cols:3},
+  {start:"PARAMETER CATEGORY",head:["PARAMETER CATEGORY","ENFORCEMENT DETAILS"],cols:2},
+  {start:"STAGE CODE",head:["STAGE CODE","STAGE DESCRIPTION","QUALIFICATION TRIGGER","REQUIRED NEXT ACTION & ROUTING"],cols:4}
+ ];
+ for(const spec of specs){
+  const at=raw.indexOf(spec.start); if(at<0)continue;
+  let end=raw.indexOf("\n\n**",at+spec.start.length); if(end<0)end=raw.length;
+  const block=raw.slice(at,end), cells=block.split(marker).map(clean).filter(Boolean);
+  let h=spec.head.map(clean);
+  let headerAt=cells.findIndex((v)=>h.every((x,i)=>clean(v)===x));
+  if(headerAt<0 && spec.start==="The Six Mandatory Discovery Questions")headerAt=cells.findIndex(v=>v==="Parameter");
+  if(headerAt<0)continue;
+  const vals=cells.slice(headerAt);
+  const rows=vals.slice(h.length);
+  let table='<table class="script-table"><thead><tr>'+h.map(x=>'<th>'+escHTML(x)+'</th>').join('')+'</tr></thead><tbody>';
+  for(let i=0;i+spec.cols-1<rows.length;i+=spec.cols){
+   const group=rows.slice(i,i+spec.cols);
+   if(group.length===spec.cols)table+='<tr>'+group.map(x=>'<td>'+escHTML(x)+'</td>').join('')+'</tr>';
+  }
+  table+='</tbody></table>';
+  raw=raw.slice(0,at)+spec.start+'\n'+table+raw.slice(end);
  }
- return out.join("");
+ return raw;
 }
 function renderScriptText(raw){
- let html=escHTML(raw);
- html=html.replace(/\\n?\\s*\\|\\s*\\|\\s*\\n\\s*\\|\\s*-\\s*\\|\\s*/g,'<br class="table-cell-break">');
- html=html.replace(/^#{1,3}\\s+(.+)$/gm,'<h3>$1</h3>');
- html=html.replace(/\\*\\*(.+?)\\*\\*/g,'<strong>$1</strong>');
- html=html.replace(/\\*(.+?)\\*/g,'<em>$1</em>');
- html=html.replace(/\\n\\n/g,'</p><p>').replace(/\\n/g,'<br>');
+ let html=escHTML(renderLegacyTables(String(raw)));
+ html=html.replace(/^#{1,3}\s+(.+)$/gm,'<h3>$1</h3>');
+ html=html.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+ html=html.replace(/\*(.+?)\*/g,'<em>$1</em>');
+ html=html.replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>');
  html='<p>'+html+'</p>';
- html=html.replace(/<p><\/p>/g,'').replace(/<p>(<h3>)/g,'$1').replace(/(<\/h3>)<\/p>/g,'$1');
+ html=html.replace(/<p><\/p>/g,'').replace(/<p>(<h3>|<table)/g,'$1').replace(/(<\/h3>|<\/table>)<\/p>/g,'$1');
  return html;
 }
 function openScript(i){let a=scriptContent[i]||["No section content is currently available."];document.getElementById("view").innerHTML=H("SCRIPT LIBRARY",scriptSections[i],"Complete section content · source-based agent reference.")+'<div class="card"><button class="btn" onclick="go(&quot;scripts&quot;)">← Back to sections</button><div class="list" style="margin-top:14px">'+a.map(x=>'<div class="item scripttext">'+renderScriptText(x)+'</div>').join("")+'</div><div class="item"><b>Need the complete master document?</b><p>Open the full combined script with all scenarios and operational sections.</p><button class="btn" onclick="openFullMasterScript()">Open Complete Master Script</button></div></div>';window.scrollTo(0,0)}
