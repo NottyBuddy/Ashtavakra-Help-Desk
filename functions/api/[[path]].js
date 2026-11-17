@@ -135,5 +135,15 @@ async function route(req,env) {
   return error("Not found.",404);
 }
 export async function onRequest({request,env}) {
-  try{return await route(request,env)}catch(e){return error("Internal server error.",500)}
+  try {
+    return await route(request,env);
+  } catch (e) {
+    console.error("IndiFrame API request failed", {
+      path: new URL(request.url).pathname,
+      method: request.method,
+      errorName: e?.name || "Error",
+      errorMessage: String(e?.message || e).slice(0,500)
+    });
+    return error("Internal server error.",500);
+  }
 }
