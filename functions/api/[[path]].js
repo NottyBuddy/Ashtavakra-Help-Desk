@@ -60,6 +60,30 @@ async function route(req,env) {
     await env.DB.prepare("INSERT INTO users(id,name,email,role,status,password_hash,password_salt,password_iterations,must_change_password,created_at,updated_at) VALUES(?,?,?,'admin','approved',?,?,?,0,?,?)").bind(id,name,email,h.hash,h.salt,h.iterations,now,now).run();
     return session(req,env,{id,name,email,role:"admin",must_change_password:0});
   }
+  if(p==="/api/setup/admin/recover" && req.method==="POST") {
+    const configuredToken=String(env.ADMIN_RECOVERY_TOKEN||"");
+    if(configuredToken.length<32)return error("Admin recovery is not configured.",503);
+    const d=await input(req);
+    const submitted=typeof d?.recoveryToken==="string"?d.recoveryToken:"";
+    const ip=req.headers.get("CF-Connecting-IP")||"unknown";
+    const key=await hash("admin-recovery|"+ip),cut=Date.now()-900000;
+    await env.DB.prepare("DELETE FROM login_attempts WHERE attempted_at<?").bind(cut).run();
+    const attempts=await env.DB.prepare("SELECT COUNT(*) n FROM login_attempts WHERE attempt_key=? AND attempted_at>?").bind(key,cut).first();
+    if((attempts?.n||0)>=5)return error("Too many recovery attempts. Try again after 15 minutes.",429);
+    if(submitted.length!==configuredToken.length || submitted!==configuredToken) {
+      await env.DB.prepare("INSERT INTO login_attempts(attempt_key,attempted_at) VALUES(?,?)").bind(key,Date.now()).run();
+      return error("Invalid recovery token.",403);
+    }
+    const newPassword=d?.newPassword;
+    if(!passOK(newPassword))return error("New password must be 12–128 characters.");
+    const admin=await env.DB.prepare("SELECT id FROM users WHERE role='admin' LIMIT 1").first();
+    if(!admin)return error("No existing Team Lead account was found.",404);
+    const h=await passwordHash(newPassword),now=Date.now();
+    await env.DB.prepare("UPDATE users SET password_hash=?,password_salt=?,password_iterations=?,must_change_password=0,updated_at=? WHERE id=? AND role='admin'").bind(h.hash,h.salt,h.iterations,now,admin.id).run();
+    await env.DB.prepare("DELETE FROM sessions WHERE user_id=?").bind(admin.id).run();
+    await env.DB.prepare("DELETE FROM login_attempts WHERE attempt_key=?").bind(key).run();
+    return response({ok:true,message:"Team Lead password reset. Sign in with the new password."});
+  }
   if(p==="/api/auth/login" && req.method==="POST") {
     const d=await input(req),email=String(d?.email||"").trim().toLowerCase();
     if(!emailOK(email)||typeof d.password!=="string")return error("Invalid email or password.",401);
