@@ -335,6 +335,16 @@ button:focus-visible,.btn:focus-visible,.tab:focus-visible{outline:2px solid #16
 .global-search-result{color:#e8efff!important}
 .global-search-result:hover{color:#fff!important;background:#6c8bff24!important;border:0!important;box-shadow:none!important}
 @media(prefers-reduced-motion:reduce){button,.btn,.card,.item,.stat,.quickref-card,.learning-path{transition:none!important}}
+
+/* Hover feedback: keep surfaces clean at rest, tint only on interaction */
+.card:hover,.item:hover,.stat:hover,.quickref-card:hover,.learning-path:hover{
+ background:rgba(57,169,223,.10)!important;
+ border:0!important;box-shadow:none!important
+}
+.card:hover h2,.card:hover h3,.item:hover h3,.stat:hover strong,
+.quickref-card:hover h3,.learning-path:hover h3{color:#087eae!important}
+.card:hover .tile-icon,.quickref-card:hover .quickref-icon,
+.learning-path:hover .path-icon,.stat:hover .stat-symbol{color:#087eae!important}
 </style></head><body>
 <aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph">‹</span><span class="toggle-label">Collapse</span></button><div class="brand"><div class="logo" aria-label="IndiFrame signature architectural window mark"><svg viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true"><defs><linearGradient id="ifFrame" x1="8" y1="7" x2="56" y2="58" gradientUnits="userSpaceOnUse"><stop stop-color="#39A9DF"/><stop offset="1" stop-color="#17658F"/></linearGradient><linearGradient id="ifPane" x1="14" y1="12" x2="48" y2="53" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9E7F5"/></linearGradient></defs><path d="M10 10.5 53 8v46L10 57V10.5Z" stroke="url(#ifFrame)" stroke-width="4" stroke-linejoin="round"/><path d="m18 17 27-1.5v15L18 32V17Z" fill="url(#ifPane)"/><path d="m18 36 27-1.5v15L18 51V36Z" fill="#39A9DF" fill-opacity=".2"/><path d="M31.5 16.2v34M17.5 33.5 45 32" stroke="#18334B" stroke-width="2.6" stroke-linecap="round"/><path d="m47 7 3-4 3 4 5 2-5 3-3 5-3-5-5-3 5-2Z" fill="#BD7048" stroke="#FFF" stroke-width="1.2" stroke-linejoin="round"/><path d="m13 57 6-1" stroke="#BD7048" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="brandtext"><b>INDIFRAME</b><small>Agent Portal</small></div></div><div class="label">MENU</div><nav class="nav" id="nav">
 <button class="active" data-page="home"><span class="nav-icon" data-icon="home" aria-hidden="true"></span><span class="navtext">Home</span></button>
