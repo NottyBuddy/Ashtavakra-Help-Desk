@@ -1,4 +1,4 @@
-const ITERATIONS = 310000;
+const ITERATIONS = 100000;
 const DAYS = 7;
 const enc = new TextEncoder();
 const b64 = b => btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/g,"");
