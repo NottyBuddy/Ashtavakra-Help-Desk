@@ -86,7 +86,10 @@ async function route(req,env) {
     if(!await passwordOK(d.currentPassword,u))return error("Current password is incorrect.",401);
     const h=await passwordHash(d.newPassword);
     await env.DB.prepare("UPDATE users SET password_hash=?,password_salt=?,password_iterations=?,must_change_password=0,updated_at=? WHERE id=?").bind(h.hash,h.salt,h.iterations,Date.now(),u.id).run();
-    return response({ok:true,message:"Password updated."});
+    // Rotate the authenticated session after password change and issue a fresh cookie.
+    await env.DB.prepare("DELETE FROM sessions WHERE user_id=?").bind(u.id).run();
+    const updatedUser={id:u.id,name:u.name,email:u.email,role:u.role,must_change_password:0};
+    return session(req,env,updatedUser);
   }
   if(p==="/api/auth/logout" && req.method==="POST") {
     const t=readCookie(req);if(t)await env.DB.prepare("DELETE FROM sessions WHERE token_hash=?").bind(await hash(t)).run();
