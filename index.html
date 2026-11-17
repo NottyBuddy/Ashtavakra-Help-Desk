@@ -238,8 +238,16 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .nav button .nav-icon,.tile-icon,.stat-symbol{transition:transform .25s ease,background .25s ease,color .25s ease,box-shadow .25s ease}
 .nav button:hover .nav-icon{transform:translateY(-2px) scale(1.08) rotate(-3deg)}
 .item:hover .tile-icon{transform:translateY(-3px) scale(1.06)}
+
+/* INDIFRAME SIGNATURE MARK — architectural window monogram */
+.brand{align-items:center!important;gap:12px!important}
+.brand .logo{width:48px!important;height:48px!important;min-width:48px!important;padding:0!important;display:grid!important;place-items:center!important;border-radius:14px!important;background:linear-gradient(145deg,#eaf8fc 0%,#c9eaf5 55%,#fff0e5 100%)!important;color:#18334b!important;box-shadow:0 7px 20px rgba(4,18,32,.24),inset 0 0 0 1px rgba(255,255,255,.8)!important;overflow:hidden}
+.brand .logo svg{width:36px;height:36px;display:block}
+.brandtext b{font-size:15px!important;letter-spacing:2.3px!important;font-weight:850!important;color:#f7fbff!important}
+.brandtext small{font-size:10px!important;letter-spacing:1.1px!important;text-transform:uppercase;color:#b7d0df!important}
+@media(max-width:850px){.brand .logo{width:44px!important;height:44px!important;min-width:44px!important}.brand .logo svg{width:33px;height:33px}}
 </style></head><body>
-<aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph">‹</span><span class="toggle-label">Collapse</span></button><div class="brand"><div class="logo">IF</div><div class="brandtext"><b>INDIFRAME</b><small>Agent Portal</small></div></div><div class="label">MENU</div><nav class="nav" id="nav">
+<aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph">‹</span><span class="toggle-label">Collapse</span></button><div class="brand"><div class="logo" aria-label="IndiFrame architectural window logo"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M7 7.5h34v33H7z" stroke="#183b55" stroke-width="3.2" stroke-linejoin="round"/><path d="M24 9v30M9 23.5h30" stroke="#258fbe" stroke-width="3.1" stroke-linecap="round"/><path d="M11 11h10v10H11z" fill="#fff" fill-opacity=".8"/><path d="M27 11h10v10H27z" fill="#fff" fill-opacity=".48"/><path d="M27 26h10v12H27z" fill="#bd7048" fill-opacity=".95"/><path d="M11 26h10v12H11z" fill="#258fbe" fill-opacity=".18"/><path d="m34 5 2.1 3.9L40 11l-3.9 2.1L34 17l-2.1-3.9L28 11l3.9-2.1z" fill="#bd7048" stroke="#fff" stroke-width=".7" stroke-linejoin="round"/></svg></div><div class="brandtext"><b>INDIFRAME</b><small>Agent Portal</small></div></div><div class="label">MENU</div><nav class="nav" id="nav">
 <button class="active" data-page="home"><span class="nav-icon" data-icon="home" aria-hidden="true"></span><span class="navtext">Home</span></button>
 <button data-page="scripts"><span class="nav-icon" data-icon="file-text" aria-hidden="true"></span><span class="navtext">Scripts</span></button>
 <button data-page="products"><span class="nav-icon" data-icon="panels-top-left" aria-hidden="true"></span><span class="navtext">Products</span></button>
