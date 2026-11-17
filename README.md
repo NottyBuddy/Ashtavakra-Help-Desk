@@ -48,3 +48,8 @@ The uploaded IndiFrame Library documents are the source of truth. Verify current
 ## Repository
 
 https://github.com/NottyBuddy/INDINEXT-Agent-Help-Desk
+
+
+## Secure sign-in
+
+A Cloudflare Pages + D1 authentication implementation is available in this branch. See [AUTH_SETUP.md](AUTH_SETUP.md) for deployment, one-time Team Lead setup, agent approval and password controls. GitHub Pages alone cannot execute the server-side authentication functions.
