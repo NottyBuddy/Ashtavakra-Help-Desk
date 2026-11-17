@@ -48,9 +48,11 @@ async function route(req,env) {
   if(p.startsWith("/api/") && req.method!=="GET" && !originOK(req))return error("Cross-origin request blocked.",403);
   if(p==="/api/health" && req.method==="GET")return response({ok:true,service:"IndiFrame Agent Help Desk API"});
   if(p==="/api/setup/admin" && req.method==="POST") {
-    if(!env.ADMIN_SETUP_TOKEN)return error("Admin setup is not configured.",503);
+    const configuredSetupToken=String(env.ADMIN_SETUP_TOKEN||"").trim();
+    if(!configuredSetupToken)return error("Admin setup is not configured.",503);
     const d=await input(req);
-    if(!d || d.setupToken!==env.ADMIN_SETUP_TOKEN)return error("Invalid setup token.",403);
+    const submittedSetupToken=typeof d?.setupToken==="string"?d.setupToken.trim():"";
+    if(!submittedSetupToken || submittedSetupToken!==configuredSetupToken)return error("Invalid setup token.",403);
     if(await env.DB.prepare("SELECT id FROM users WHERE role='admin' LIMIT 1").first())return error("Team Lead account already initialized.",409);
     const name=String(d.name||"").trim(),email=String(d.email||"").trim().toLowerCase();
     if(!name||name.length>100||!emailOK(email)||!passOK(d.password))return error("Enter name, valid work email and a unique password of at least 12 characters.");
