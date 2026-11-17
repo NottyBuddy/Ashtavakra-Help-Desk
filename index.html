@@ -299,6 +299,42 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .tile-icon,.quickref-icon,.learning-path .path-icon,.ai-launch-icon,.stat-symbol{background:transparent!important;border:0!important;box-shadow:none!important}
 button,.btn,.top button,.tab,.ai-launch-button,.ai-chat-prompts button,.global-search-close,.sidebar-toggle{background:transparent!important;border:0!important;box-shadow:none!important}
 button:hover,.btn:hover,.top button:hover,.tab:hover,.ai-launch-button:hover,.ai-chat-prompts button:hover,.global-search-close:hover,.sidebar-toggle:hover{background:transparent!important;border:0!important;box-shadow:none!important}
+
+/* Readability + clean chrome + purposeful hover states */
+:root{--ink:#172b43;--muted:#53677d}
+.side{background:#f7fbfd!important;color:#172b43!important;border:0!important}
+.side .brand,.side .nav,.side .sidefoot{border:0!important}
+.side .brandtext,.side .brandtext strong,.side .brand small,.side .label,
+.side .nav button,.side .nav button span,.side .nav button .navtext,
+.side .sidefoot{color:#263d55!important}
+.side .nav button{background:transparent!important;border:0!important;box-shadow:none!important;transition:color .18s ease,transform .18s ease!important}
+.side .nav button:hover{color:#087eae!important;background:rgba(57,169,223,.10)!important;border:0!important;box-shadow:none!important}
+.side .nav button.active{color:#087eae!important;background:rgba(57,169,223,.13)!important;border:0!important;box-shadow:inset 3px 0 #168fbd!important}
+.side .nav button .nav-icon,.side .nav button .nav-icon svg,
+.side .nav button svg,.side .nav button i{color:#263d55!important;stroke:currentColor!important;fill:none}
+.side .nav button:hover .nav-icon,.side .nav button:hover svg,
+.side .nav button.active .nav-icon,.side .nav button.active svg{color:#087eae!important;stroke:currentColor!important}
+.tile-icon,.quickref-icon,.learning-path .path-icon,.stat-symbol{color:#183b58!important;background:transparent!important;border:0!important;box-shadow:none!important}
+.tile-icon svg,.quickref-icon svg,.stat-symbol svg{color:#183b58!important;stroke:currentColor!important}
+.card,.item,.stat,.quickref-card,.learning-path,.script-reader,.notice,.tablewrap{border:0!important;box-shadow:none!important}
+.card:hover,.item:hover,.stat:hover,.quickref-card:hover,.learning-path:hover{border:0!important;box-shadow:none!important;transform:translateY(-2px)}
+button,.btn,.top button,.tab,.ai-launch-button,.ai-chat-prompts button,.global-search-close,.sidebar-toggle{
+ color:#183b58!important;background:transparent!important;border:0!important;box-shadow:none!important;
+ transition:color .18s ease,background-color .18s ease,transform .18s ease!important
+}
+button svg,.btn svg,.top button svg,.tab svg{color:currentColor!important;stroke:currentColor!important}
+button:hover,.btn:hover,.top button:hover,.tab:hover,.ai-launch-button:hover,
+.ai-chat-prompts button:hover,.global-search-close:hover,.sidebar-toggle:hover{
+ color:#087eae!important;background:rgba(57,169,223,.13)!important;border:0!important;box-shadow:none!important;transform:translateY(-1px)
+}
+button:focus-visible,.btn:focus-visible,.tab:focus-visible{outline:2px solid #168fbd!important;outline-offset:3px}
+.ai-launch-button{color:#183b58!important}
+.ai-launch-button:hover{color:#087eae!important}
+.ai-chat-head .ai-chat-close{color:#fff!important}
+.global-search-card{border:0!important;box-shadow:none!important}
+.global-search-result{color:#e8efff!important}
+.global-search-result:hover{color:#fff!important;background:#6c8bff24!important;border:0!important;box-shadow:none!important}
+@media(prefers-reduced-motion:reduce){button,.btn,.card,.item,.stat,.quickref-card,.learning-path{transition:none!important}}
 </style></head><body>
 <aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph">‹</span><span class="toggle-label">Collapse</span></button><div class="brand"><div class="logo" aria-label="IndiFrame signature architectural window mark"><svg viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true"><defs><linearGradient id="ifFrame" x1="8" y1="7" x2="56" y2="58" gradientUnits="userSpaceOnUse"><stop stop-color="#39A9DF"/><stop offset="1" stop-color="#17658F"/></linearGradient><linearGradient id="ifPane" x1="14" y1="12" x2="48" y2="53" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9E7F5"/></linearGradient></defs><path d="M10 10.5 53 8v46L10 57V10.5Z" stroke="url(#ifFrame)" stroke-width="4" stroke-linejoin="round"/><path d="m18 17 27-1.5v15L18 32V17Z" fill="url(#ifPane)"/><path d="m18 36 27-1.5v15L18 51V36Z" fill="#39A9DF" fill-opacity=".2"/><path d="M31.5 16.2v34M17.5 33.5 45 32" stroke="#18334B" stroke-width="2.6" stroke-linecap="round"/><path d="m47 7 3-4 3 4 5 2-5 3-3 5-3-5-5-3 5-2Z" fill="#BD7048" stroke="#FFF" stroke-width="1.2" stroke-linejoin="round"/><path d="m13 57 6-1" stroke="#BD7048" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="brandtext"><b>INDIFRAME</b><small>Agent Portal</small></div></div><div class="label">MENU</div><nav class="nav" id="nav">
 <button class="active" data-page="home"><span class="nav-icon" data-icon="home" aria-hidden="true"></span><span class="navtext">Home</span></button>
