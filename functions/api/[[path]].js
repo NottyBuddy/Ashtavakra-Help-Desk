@@ -21,7 +21,7 @@ async function passwordOK(password,user) {
   const expected=un64(user.password_hash);
   return bits.length===expected.length && bits.every((v,i)=>v===expected[i]);
 }
-function cookie(token,maxAge) { return `hrh_session=${token}; HttpOnly; Secure; SameSite=Strict; Path=/; Max-Age=${maxAge}`; }
+function cookie(token,maxAge) { return `hrh_session=${token}; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=${maxAge}`; }
 function readCookie(req) { const v=(req.headers.get("Cookie")||"").split(";").map(x=>x.trim()).find(x=>x.startsWith("hrh_session=")); return v?v.slice(12):""; }
 function originOK(req) { const o=req.headers.get("Origin"); return !o || o===new URL(req.url).origin; }
 async function input(req) { try{return await req.json()}catch{return null} }
