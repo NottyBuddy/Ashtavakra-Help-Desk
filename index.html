@@ -246,8 +246,42 @@ button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{ou
 .brandtext b{font-size:15px!important;letter-spacing:2.3px!important;font-weight:850!important;color:#f7fbff!important}
 .brandtext small{font-size:10px!important;letter-spacing:1.1px!important;text-transform:uppercase;color:#b7d0df!important}
 @media(max-width:850px){.brand .logo{width:44px!important;height:44px!important;min-width:44px!important}.brand .logo svg{width:33px;height:33px}}
+
+/* CONSISTENT COMPONENT SCALE — tuned for balanced desktop and mobile layouts */
+.brand{gap:11px!important}
+.brand .logo{width:50px!important;height:50px!important;min-width:50px!important;border-radius:15px!important}
+.brand .logo svg{width:39px!important;height:39px!important}
+.brandtext b{font-size:14px!important;letter-spacing:2px!important}
+.brandtext small{font-size:9px!important;letter-spacing:1px!important}
+.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,265px),1fr))!important;gap:16px!important;align-items:stretch}
+.stats,.dashboard-stats{gap:14px!important}
+.grid .item,.quickref-card,.stat,.assistant-panel{min-width:0;box-sizing:border-box}
+.grid .item{padding:17px!important;border-radius:13px!important}
+.grid .item h3,.quickref-card h3{font-size:15px!important;line-height:1.35!important}
+.grid .item p,.quickref-card p{font-size:13px!important;line-height:1.6!important}
+.quickref-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,285px),1fr))!important;gap:15px!important}
+.quickref-card{padding:17px!important;min-height:0!important}
+.quickref-card .quickref-icon{width:34px!important;height:34px!important;font-size:17px!important}
+.quickref-tabs .tab,.tabs .tab{min-height:40px!important;padding:9px 14px!important;font-size:12px!important}
+.btn,.top button,.sidebar-toggle{min-height:38px;display:inline-flex;align-items:center;justify-content:center;gap:8px;line-height:1.25;font-size:12px!important;padding:9px 14px!important;border-radius:9px!important;white-space:normal}
+.nav button{min-height:45px!important;padding:8px 11px!important;gap:11px!important}
+.nav .nav-icon{width:30px!important;height:30px!important;min-width:30px!important;flex-basis:30px!important}
+.nav .nav-icon .ui-icon{width:17px!important;height:17px!important}
+.ui-icon{width:18px;height:18px}
+.tile-icon .ui-icon{width:20px!important;height:20px!important}
+.stat-symbol .ui-icon{width:18px!important;height:18px!important}
+.stat{min-height:112px!important;padding:16px!important}
+.dashboard-stats .stat{min-height:116px!important;padding:15px 14px 14px 55px!important}
+.dashboard-stats .stat strong{font-size:20px!important}
+.hero-orbit{width:145px;height:145px;min-width:145px}
+.hero-orbit span{font-size:38px}
+.script-reader{padding:25px!important}
+.source-section{padding:19px!important}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,235px),1fr))!important}.quickref-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))!important}}
+@media(max-width:850px){.brand .logo{width:43px!important;height:43px!important;min-width:43px!important}.brand .logo svg{width:34px!important;height:34px!important}.nav .nav-icon{width:30px!important;height:30px!important}.hero-orbit{width:118px;height:118px;min-width:118px}}
+@media(max-width:560px){main{padding:16px!important}.grid,.quickref-grid,.stats,.dashboard-stats{grid-template-columns:1fr!important;gap:11px!important}.grid .item,.quickref-card{padding:14px!important}.hero{padding:22px!important}.hero h1{font-size:24px!important}.btn,.top button,.tab{min-height:38px!important;padding:8px 11px!important}.script-reader{padding:14px!important}.source-section{padding:13px!important}}
 </style></head><body>
-<aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph">‹</span><span class="toggle-label">Collapse</span></button><div class="brand"><div class="logo" aria-label="IndiFrame architectural window logo"><svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M7 7.5h34v33H7z" stroke="#183b55" stroke-width="3.2" stroke-linejoin="round"/><path d="M24 9v30M9 23.5h30" stroke="#258fbe" stroke-width="3.1" stroke-linecap="round"/><path d="M11 11h10v10H11z" fill="#fff" fill-opacity=".8"/><path d="M27 11h10v10H27z" fill="#fff" fill-opacity=".48"/><path d="M27 26h10v12H27z" fill="#bd7048" fill-opacity=".95"/><path d="M11 26h10v12H11z" fill="#258fbe" fill-opacity=".18"/><path d="m34 5 2.1 3.9L40 11l-3.9 2.1L34 17l-2.1-3.9L28 11l3.9-2.1z" fill="#bd7048" stroke="#fff" stroke-width=".7" stroke-linejoin="round"/></svg></div><div class="brandtext"><b>INDIFRAME</b><small>Agent Portal</small></div></div><div class="label">MENU</div><nav class="nav" id="nav">
+<aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph">‹</span><span class="toggle-label">Collapse</span></button><div class="brand"><div class="logo" aria-label="IndiFrame signature architectural window mark"><svg viewBox="0 0 64 64" fill="none" role="img" aria-hidden="true"><defs><linearGradient id="ifFrame" x1="8" y1="7" x2="56" y2="58" gradientUnits="userSpaceOnUse"><stop stop-color="#39A9DF"/><stop offset="1" stop-color="#17658F"/></linearGradient><linearGradient id="ifPane" x1="14" y1="12" x2="48" y2="53" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF"/><stop offset="1" stop-color="#B9E7F5"/></linearGradient></defs><path d="M10 10.5 53 8v46L10 57V10.5Z" stroke="url(#ifFrame)" stroke-width="4" stroke-linejoin="round"/><path d="m18 17 27-1.5v15L18 32V17Z" fill="url(#ifPane)"/><path d="m18 36 27-1.5v15L18 51V36Z" fill="#39A9DF" fill-opacity=".2"/><path d="M31.5 16.2v34M17.5 33.5 45 32" stroke="#18334B" stroke-width="2.6" stroke-linecap="round"/><path d="m47 7 3-4 3 4 5 2-5 3-3 5-3-5-5-3 5-2Z" fill="#BD7048" stroke="#FFF" stroke-width="1.2" stroke-linejoin="round"/><path d="m13 57 6-1" stroke="#BD7048" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="brandtext"><b>INDIFRAME</b><small>Agent Portal</small></div></div><div class="label">MENU</div><nav class="nav" id="nav">
 <button class="active" data-page="home"><span class="nav-icon" data-icon="home" aria-hidden="true"></span><span class="navtext">Home</span></button>
 <button data-page="scripts"><span class="nav-icon" data-icon="file-text" aria-hidden="true"></span><span class="navtext">Scripts</span></button>
 <button data-page="products"><span class="nav-icon" data-icon="panels-top-left" aria-hidden="true"></span><span class="navtext">Products</span></button>
