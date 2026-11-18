@@ -65,3 +65,8 @@ The existing GitHub Pages address only serves static files and cannot run these 
 - `POST /api/admin/agents/reset-password`
 
 The admin setup endpoint is `POST /api/setup/admin` and should be used once only.
+
+
+## AI Assist (Workers AI)
+
+The portal AI Assist uses a server-side Cloudflare Workers AI binding. The repository Wrangler configuration declares `[ai] binding = "AI"`; verify that the production Pages environment has a Workers AI binding named `AI` and redeploy after binding changes. The AI endpoint requires an approved portal session, limits question/context size, applies a per-user/IP request limit using the existing D1 login-attempts table, and instructs the model to answer only from supplied approved portal excerpts. Workers AI inference consumes account usage and may incur charges under the current plan. Do not send customer personal data or confidential customer records in prompts.

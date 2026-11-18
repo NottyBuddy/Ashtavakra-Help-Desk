@@ -7,3 +7,6 @@ binding = "DB"
 database_name = "indiframe-agent-help-desk"
 database_id = "f3a1253f-c1d4-4edb-bb6b-af03faef7a6f"
 migrations_dir = "migrations"
+
+[ai]
+binding = "AI"

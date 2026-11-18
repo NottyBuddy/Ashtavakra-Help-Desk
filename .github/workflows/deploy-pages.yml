@@ -1,8 +1,6 @@
 name: Deploy Agent Help Desk to GitHub Pages
 
 on:
-  push:
-    branches: ["main"]
   workflow_dispatch:
 
 permissions:
