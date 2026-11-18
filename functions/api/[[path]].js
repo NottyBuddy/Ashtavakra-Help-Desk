@@ -54,7 +54,7 @@ async function route(req,env) {
     if(!question||question.length>1200)return error("Enter a question of up to 1,200 characters.");
     if(context.length<30||context.length>9000)return error("No suitable approved knowledge context was found. Try a more specific question.");
     const ip=req.headers.get("CF-Connecting-IP")||"unknown",key=await hash("ai-assist|"+a.u.id+"|"+ip),cut=Date.now()-300000;
-    await env.DB.prepare("DELETE FROM login_attempts WHERE attempted_at<?").bind(cut).run();
+    await env.DB.prepare("DELETE FROM login_attempts WHERE attempt_key=? AND attempted_at<?").bind(key,cut).run();
     const attempts=await env.DB.prepare("SELECT COUNT(*) n FROM login_attempts WHERE attempt_key=? AND attempted_at>?").bind(key,cut).first();
     if((attempts?.n||0)>=12)return error("AI Assist limit reached. Please wait a few minutes and try again.",429);
     await env.DB.prepare("INSERT INTO login_attempts(attempt_key,attempted_at) VALUES(?,?)").bind(key,Date.now()).run();

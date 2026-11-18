@@ -701,7 +701,7 @@ function assistPrompt(q){const i=document.getElementById("aiChatInput");if(i){i.
 function buildAssistContext(question){
  const stop=new Set(["the","and","for","with","what","when","where","which","how","does","can","you","are","from","this","that","have","has","about","please","tell","give","customer","agent","help"]);
  const words=[...new Set((question.toLowerCase().match(/[a-z0-9₹]{3,}/g)||[]).filter(w=>!stop.has(w)))],chunks=[];
- const add=(source,value)=>{String(value??"").split(/\\n\\s*\\n|(?<=[.!?])\\s{2,}/).map(x=>x.trim()).filter(x=>x.length>35).forEach(text=>{const low=text.toLowerCase();let score=0;for(const w of words)if(low.includes(w))score+=w.length>5?2:1;if(score>0)chunks.push({source,text,score});});};
+ const add=(source,value)=>{String(value??"").split(/\n\s*\n|(?<=[.!?])\\s{2,}/).map(x=>x.trim()).filter(x=>x.length>35).forEach(text=>{const low=text.toLowerCase();let score=0;for(const w of words)if(low.includes(w))score+=w.length>5?2:1;if(score>0)chunks.push({source,text,score});});};
  if(typeof faqBankText!=="undefined")add("FAQ Bank",faqBankText);
  if(typeof scriptLibrary!=="undefined")for(const [name,value] of Object.entries(scriptLibrary))add("Scripts Library · "+name,value);
  if(typeof productData!=="undefined")for(const row of productData)add("Product Guide",Array.isArray(row)?row.join(" · "):row);
