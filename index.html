@@ -761,6 +761,7 @@ function buildAssistContext(question){
   }
  };
  if(typeof faqBankText!=="undefined")add("Approved FAQ Bank",faqBankText);
+ if(typeof approvedKnowledgeCache!=="undefined")for(const item of approvedKnowledgeCache)add("Team Lead Approved Knowledge · "+item.category+" · "+item.title,item.content);
  if(typeof scriptLibrary!=="undefined")for(const [name,value] of Object.entries(scriptLibrary))add("Approved Scripts · "+name,value);
  if(typeof productData!=="undefined")add("Product Guide",productData);
  if(typeof cx!=="undefined")add("CX Questions",cx.map((v,n)=>String(v)+" "+(typeof cxApprovedAnswers!=="undefined"&&cxApprovedAnswers[n]?JSON.stringify(cxApprovedAnswers[n]):"")));
@@ -797,12 +798,40 @@ async function sendAssistMessage(){
   const data=await response.json().catch(()=>({error:"I couldn't read the response. Please try again."}));
   if(!response.ok)throw new Error(data.error||"I’m having trouble connecting right now.");
   const answer=data.answer||"I’m sorry, I couldn't form a useful answer. Could you rephrase that?";
-  if(pending)pending.textContent=answer;
+  if(pending){pending.textContent=answer;addAssistFeedback(pending,question,answer);}
   ashtavakraHistory.push({role:"user",content:question},{role:"assistant",content:answer});ashtavakraHistory=ashtavakraHistory.slice(-12);
  }catch(error){if(pending)pending.textContent="I’m sorry — "+error.message+" If this is about an approved company policy, price, warranty or technical commitment, I’ll avoid guessing and you can check the relevant approved portal section.";}
  finally{if(send){send.disabled=false;send.textContent="Send ↑";}input.focus();}
 }
 function appendAssistMessage(t,who){const h=document.getElementById("aiChatMessages");if(!h)return null;const d=document.createElement("div");d.className="ai-message "+(who==="user"?"ai-user":"ai-bot");d.textContent=t;h.appendChild(d);h.scrollTop=h.scrollHeight;return d}
+function addAssistFeedback(message,question,answer){
+ const wrap=document.createElement("div");
+ wrap.style.cssText="display:flex;align-items:center;gap:8px;margin:8px 0 14px 4px;font-size:12px;color:#64748b";
+ const label=document.createElement("span");label.textContent="Was this helpful?";wrap.appendChild(label);
+ [{rating:1,text:"👍 Yes"},{rating:-1,text:"👎 No"}].forEach(item=>{
+  const button=document.createElement("button");button.type="button";button.textContent=item.text;
+  button.style.cssText="border:1px solid #dbe3ee;background:#fff;border-radius:18px;padding:5px 10px;cursor:pointer";
+  button.addEventListener("click",async()=>{
+   button.disabled=true;let comment="";
+   if(item.rating<0)comment=window.prompt("What was incorrect or missing? (Optional)","")||"";
+   try{
+    const r=await fetch("/api/ai/feedback",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({question,answer,rating:item.rating,comment})});
+    const d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d.error||"Could not save feedback.");
+    wrap.textContent="Feedback received. Thank you.";
+   }catch(e){button.disabled=false;label.textContent=e.message;}
+  });
+  wrap.appendChild(button);
+ });
+ if(message&&message.parentNode)message.parentNode.insertBefore(wrap,message.nextSibling);
+}
+let approvedKnowledgeCache=[];
+async function loadApprovedKnowledge(){
+ try{const r=await fetch("/api/knowledge/approved",{credentials:"same-origin"});if(!r.ok)return;
+  const d=await r.json();approvedKnowledgeCache=Array.isArray(d.entries)?d.entries:[];
+ }catch(e){approvedKnowledgeCache=[];}
+}
+loadApprovedKnowledge();
+
 function getAssistAnswer(question){const q=question.toLowerCase();
 if(/warranty/.test(q))return "The FAQ Bank lists a 15-year warranty on the uPVC profile and a 5-year operational warranty on hardware, issued through a digital warranty card. Confirm current terms and exclusions with Sales before making a commitment. Source: FAQ Bank — Warranty."
 if(/price|pricing|rate|cost|quote/.test(q))return "The FAQ Bank lists an indicative starting price of ₹450 per sq. ft. onwards, plus 18% GST. Final pricing depends on style, dimensions and quantity; transport and project details must be confirmed by Sales. Do not promise a final quote or discount. Source: FAQ Bank — Pricing."
