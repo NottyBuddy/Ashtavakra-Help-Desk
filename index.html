@@ -562,7 +562,7 @@ function submitWeeklyQuiz(){if(getWeeklyQuiz().some((q,i)=>weeklyQuizAnswers[i]=
 function quickRefs(){
  const quiz=getWeeklyQuiz();let top=H("QUICK REFERENCE CENTRE","Serviceability, experience centres & agent essentials","Product features, benefits, glass, colours and mesh are maintained in Products.")+
  '<div class="quickref-tabs"><button class="tab '+(quickRefTab==="areas"?"active":"")+'" onclick="quickRefTab=\'areas\';render()">📍 Serviceable Areas</button><button class="tab '+(quickRefTab==="centres"?"active":"")+'" onclick="quickRefTab=\'centres\';render()">🏬 Experience Centres</button><button class="tab '+(quickRefTab==="quiz"?"active":"")+'" onclick="quickRefTab=\'quiz\';render()">🧠 Weekly Quiz</button><button class="tab '+(quickRefTab==="learning"?"active":"")+'" onclick="quickRefTab=\'learning\';render()">🎓 Learning Centre</button><button class="tab '+(quickRefTab==="reminders"?"active":"")+'" onclick="quickRefTab=\'reminders\';render()">📌 Agent Reminders</button></div>';
- if(quickRefTab==="areas"){top+='<div class="notice"><b>Serviceability rule</b><p>Exact city, locality and PIN code capture karein. “Sizeable projects only” aur “Sales confirms serviceability” ko Sales Owner se validate karein.</p></div><div class="service-finder"><input id="serviceCityInput" placeholder="Enter city / locality (e.g. Warangal, Pune)"><input id="servicePinInput" inputmode="numeric" placeholder="PIN code (optional)"><button class="btn" type="button" onclick="checkServiceability()">Check Area</button></div><div id="serviceFinderResult" class="service-finder-result" aria-live="polite">Enter a city or locality to check the approved service-area reference.</div><input class="ref-search" id="coverageSearch placeholder="Search state, city, cluster or status..." oninput="filterQuickRef(\'coverageSearch\',\'coverageRows\')"><div class="tablewrap"><table class="quickref-table"><thead><tr><th>State</th><th>City / Cluster</th><th>On-ground coverage</th><th>Status</th></tr></thead><tbody id="coverageRows">'+serviceCoverage.map(x=>'<tr><td><b>'+x[0]+'</b></td><td>'+x[1]+'</td><td>'+x[2]+'</td><td><span class="status-chip '+x[4]+'">'+x[3]+'</span></td></tr>').join("")+'</tbody></table></div>'}
+ if(quickRefTab==="areas"){top+='<div class="notice"><b>Serviceability rule</b><p>City aur locality ko approved coverage list se match karein. PAN India sirf directory label hai, blanket serviceability approval nahi.</p></div><div class="service-finder"><input id="serviceCityInput" placeholder="Enter city / locality (e.g. Warangal, Pune)"><select id="serviceEnquiryType" aria-label="Enquiry type"><option value="Project">Project</option><option value="Retail">Retail</option></select><input id="serviceQty" type="number" min="0" placeholder="Product quantity"><label class="service-multiple"><input id="serviceMultipleProjects" type="checkbox"> Multiple projects</label><select id="serviceTier" aria-label="Requirement level"><option value="Low">Low requirement</option><option value="Mid">Mid requirement</option></select><button class="btn" type="button" onclick="checkServiceability()">Check & Recommend</button></div><div id="serviceFinderResult" class="service-finder-result" aria-live="polite">Enter a city or locality to check the approved service-area reference.</div><input class="ref-search" id="coverageSearch" placeholder="Search state, city, cluster or status..." oninput="filterQuickRef(\'coverageSearch\',\'coverageRows\')"><div class="tablewrap"><table class="quickref-table"><thead><tr><th>State</th><th>City / Cluster</th><th>On-ground coverage</th><th>Status</th></tr></thead><tbody id="coverageRows">'+serviceCoverage.map(x=>'<tr><td><b>'+x[0]+'</b></td><td>'+x[1]+'</td><td>'+x[2]+'</td><td><span class="status-chip '+x[4]+'">'+x[3]+'</span></td></tr>').join("")+'</tbody></table></div>'}
  else if(quickRefTab==="centres"){top+='<div class="quickref-grid"><div class="quickref-card"><h3>Hyderabad — Kukatpally</h3><p>4th Floor, 5-35, Vilax Prime, 189-A, 100 Feet Road, Prashanti Nagar, I.E., Kukatpally, Hyderabad 500072</p><b>Live Experience Centre</b></div><div class="quickref-card"><h3>Mumbai — Malad West</h3><p>Auris Galleria, 218, Kanchpada, Malad West, Mumbai 400064</p><b>Live Experience Centre</b></div><div class="quickref-card"><h3>Other Live Displays</h3><p>Hyderabad: Home 360, Jubilee Hills Road No. 40<br>Kurnool: Varaahi Enterprises, Nandikotkur Road<br>Khammam: Future Living Interior & Architecture, Sri Sri Circle</p></div><div class="quickref-card"><h3>Opening Soon</h3><p>Jubilee Hills, Road No. 36 flagship. Confirm opening date with Sales.</p></div></div>'}
  else if(quickRefTab==="quiz"){const score=quiz.reduce((n,q,i)=>n+(weeklyQuizAnswers[i]===q.a?1:0),0);top+='<div class="notice"><b>Weekly knowledge check</b><p>The question set changes every week. Your answers and result remain only in this page session; they are not saved or uploaded. Refreshing the page or leaving this module resets the attempt.</p><small>Week '+currentQuizWeek()+' · 15 questions</small></div><div class="quickref-grid">'+quiz.map((q,i)=>'<article class="quickref-card"><small>QUESTION '+(i+1)+' / 15</small><h3>'+q.q+'</h3>'+q.o.map((o,j)=>'<label style="display:block;padding:8px 0"><input type="radio" name="weeklyQ'+i+'" '+(weeklyQuizAnswers[i]===j?'checked':'')+' '+(weeklyQuizSubmitted?'disabled':'')+' onchange="weeklyQuizAnswers['+i+']='+j+'"> '+o+'</label>').join("")+(weeklyQuizSubmitted?'<p><b>'+(weeklyQuizAnswers[i]===q.a?'Correct':'Correct answer: '+q.o[q.a])+'</b><br>'+q.e+'</p>':'')+'</article>').join("")+'</div>'+(weeklyQuizSubmitted?'<div class="notice"><h3>Your Result: '+score+' / 15</h3><button class="btn" onclick="weeklyQuizAnswers={};weeklyQuizSubmitted=false;render()">Retake Quiz</button></div>':'<button class="btn primary" onclick="submitWeeklyQuiz()">Submit Answers & View Result</button>')}
  else if(quickRefTab==="learning"){const paths=[["01","🎧","Call Excellence","Opening, discovery, objection handling and Golden Closing.","cx"],["02","🧭","Lead Qualification","C0–C7 stages, C2 readiness, CRM hygiene and handover.","sop"],["03","🪟","Product Knowledge","Windows, doors, glass, mesh, colours and safe product claims.","products"],["04","📍","Serviceability","City coverage, limited clusters, PIN capture and Sales validation.","areas"],["05","📜","Script Practice","Read the approved Final and Secondary call scripts.","scripts"],["06","🧠","Knowledge Check","Test weekly policy, product and process knowledge.","quiz"]];top+='<div class="notice"><b>Agent Learning Centre</b><p>Guided learning paths use approved content already maintained in this portal. Weekly quiz results remain session-only.</p></div><div class="learning-path-grid">'+paths.map(x=>'<article class="learning-path"><div class="path-icon">'+x[1]+'</div><small>LEARNING PATH '+x[0]+'</small><h3>'+x[2]+'</h3><p>'+x[3]+'</p><button class="btn" type="button" onclick="openLearningPath(\''+x[4]+'\')">Open learning path →</button></article>').join("")+'</div>'}
@@ -755,6 +755,106 @@ const terms=q.replace(/[^a-z0-9₹]+/g," ").split(" ").filter(x=>x.length>2),blo
 let bestIndex=-1,top=0;for(let n=0;n<cx.length;n++){let count=0;for(const w of cx[n].toLowerCase().split(/\W+/))if(w.length>3&&q.includes(w))count++;if(count>top){top=count;bestIndex=n}}if(bestIndex>=0&&cxApprovedAnswers[bestIndex])return "Customer-ready response: "+cxApprovedAnswers[bestIndex][0]+"\n\nAgent guidance: "+cxApprovedAnswers[bestIndex][1];return "I could not find a reliable approved answer for that exact question. Try a more specific keyword or open the relevant FAQ / Process SOP. I will not guess on pricing, warranty, technical specifications or service commitments."}
 try{if(localStorage.getItem("hrhSidebarCollapsed")==="1"){document.body.classList.add("sidebar-collapsed");const b=document.getElementById("sidebarToggle");if(b){b.setAttribute("aria-label","Expand sidebar");b.title="Expand sidebar";b.querySelector(".toggle-label").textContent="Expand"}}}catch(e){}
 document.querySelectorAll("#nav button[data-page]").forEach(b=>{b.title=b.querySelector(".navtext")?.textContent||"Open module";b.setAttribute("aria-label",b.title)});
+
+/* HRHNEXT SERVICEABILITY + MANUAL SALES ASSIGNMENT RULES — 2026-11 */
+teamData.splice(0,teamData.length,
+ ["Nikunj","Sales Director","8691025587","nikunj@indiframe.com","Dilip Sir","PAN India"],
+ ["Nayan Panchal","AGM – Assistant General Manager","9154747858","nayan@indiframe.com","Nikunj","Mumbai"],
+ ["Paresh Digambar","ASM – Assistant Sales Manager","7396613535","paresh@indiframe.com","Nayan Panchal","Mumbai"],
+ ["Naman","ASM – Assistant Sales Manager","8805076364","naman@indiframe.com","Nayan Panchal","Mumbai"],
+ ["Sandeep Patil","ASM – Assistant Sales Manager","7709584386","sandeep@indiframe.com","Nayan Panchal","Pune"],
+ ["Sachin Janardhan","Senior Sales Executive","8668794263","sachin@indiframe.com","Nayan Panchal","Nagpur"],
+ ["Venkatesh Saddi","ASM – Assistant Sales Manager","9154904253","venkatesh@indiframe.com","Nikunj","Hyderabad"],
+ ["Arjun Sharma","Senior Sales Executive","9100109387","arjun@indiframe.com","Venkatesh Saddi","Hyderabad"],
+ ["Prashanth – Hyderabad","Sales Executive","9100109803","prashanth@indiframe.com","Venkatesh Saddi","Hyderabad"],
+ ["Sandeep Kumar","Sales Executive","8520003516","sandeep.kumar@indiframe.com","Abhishek Kumar","Warangal"],
+ ["karimnagarSales","Sales Executive","8106268181","karimnagarsales@indiframe.com","Venkatesh Saddi","Karimnagar-Siddipet"],
+ ["Team Future Living","Dealer / Showroom","9581951866","teamfutureliving@gmail.com","Abhishek Kumar","Khammam"],
+ ["Sushant","Project Manager","9154904237","sushant@indiframe.com","Nikunj","Telangana"],
+ ["Ravi","Project Executive","9154749146","ravi@indiframe.com","Sushant","Telangana"],
+ ["Sales Varahi UPVC – Uday","Dealer / Showroom","8501069605","salesvarahiupvc@gmail.com","Abhishek Kumar","Kurnool"],
+ ["Ajay Guthala","Sales Executive","8520003548","ajay.guthala@indiframe.com","Abhishek Kumar","Kakinada / Godavari"],
+ ["Merugu Rajesh","Sales Executive","8520003643","merugu.rajesh@indiframe.com","Abhishek Kumar","Vijayawada / Guntur"],
+ ["Abhishek Kumar","Channel Sales Manager","9100109804","abhishek@indiframe.com","Nikunj","A.P. – Telangana"]
+);
+
+serviceCoverage.splice(0,serviceCoverage.length,
+ ["Maharashtra","Mumbai / MMR","Project: Paresh Digambar · Retail: Naman · AGM: Nayan Panchal","Serviced",""],
+ ["Maharashtra","Pune","Sandeep Patil · Project & Retail","Serviced",""],
+ ["Maharashtra","Nagpur","Sachin Janardhan · Project & Retail","Serviced",""],
+ ["Telangana","Hyderabad","Project: Ravi → Sushant · Retail: Prashanth / Arjun → Venkatesh","Serviced",""],
+ ["Telangana","Warangal","Sandeep Kumar · Project & Retail · Manager: Abhishek Kumar","Serviced",""],
+ ["Telangana","Karimnagar – Siddipet","karimnagarSales · Project & Retail · Manager: Venkatesh Saddi","Serviced",""],
+ ["Telangana","Khammam","Team Future Living · Project & Retail Channel Partner · Manager: Abhishek Kumar","Serviced – Channel Partner",""],
+ ["Andhra Pradesh","Kurnool","Sales Varahi UPVC – Uday · Project & Retail Channel Partner · Manager: Abhishek Kumar","Serviced – Channel Partner",""],
+ ["Andhra Pradesh","Kakinada / Rajahmundry / East Godavari / West Godavari","Ajay Guthala · Project & Retail · Manager: Abhishek Kumar","Serviced",""],
+ ["Andhra Pradesh","Vijayawada – Guntur","Merugu Rajesh · Project & Retail · Manager: Abhishek Kumar","Serviced",""],
+ ["Telangana","Other Telangana locations","Do not auto-approve; Team Lead / Sales validation required","Team Lead Review","confirm"],
+ ["Telangana & Andhra Pradesh","A.P. – T.G. general mapping","Abhishek Kumar is Channel Sales Manager; not blanket city approval","Team Lead Review","confirm"],
+ ["Pan India","PAN India (directory label only)","Nikunj · Sales Director · Not a blanket serviceability approval","Label only","confirm"]
+);
+
+const serviceAssignmentMap = [
+ {key:"mumbai",aliases:["mumbai","mmr","malad"],state:"Maharashtra",project:{low:"Paresh Digambar",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Nayan Panchal"},retail:{low:"Naman",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Nayan Panchal"},manager:"Nayan Panchal"},
+ {key:"pune",aliases:["pune"],state:"Maharashtra",project:{low:"Sandeep Patil",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Sandeep Patil"},retail:{low:"Sandeep Patil",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Sandeep Patil"},manager:"Sandeep Patil"},
+ {key:"nagpur",aliases:["nagpur"],state:"Maharashtra",project:{low:"Sachin Janardhan",mid:"Sachin Janardhan",high:"Sachin Janardhan"},retail:{low:"Sachin Janardhan",mid:"Sachin Janardhan",high:"Sachin Janardhan"},manager:"Sachin Janardhan"},
+ {key:"hyderabad",aliases:["hyderabad","secunderabad"],state:"Telangana",project:{low:"Ravi",mid:"Team Lead Review – Senior Project Sales Executive not listed",high:"Sushant"},retail:{low:"Prashanth – Hyderabad",mid:"Arjun Sharma",high:"Venkatesh Saddi"},manager:"Venkatesh Saddi (Retail) / Sushant (Project)"},
+ {key:"warangal",aliases:["warangal"],state:"Telangana",project:{low:"Sandeep Kumar",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Abhishek Kumar"},retail:{low:"Sandeep Kumar",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Abhishek Kumar"},manager:"Abhishek Kumar"},
+ {key:"karimnagar-siddipet",aliases:["karimnagar","karimnagar-siddipet","siddipet"],state:"Telangana",project:{low:"karimnagarSales",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Venkatesh Saddi"},retail:{low:"karimnagarSales",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Venkatesh Saddi"},manager:"Venkatesh Saddi"},
+ {key:"khammam",aliases:["khammam"],state:"Telangana",project:{low:"Team Future Living (Channel Partner)",mid:"Team Future Living (Channel Partner)",high:"Abhishek Kumar"},retail:{low:"Team Future Living (Channel Partner)",mid:"Team Future Living (Channel Partner)",high:"Abhishek Kumar"},manager:"Abhishek Kumar"},
+ {key:"kurnool",aliases:["kurnool"],state:"Andhra Pradesh",project:{low:"Sales Varahi UPVC – Uday (Channel Partner)",mid:"Sales Varahi UPVC – Uday (Channel Partner)",high:"Abhishek Kumar"},retail:{low:"Sales Varahi UPVC – Uday (Channel Partner)",mid:"Sales Varahi UPVC – Uday (Channel Partner)",high:"Abhishek Kumar"},manager:"Abhishek Kumar"},
+ {key:"kakinada-godavari",aliases:["kakinada","rajamundry","rajahmundry","east godavari","west godavari","godavari"],state:"Andhra Pradesh",project:{low:"Ajay Guthala",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Abhishek Kumar"},retail:{low:"Ajay Guthala",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Abhishek Kumar"},manager:"Abhishek Kumar"},
+ {key:"vijayawada-guntur",aliases:["vijayawada","guntur"],state:"Andhra Pradesh",project:{low:"Merugu Rajesh",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Abhishek Kumar"},retail:{low:"Merugu Rajesh",mid:"Team Lead Review – Senior Sales Executive not listed",high:"Abhishek Kumar"},manager:"Abhishek Kumar"}
+];
+function normalizeServiceQuery(v){return String(v||"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim()}
+function findServiceability(q){
+ const n=normalizeServiceQuery(q);
+ if(!n)return [];
+ const words=n.split(/\s+/).filter(Boolean);
+ return serviceCoverage.filter(x=>{
+  const hay=normalizeServiceQuery(x[0]+" "+x[1]);
+  return hay.includes(n)||words.some(w=>w.length>3&&hay.split(" ").some(t=>t.startsWith(w)));
+ });
+}
+function resolveServiceArea(q){
+ const n=normalizeServiceQuery(q);
+ if(!n)return null;
+ return serviceAssignmentMap.find(a=>a.aliases.some(alias=>{
+  const k=normalizeServiceQuery(alias);
+  return n===k||n.startsWith(k+" ")||n.includes(" "+k+" ");
+ }))||null;
+}
+function checkServiceability(){
+ const input=document.getElementById("serviceCityInput");
+ const out=document.getElementById("serviceFinderResult");
+ if(!input||!out)return;
+ const q=input.value.trim();
+ if(!q){out.textContent="Enter the customer's city or locality.";return;}
+ const area=resolveServiceArea(q);
+ if(!area){
+  out.innerHTML='<div class="service-result-warning"><strong>Team Lead Review required</strong><br>No exact approved city/region mapping found. Do not treat PAN India or a broad state label as serviceability approval. Confirm with Sales before making a commitment.</div><small>PIN-level approval is not configured because no approved PIN-code master was supplied.</small>';
+  return;
+ }
+ const type=document.getElementById("serviceEnquiryType")?.value==="Retail"?"retail":"project";
+ const qty=Number(document.getElementById("serviceQty")?.value||0);
+ const multiple=!!document.getElementById("serviceMultipleProjects")?.checked;
+ const tier=(qty>=100||multiple)?"high":(document.getElementById("serviceTier")?.value==="Mid"?"mid":"low");
+ const owner=area[type][tier];
+ const tierLabel=tier==="high"?"High Requirement (100+ products OR multiple projects)":tier==="mid"?"Mid Requirement":"Low Requirement";
+ const isPartner=/Channel Partner/.test(owner);
+ const note=owner.includes("Team Lead Review")?"<br><strong>Action:</strong> Senior role mapping is not present in the supplied directory. Team Lead must select the correct person.":"";
+ out.innerHTML='<div class="service-result-success"><strong>'+escapeHtml(area.key.toUpperCase().replace(/-/g," "))+' · '+escapeHtml(area.state)+'</strong><br><span class="status-chip '+(isPartner?"limited":"")+'">'+(isPartner?"Partner / Dealer route":"Matched directory location")+'</span><p><b>Enquiry:</b> '+(type==="project"?"Project":"Retail")+' · <b>Requirement:</b> '+escapeHtml(tierLabel)+'</p><p><b>Recommended assignee:</b> '+escapeHtml(owner)+'</p><p><b>Location manager / oversight:</b> '+escapeHtml(area.manager)+'</p>'+note+'<small>Recommendation only. No lead is assigned automatically. Agent / Team Lead must manually select and assign the person in CRM.</small></div>';
+}
+function serviceabilityAssignmentPolicy(){
+ return '<div class="notice"><b>Manual assignment policy</b><p>Low → Sales Executive · Mid → Senior Sales Executive · High → respective location Sales Manager (100+ products OR multiple projects). The portal only recommends an owner; Agent / Team Lead manually assigns in CRM.</p><p><b>CRM hygiene escalation:</b> After 3 reminders without call-detail updates, recommend reassignment to Abhishek Kumar. Record all 3 reminders and the reassignment reason.</p></div>';
+}
+const _quickRefsWithAssignment=quickRefs;
+function quickRefs(){
+ const html=_quickRefsWithAssignment();
+ if(quickRefTab!=="areas")return html;
+ return html.replace('<div class="service-finder">',''+serviceabilityAssignmentPolicy()+'<div class="service-finder">');
+}
+
 render();
 (async()=>{try{const r=await fetch("/api/auth/me",{credentials:"same-origin"});if(!r.ok){location.replace("/login.html");return;}const d=await r.json();if(d.user.mustChangePassword){location.replace("/login.html?force=1");return;}const profileName=document.getElementById("profileName"),profileRole=document.getElementById("profileRole");if(profileName)profileName.textContent=d.user.name||"Agent";if(profileRole)profileRole.textContent=d.user.role==="admin"?"Team Lead · Administrator":"Agent · Secure access";const adminButton=document.getElementById("adminConsole");adminButton.hidden=true;adminButton.onclick=null;if(d.user.role==="admin"){adminButton.hidden=false;adminButton.onclick=()=>location.href="/admin.html";}document.getElementById("portalSignOut").onclick=async()=>{await fetch("/api/auth/logout",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:"{}"});location.replace("/login.html");};}catch(e){location.replace("/login.html");}})();
 </script></body></html>
