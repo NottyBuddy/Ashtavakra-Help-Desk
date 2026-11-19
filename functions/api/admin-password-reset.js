@@ -3,7 +3,7 @@ const b64 = b => btoa(String.fromCharCode(...new Uint8Array(b))).replace(/\+/g,"
 const hash = async s => b64(await crypto.subtle.digest("SHA-256",enc.encode(s)));
 const response = (data,status=200) => new Response(JSON.stringify(data),{status,headers:{"content-type":"application/json; charset=utf-8","cache-control":"no-store"}});
 const fail = (message,status=400) => response({ok:false,error:message},status);
-const emailOK = s => typeof s==="string" && /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(s) && s.length<=254;
+const emailOK = s => typeof s==="string" && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(s) && s.length<=254;
 const passOK = s => typeof s==="string" && s.length>=12 && s.length<=128;
 const randomSalt = () => {const b=new Uint8Array(16);crypto.getRandomValues(b);return b64(b);};
 const randomOtp = () => String(crypto.getRandomValues(new Uint32Array(1))[0]%1000000).padStart(6,"0");
@@ -58,7 +58,7 @@ export async function onRequestPost({request,env}){
     }
     if(action==="verify"){
       const otp=String(d?.otp||"").trim();
-      if(!/^\\d{6}$/.test(otp))return fail("Enter the 6-digit verification code.");
+      if(!/^\d{6}$/.test(otp))return fail("Enter the 6-digit verification code.");
       if(!passOK(d?.newPassword))return fail("New password must be 12–128 characters.");
       const user=await env.DB.prepare("SELECT id FROM users WHERE email=? AND role='admin' AND status='approved' LIMIT 1").bind(email).first();
       if(!user)return fail("Verification failed or code expired.",400);
