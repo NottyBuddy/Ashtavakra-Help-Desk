@@ -756,13 +756,13 @@ function assistPrompt(q){const i=document.getElementById("aiChatInput");if(i){i.
 function buildAssistContext(question){
  const stop=new Set(["the","and","for","with","what","when","where","which","how","does","can","you","are","from","this","that","have","has","about","please","tell","give","customer","agent","help","your","our","their","there","then","them","hai","hain","kya","kaise","kaha","aur","mein","mujhe","hume","ko","ki","ka","ke","se","hai","tha","thi","the","lo","che","emi","ela","undhi"]);
  const normalize=v=>String(v??"").toLocaleLowerCase().normalize("NFKC");
- const words=[...new Set((normalize(question).match(/[\\p{L}\\p{N}₹]+/gu)||[]).filter(w=>w.length>1&&!stop.has(w)))];
+ const words=[...new Set((normalize(question).match(/[\p{L}\p{N}₹]+/gu)||[]).filter(w=>w.length>1&&!stop.has(w)))];
  const query=normalize(question).trim(),chunks=[];
  const add=(source,value)=>{
-  const raw=Array.isArray(value)?value.map(v=>Array.isArray(v)?v.join(" · "):typeof v==="object"?JSON.stringify(v):String(v)).join("\\n"):typeof value==="object"?JSON.stringify(value):String(value??"");
-  const parts=raw.replace(/\\r/g,"").split(/\\n\\s*\\n|(?<=[.!?।])\\s+|\\n/).map(x=>x.trim()).filter(x=>x.length>24);
+  const raw=Array.isArray(value)?value.map(v=>Array.isArray(v)?v.join(" · "):typeof v==="object"?JSON.stringify(v):String(v)).join("\n"):typeof value==="object"?JSON.stringify(value):String(value??"");
+  const parts=raw.replace(/\r/g,"").split(/\n\s*\n|(?<=[.!?।])\s+|\n/).map(x=>x.trim()).filter(x=>x.length>24);
   for(const text of parts){
-   const low=normalize(text),tokens=low.match(/[\\p{L}\\p{N}₹]+/gu)||[];
+   const low=normalize(text),tokens=low.match(/[\p{L}\p{N}₹]+/gu)||[];
    if(!tokens.length)continue;
    let score=0,matched=0;
    for(const w of words){
@@ -800,7 +800,7 @@ function buildAssistContext(question){
   seen.add(key);selected.push(item);total+=item.length+2;sourceCounts.set(c.source,(sourceCounts.get(c.source)||0)+1);
   if(selected.length>=16)break;
  }
- return selected.join("\\n\\n");
+ return selected.join("\n\n");
 }
 async function sendAssistMessage(){
  const input=document.getElementById("aiChatInput"),send=document.querySelector(".ai-chat-compose button");if(!input||!input.value.trim()||send?.disabled)return;
