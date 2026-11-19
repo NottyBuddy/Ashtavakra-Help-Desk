@@ -11,6 +11,3 @@ migrations_dir = "migrations"
 [ai]
 binding = "AI"
 
-[[r2_buckets]]
-binding = "HRH_CALL_AUDIT_FILES"
-bucket_name = "hrh-call-audit-recordings"
