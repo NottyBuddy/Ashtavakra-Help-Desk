@@ -1,6 +1,11 @@
 name: Deploy Agent Help Desk to GitHub Pages
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -21,12 +26,49 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Build GitHub URL shell
+        run: |
+          mkdir -p dist
+          cat > dist/index.html <<'HTML'
+          <!doctype html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width,initial-scale=1">
+            <meta name="referrer" content="strict-origin-when-cross-origin">
+            <meta name="theme-color" content="#f7f5f0">
+            <title>HRHNEXT · Agent Help Desk</title>
+            <style>
+              * { box-sizing: border-box; }
+              html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #f7f5f0; }
+              #portal { display: block; width: 100%; height: 100%; border: 0; background: #f7f5f0; }
+              #fallback { position: fixed; inset: 0; display: none; place-items: center; padding: 24px; color: #263548; font: 15px/1.6 system-ui, sans-serif; text-align: center; }
+            </style>
+          </head>
+          <body>
+            <iframe
+              id="portal"
+              title="HRHNEXT Agent Help Desk"
+              src="https://indiframe-agent-help-centre.pages.dev/"
+              allow="clipboard-read; clipboard-write"
+              allowfullscreen
+            ></iframe>
+            <main id="fallback" role="status">
+              <p>Agent Help Desk load nahi ho pa raha. Browser mein third-party cookies / site data allow karke page reload karein.</p>
+            </main>
+          </body>
+          </html>
+          HTML
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: dist
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
