@@ -66,7 +66,7 @@ async function route(req,env) {
     const rows=await env.DB.prepare("SELECT f.id,f.question,f.answer,f.rating,f.comment,f.status,f.created_at,u.name AS agent_name,u.email AS agent_email FROM ai_feedback f JOIN users u ON u.id=f.user_id ORDER BY f.created_at DESC LIMIT 100").all();
     return response({ok:true,feedback:rows.results||[]});
   }
-  const feedbackReview=p.match(/^\\/api\\/admin\\/ai-feedback\\/([a-f0-9-]+)$/i);
+  const feedbackReview=p.match(/^\/api\/admin\/ai-feedback\/([a-f0-9-]+)$/i);
   if(feedbackReview&&req.method==="PATCH") {
     const x=await auth(req,env,true);if(x.res)return x.res;
     const d=await input(req),status=String(d?.status||"");
@@ -88,7 +88,7 @@ async function route(req,env) {
     await env.DB.prepare("INSERT INTO knowledge_entries(id,submitted_by,title,category,content,status,created_at,updated_at) VALUES(?,?,?,?,?,'pending',?,?)").bind(id,x.u.id,title,category,content,now,now).run();
     return response({ok:true,message:"Knowledge entry submitted for approval."},201);
   }
-  const knowledgeReview=p.match(/^\\/api\\/admin\\/knowledge\\/([a-f0-9-]+)$/i);
+  const knowledgeReview=p.match(/^\/api\/admin\/knowledge\/([a-f0-9-]+)$/i);
   if(knowledgeReview&&req.method==="PATCH") {
     const x=await auth(req,env,true);if(x.res)return x.res;
     const d=await input(req),status=String(d?.status||"");
