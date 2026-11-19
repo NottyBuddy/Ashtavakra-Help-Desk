@@ -47,10 +47,20 @@ async function route(req,env) {
   const url=new URL(req.url),p=url.pathname;
   if(p.startsWith("/api/") && req.method!=="GET" && !originOK(req))return error("Cross-origin request blocked.",403);
   if(p==="/api/health" && req.method==="GET")return response({ok:true,service:"IndiFrame Agent Help Desk API"});
+  const auditAudio=p.match(/^\\/api\\/call-auditor\\/([a-f0-9-]+)\\/recording$/i);
+  if(auditAudio&&req.method==="GET") {
+    const a=await auth(req,env,true);if(a.res)return a.res;
+    if(!env.HRH_CALL_AUDIT_FILES)return error("Recording storage is not configured.",503);
+    const row=await env.DB.prepare("SELECT recording_key FROM call_audits WHERE id=?").bind(auditAudio[1]).first();
+    if(!row?.recording_key)return error("No recording is attached to this audit.",404);
+    const obj=await env.HRH_CALL_AUDIT_FILES.get(row.recording_key);
+    if(!obj)return error("Recording file not found.",404);
+    return new Response(obj.body,{headers:{"content-type":obj.httpMetadata?.contentType||"audio/mpeg","cache-control":"private, no-store","content-disposition":"inline"}});
+  }
   if(p==="/api/call-auditor" && req.method==="GET") {
     const a=await auth(req,env,true);if(a.res)return a.res;
-    const rows=await env.DB.prepare("SELECT id,agent_name,call_date,status,report_json,created_at FROM call_audits ORDER BY created_at DESC LIMIT 100").all();
-    return response({ok:true,audits:(rows.results||[]).map(x=>({...x,report:JSON.parse(x.report_json)}))});
+    const rows=await env.DB.prepare("SELECT id,agent_name,call_date,status,report_json,recording_key,created_at FROM call_audits ORDER BY created_at DESC LIMIT 100").all();
+    return response({ok:true,audits:(rows.results||[]).map(x=>({...x,hasRecording:!!x.recording_key,recording_key:undefined,report:JSON.parse(x.report_json)}))});
   }
   const auditReview=p.match(/^\\/api\\/call-auditor\\/([a-f0-9-]+)$/i);
   if(auditReview&&req.method==="PATCH") {
