@@ -79,6 +79,32 @@ if(p==="/api/setup/admin" && req.method==="POST") {
     await env.DB.prepare("INSERT INTO users(id,name,email,role,status,password_hash,password_salt,password_iterations,must_change_password,created_at,updated_at) VALUES(?,?,?,'admin','approved',?,?,?,0,?,?)").bind(id,name,email,h.hash,h.salt,h.iterations,now,now).run();
     return session(req,env,{id,name,email,role:"admin",must_change_password:0});
   }
+  if(p==="/api/setup/admin/recover" && req.method==="POST") {
+    const d=await input(req);
+    const supplied=typeof d?.recoveryToken==="string"?d.recoveryToken:"";
+    const newPassword=d?.newPassword;
+    const configured=typeof env.ADMIN_RECOVERY_TOKEN==="string"?env.ADMIN_RECOVERY_TOKEN.trim():"";
+    if(configured.length<32 || configured.length>256)return error("Team Lead recovery is not configured. Contact the deployment administrator.",503);
+    if(!passOK(newPassword))return error("New password must be 12–128 characters.");
+    const ip=req.headers.get("CF-Connecting-IP")||"unknown";
+    const key=await hash("admin-password-recovery|"+ip),cut=Date.now()-900000;
+    await env.DB.prepare("DELETE FROM login_attempts WHERE attempted_at<?").bind(cut).run();
+    const attempts=await env.DB.prepare("SELECT COUNT(*) n FROM login_attempts WHERE attempt_key=? AND attempted_at>?").bind(key,cut).first();
+    if((attempts?.n||0)>=5)return error("Too many recovery attempts. Try again after 15 minutes.",429);
+    let valid=supplied.length===configured.length;
+    if(valid){let diff=0;for(let i=0;i<configured.length;i++)diff|=supplied.charCodeAt(i)^configured.charCodeAt(i);valid=diff===0;}
+    if(!valid){
+      await env.DB.prepare("INSERT INTO login_attempts(attempt_key,attempted_at) VALUES(?,?)").bind(key,Date.now()).run();
+      return error("Recovery secret is invalid.",403);
+    }
+    const admin=await env.DB.prepare("SELECT id FROM users WHERE role='admin' AND status='approved' ORDER BY created_at ASC LIMIT 1").first();
+    if(!admin)return error("No approved Team Lead account exists. No account was created.",404);
+    const h=await passwordHash(newPassword),now=Date.now();
+    await env.DB.prepare("UPDATE users SET password_hash=?,password_salt=?,password_iterations=?,must_change_password=0,updated_at=? WHERE id=? AND role='admin'").bind(h.hash,h.salt,h.iterations,now,admin.id).run();
+    await env.DB.prepare("DELETE FROM sessions WHERE user_id=?").bind(admin.id).run();
+    await env.DB.prepare("DELETE FROM login_attempts WHERE attempt_key=?").bind(key).run();
+    return response({ok:true,message:"Existing Team Lead password reset successful. Sign in using your new password."});
+  }
   if(p==="/api/auth/recover" && req.method==="POST") {
     const d=await input(req);
     const email=String(d?.email||"").trim().toLowerCase();
