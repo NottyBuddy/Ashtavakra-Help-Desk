@@ -18,7 +18,7 @@ async function ensureTable(env){
 }
 async function sendOtp(env,email,otp){
   const payload={
-    from:env.RESEND_FROM_EMAIL,
+    from:env.RESEND_FROM_EMAIL || "IndiFrame Help Desk <onboarding@resend.dev>",
     to:[email],
     subject:"IndiFrame Team Lead password reset code",
     html:`<div style="font-family:Arial,sans-serif;color:#172236;max-width:520px;margin:auto;padding:24px"><div style="font-size:12px;letter-spacing:2px;color:#bd7048;font-weight:bold">INDIFRAME · HRHNEXT</div><h2 style="color:#258fbe">Password reset verification</h2><p>Your Team Lead password reset code is:</p><div style="font-size:32px;letter-spacing:8px;font-weight:bold;padding:18px;background:#f5f7fa;border-radius:10px;text-align:center">${otp}</div><p>This code expires in 10 minutes and can be used only once.</p><p>If you did not request this reset, ignore this email. Do not share this code with anyone.</p></div>`
@@ -30,7 +30,7 @@ export async function onRequestPost({request,env}){
   try{
     const origin=request.headers.get("Origin");
     if(origin && origin!==new URL(request.url).origin)return fail("Cross-origin request blocked.",403);
-    if(!env.RESEND_API_KEY || !env.RESEND_FROM_EMAIL)return fail("Email OTP service is not configured yet. Contact the deployment administrator.",503);
+    if(!env.RESEND_API_KEY)return fail("Email OTP service is not configured yet. Contact the deployment administrator.",503);
     await ensureTable(env);
     const d=await request.json().catch(()=>null);
     const action=d?.action;
