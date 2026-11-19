@@ -1,0 +1,8 @@
+{
+  "name": "indiframe-agent-help-desk",
+  "version": "1.0.0",
+  "private": true,
+  "description": "IndiFrame HRHNEXT Agent Help Desk",
+  "scripts": { "check": "node scripts/verify-portal.mjs" },
+  "engines": { "node": ">=20" }
+}
