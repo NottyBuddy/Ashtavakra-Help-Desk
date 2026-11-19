@@ -111,6 +111,10 @@ async function route(req,env) {
     if(!report||!Array.isArray(report.sections))return error("AI audit structure was incomplete. No result was saved.",502);
     report.sections=report.sections.map(s=>({...s,status:allowed.includes(s.status)?s.status:"NEEDS_REVIEW",evidence:Array.isArray(s.evidence)?s.evidence.filter(e=>e&&typeof e.quote==="string"&&e.quote.length<=500&&transcript.includes(e.quote)).slice(0,8):[]}));
     report.sections=report.sections.map(s=>["FAIL","PASS"].includes(s.status)&&!s.evidence.length?{...s,status:"NOT_EVIDENCED",finding:"No exact supporting transcript quote was available; this item is not scored."}:s);
+    const requiredSections=["Opening","Probing","Observation","CX Inquiry","AOI / Coaching","Disposition","Closing"];
+    for(const name of requiredSections){if(!report.sections.some(s=>String(s.name||"").toLowerCase()===name.toLowerCase()))report.sections.push({name,status:"NOT_EVIDENCED",finding:"This audit section was not returned with transcript evidence.",evidence:[],what_should_have_happened:"Manual review against the approved call standard.",coaching:"Team Lead review required.",confidence:"low"});}
+    report.sections=report.sections.filter(s=>requiredSections.some(n=>n.toLowerCase()===String(s.name||"").toLowerCase()));
+    report.overall_status=report.sections.some(s=>s.status==="FAIL")?"FAIL":report.sections.some(s=>s.status==="NEEDS_REVIEW")?"NEEDS_REVIEW":report.sections.some(s=>s.status==="NOT_EVIDENCED")?"NOT_EVIDENCED":"PASS";
     const id=crypto.randomUUID(),now=Date.now();
     await env.DB.prepare("INSERT INTO call_audits(id,agent_name,call_date,auditor_user_id,transcript_sha256,recording_key,report_json,status,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)").bind(id,agentName,callDate,a.u.id,transcriptHash,recordingKey,JSON.stringify(report),"pending_review",now,now).run();
     return response({ok:true,auditId:id,status:"pending_review",recordingSaved:!!recordingKey,report});
