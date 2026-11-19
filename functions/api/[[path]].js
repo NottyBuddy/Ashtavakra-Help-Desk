@@ -47,6 +47,56 @@ async function route(req,env) {
   const url=new URL(req.url),p=url.pathname;
   if(p.startsWith("/api/") && req.method!=="GET" && !originOK(req))return error("Cross-origin request blocked.",403);
   if(p==="/api/health" && req.method==="GET")return response({ok:true,service:"Ashtavakra API"});
+
+  if(p==="/api/ai/feedback" && req.method==="POST") {
+    const x=await auth(req,env,false);if(x.res)return x.res;
+    const d=await input(req),question=String(d?.question||"").trim(),answer=String(d?.answer||"").trim(),comment=String(d?.comment||"").trim(),rating=Number(d?.rating);
+    if(!question||question.length>1200||!answer||answer.length>5000||![1,-1].includes(rating)||comment.length>1000)return error("Feedback details are invalid.");
+    const id=crypto.randomUUID(),now=Date.now();
+    await env.DB.prepare("INSERT INTO ai_feedback(id,user_id,question,answer,rating,comment,status,created_at) VALUES(?,?,?,?,?,?,'new',?)").bind(id,x.u.id,question,answer,rating,comment||null,now).run();
+    return response({ok:true,message:"Feedback saved."},201);
+  }
+  if(p==="/api/knowledge/approved" && req.method==="GET") {
+    const x=await auth(req,env,false);if(x.res)return x.res;
+    const rows=await env.DB.prepare("SELECT id,title,category,content,updated_at FROM knowledge_entries WHERE status='approved' ORDER BY updated_at DESC LIMIT 100").all();
+    return response({ok:true,entries:rows.results||[]});
+  }
+  if(p==="/api/admin/ai-feedback" && req.method==="GET") {
+    const x=await auth(req,env,true);if(x.res)return x.res;
+    const rows=await env.DB.prepare("SELECT f.id,f.question,f.answer,f.rating,f.comment,f.status,f.created_at,u.name AS agent_name,u.email AS agent_email FROM ai_feedback f JOIN users u ON u.id=f.user_id ORDER BY f.created_at DESC LIMIT 100").all();
+    return response({ok:true,feedback:rows.results||[]});
+  }
+  const feedbackReview=p.match(/^\\/api\\/admin\\/ai-feedback\\/([a-f0-9-]+)$/i);
+  if(feedbackReview&&req.method==="PATCH") {
+    const x=await auth(req,env,true);if(x.res)return x.res;
+    const d=await input(req),status=String(d?.status||"");
+    if(!["reviewed","ignored"].includes(status))return error("Choose reviewed or ignored.");
+    const result=await env.DB.prepare("UPDATE ai_feedback SET status=?,reviewed_at=?,reviewed_by=? WHERE id=?").bind(status,Date.now(),x.u.id,feedbackReview[1]).run();
+    if(!result.meta?.changes)return error("Feedback not found.",404);
+    return response({ok:true,message:"Feedback status updated."});
+  }
+  if(p==="/api/admin/knowledge" && req.method==="GET") {
+    const x=await auth(req,env,true);if(x.res)return x.res;
+    const rows=await env.DB.prepare("SELECT k.id,k.title,k.category,k.content,k.status,k.created_at,k.updated_at,u.name AS submitted_by_name FROM knowledge_entries k JOIN users u ON u.id=k.submitted_by ORDER BY CASE k.status WHEN 'pending' THEN 0 WHEN 'approved' THEN 1 ELSE 2 END,k.updated_at DESC LIMIT 200").all();
+    return response({ok:true,entries:rows.results||[]});
+  }
+  if(p==="/api/admin/knowledge" && req.method==="POST") {
+    const x=await auth(req,env,true);if(x.res)return x.res;
+    const d=await input(req),title=String(d?.title||"").trim(),category=String(d?.category||"General").trim(),content=String(d?.content||"").trim();
+    if(!title||title.length>160||!category||category.length>60||!content||content.length>6000)return error("Enter title, category and content (maximum 6,000 characters).");
+    const id=crypto.randomUUID(),now=Date.now();
+    await env.DB.prepare("INSERT INTO knowledge_entries(id,submitted_by,title,category,content,status,created_at,updated_at) VALUES(?,?,?,?,?,'pending',?,?)").bind(id,x.u.id,title,category,content,now,now).run();
+    return response({ok:true,message:"Knowledge entry submitted for approval."},201);
+  }
+  const knowledgeReview=p.match(/^\\/api\\/admin\\/knowledge\\/([a-f0-9-]+)$/i);
+  if(knowledgeReview&&req.method==="PATCH") {
+    const x=await auth(req,env,true);if(x.res)return x.res;
+    const d=await input(req),status=String(d?.status||"");
+    if(!["approved","rejected"].includes(status))return error("Choose approved or rejected.");
+    const result=await env.DB.prepare("UPDATE knowledge_entries SET status=?,reviewed_by=?,updated_at=? WHERE id=?").bind(status,x.u.id,Date.now(),knowledgeReview[1]).run();
+    if(!result.meta?.changes)return error("Knowledge entry not found.",404);
+    return response({ok:true,message:"Knowledge status updated."});
+  }
   if(p==="/api/ai/assist" && req.method==="POST") {
     const a=await auth(req,env,false);if(a.res)return a.res;
     if(!env.AI)return error("Ashtavakra is not configured. Contact the Team Lead.",503);
