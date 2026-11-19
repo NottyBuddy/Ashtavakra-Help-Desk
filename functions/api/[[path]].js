@@ -46,7 +46,8 @@ async function auth(req,env,admin=false,allowMustChange=false) {
 async function route(req,env) {
   const url=new URL(req.url),p=url.pathname;
   if(p.startsWith("/api/") && req.method!=="GET" && !originOK(req))return error("Cross-origin request blocked.",403);
-  if(p==="/api/health" && req.method==="GET")return response({ok:true,service:"IndiFrame Agent Help Desk API"});
+  if(p==="/api/call-auditor" || p.startsWith("/api/call-auditor/"))return error("AI Call Auditor is not enabled in Ashtavakra.",404);
+  if(p==="/api/health" && req.method==="GET")return response({ok:true,service:"Ashtavakra API"});
   const auditAudio=p.match(/^\\/api\\/call-auditor\\/([a-f0-9-]+)\\/recording$/i);
   if(auditAudio&&req.method==="GET") {
     const a=await auth(req,env,true);if(a.res)return a.res;
@@ -284,7 +285,7 @@ export async function onRequest({request,env}) {
   try {
     return await route(request,env);
   } catch (e) {
-    console.error("IndiFrame API request failed", {
+    console.error("Ashtavakra API request failed", {
       path: new URL(request.url).pathname,
       method: request.method,
       errorName: e?.name || "Error",
