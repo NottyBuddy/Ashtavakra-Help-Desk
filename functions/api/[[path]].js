@@ -47,6 +47,20 @@ async function route(req,env) {
   const url=new URL(req.url),p=url.pathname;
   if(p.startsWith("/api/") && req.method!=="GET" && !originOK(req))return error("Cross-origin request blocked.",403);
   if(p==="/api/health" && req.method==="GET")return response({ok:true,service:"IndiFrame Agent Help Desk API"});
+  if(p==="/api/call-auditor" && req.method==="GET") {
+    const a=await auth(req,env,true);if(a.res)return a.res;
+    const rows=await env.DB.prepare("SELECT id,agent_name,call_date,status,report_json,created_at FROM call_audits ORDER BY created_at DESC LIMIT 100").all();
+    return response({ok:true,audits:(rows.results||[]).map(x=>({...x,report:JSON.parse(x.report_json)}))});
+  }
+  const auditReview=p.match(/^\\/api\\/call-auditor\\/([a-f0-9-]+)$/i);
+  if(auditReview&&req.method==="PATCH") {
+    const a=await auth(req,env,true);if(a.res)return a.res;
+    const d=await input(req),status=String(d?.status||"");
+    if(!["approved","changes_requested"].includes(status))return error("Choose approved or changes_requested.");
+    const result=await env.DB.prepare("UPDATE call_audits SET status=?,updated_at=? WHERE id=?").bind(status,Date.now(),auditReview[1]).run();
+    if(!result.meta?.changes)return error("Audit not found.",404);
+    return response({ok:true,message:"Audit review status updated."});
+  }
   if(p==="/api/call-auditor" && req.method==="POST") {
     const a=await auth(req,env,false);if(a.res)return a.res;
     if(!env.AI)return error("AI audit service is not configured.",503);
@@ -86,7 +100,7 @@ async function route(req,env) {
     const allowed=["PASS","FAIL","NOT_EVIDENCED","NEEDS_REVIEW"];
     if(!report||!Array.isArray(report.sections))return error("AI audit structure was incomplete. No result was saved.",502);
     report.sections=report.sections.map(s=>({...s,status:allowed.includes(s.status)?s.status:"NEEDS_REVIEW",evidence:Array.isArray(s.evidence)?s.evidence.filter(e=>e&&typeof e.quote==="string"&&e.quote.length<=500&&transcript.includes(e.quote)).slice(0,8):[]}));
-    report.sections=report.sections.map(s=>s.status==="FAIL"&&!s.evidence.length?{...s,status:"NOT_EVIDENCED",finding:"No exact supporting transcript quote was available; this item is not scored as a failure."}:s);
+    report.sections=report.sections.map(s=>["FAIL","PASS"].includes(s.status)&&!s.evidence.length?{...s,status:"NOT_EVIDENCED",finding:"No exact supporting transcript quote was available; this item is not scored."}:s);
     const id=crypto.randomUUID(),now=Date.now();
     await env.DB.prepare("INSERT INTO call_audits(id,agent_name,call_date,auditor_user_id,transcript_sha256,recording_key,report_json,status,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)").bind(id,agentName,callDate,a.u.id,transcriptHash,recordingKey,JSON.stringify(report),"pending_review",now,now).run();
     return response({ok:true,auditId:id,status:"pending_review",recordingSaved:!!recordingKey,report});
