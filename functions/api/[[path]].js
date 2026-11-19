@@ -47,6 +47,50 @@ async function route(req,env) {
   const url=new URL(req.url),p=url.pathname;
   if(p.startsWith("/api/") && req.method!=="GET" && !originOK(req))return error("Cross-origin request blocked.",403);
   if(p==="/api/health" && req.method==="GET")return response({ok:true,service:"IndiFrame Agent Help Desk API"});
+  if(p==="/api/call-auditor" && req.method==="POST") {
+    const a=await auth(req,env,false);if(a.res)return a.res;
+    if(!env.AI)return error("AI audit service is not configured.",503);
+    const ct=req.headers.get("content-type")||"";
+    if(!ct.includes("multipart/form-data"))return error("Upload a transcript using the audit form.");
+    const form=await req.formData();
+    const agentName=String(form.get("agentName")||"").trim().slice(0,120);
+    const callDate=String(form.get("callDate")||"").trim().slice(0,30);
+    const transcriptFile=form.get("transcriptFile");
+    const transcriptText=String(form.get("transcriptText")||"").trim();
+    const recording=form.get("recordingFile");
+    if(!agentName)return error("Enter the agent name.");
+    if(!transcriptText && !(transcriptFile instanceof File))return error("Transcript is required. AI audit will not be based on assumptions.");
+    let transcript=transcriptText;
+    if(transcriptFile instanceof File){
+      if(transcriptFile.size>150000)return error("Transcript file must be 150 KB or smaller.");
+      const name=transcriptFile.name.toLowerCase();
+      if(!/\.(txt|srt|vtt)$/.test(name))return error("For this first release, transcript upload supports TXT, SRT and VTT files. You can also paste transcript text.");
+      transcript=(await transcriptFile.text()).trim();
+    }
+    if(!transcript||transcript.length<40)return error("Transcript is too short to audit. Add the complete transcript.");
+    if(transcript.length>150000)return error("Transcript is too large. Maximum 150,000 characters.");
+    let recordingKey=null;
+    if(recording instanceof File && recording.size>0){
+      if(!env.CALL_AUDIT_FILES)return error("Recording storage is not configured yet. Transcript audit is available; Team Lead must connect the HRH_CALL_AUDIT_FILES R2 bucket before recording uploads can be saved.",503);
+      if(recording.size>30*1024*1024)return error("Recording must be 30 MB or smaller.");
+      if(!/^audio\/(mpeg|mp3|wav|x-wav|mp4|webm|ogg|aac|m4a)/i.test(recording.type||""))return error("Upload an audio file (MP3, WAV, M4A, MP4 audio, WEBM or OGG).");
+      recordingKey="call-audits/"+a.u.id+"/"+crypto.randomUUID()+"-"+recording.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+      await env.CALL_AUDIT_FILES.put(recordingKey,recording.stream(),{httpMetadata:{contentType:recording.type||"application/octet-stream"},customMetadata:{uploadedBy:a.u.id}});
+    }
+    const transcriptHash=await hash(transcript);
+    const prompt="You are a strict call-quality auditor. Audit ONLY the supplied transcript. Never infer that a question was asked, an answer was given, a product was promised, or a step was completed unless the transcript contains direct evidence. Missing or inaudible information is NOT_EVIDENCED, never FAIL. Contradictory or ambiguous evidence is NEEDS_REVIEW. Do not invent timestamps; use only timestamps present in the transcript.\n\nAudit these sections independently: Opening (brand introduction, speciality, product name, purpose of calling); Probing (requirement windows/doors, quantity, location, project type, project stage, timeline); Observation (active listening, acknowledging answers, avoiding unnecessary repetition); CX Inquiry (customer questions and agent responses); AOI/Coaching (accuracy, clarity, ownership, next steps, unsupported claims); Disposition (call outcome and follow-up commitment); Closing (summary, next step, polite close).\n\nReturn ONLY valid JSON with shape: {\"overall_status\":\"PASS|FAIL|NOT_EVIDENCED|NEEDS_REVIEW\",\"summary\":\"...\",\"sections\":[{\"name\":\"Opening\",\"status\":\"PASS|FAIL|NOT_EVIDENCED|NEEDS_REVIEW\",\"finding\":\"...\",\"evidence\":[{\"quote\":\"exact short quote from transcript\",\"timestamp\":null}],\"what_should_have_happened\":\"...\",\"coaching\":\"...\",\"confidence\":\"high|medium|low\"}],\"critical_risks\":[\"...\"],\"review_notes\":[\"...\"]}. Include all seven sections. Evidence quotes must be exact substrings. If no quote supports a finding, evidence must be [] and status must not be FAIL. Overall score is not required; do not manufacture a percentage.\n\nTranscript:\n"+transcript;
+    const result=await env.AI.run("@cf/meta/llama-3.3-70b-instruct-fp8-fast",{messages:[{role:"system",content:"Return valid JSON only. You are evidence-bound; do not guess."},{role:"user",content:prompt}],max_tokens:3200,temperature:0.1});
+    let raw=typeof result?.response==="string"?result.response:typeof result?.result?.response==="string"?result.result.response:"";
+    let report;
+    try{const cleaned=raw.trim().replace(/^\`\`\`(?:json)?/i,"").replace(/\`\`\`$/,"");report=JSON.parse(cleaned);}catch{return error("AI returned an unreadable audit. No result was saved; please retry or request manual review.",502);}
+    const allowed=["PASS","FAIL","NOT_EVIDENCED","NEEDS_REVIEW"];
+    if(!report||!Array.isArray(report.sections))return error("AI audit structure was incomplete. No result was saved.",502);
+    report.sections=report.sections.map(s=>({...s,status:allowed.includes(s.status)?s.status:"NEEDS_REVIEW",evidence:Array.isArray(s.evidence)?s.evidence.filter(e=>e&&typeof e.quote==="string"&&e.quote.length<=500&&transcript.includes(e.quote)).slice(0,8):[]}));
+    report.sections=report.sections.map(s=>s.status==="FAIL"&&!s.evidence.length?{...s,status:"NOT_EVIDENCED",finding:"No exact supporting transcript quote was available; this item is not scored as a failure."}:s);
+    const id=crypto.randomUUID(),now=Date.now();
+    await env.DB.prepare("INSERT INTO call_audits(id,agent_name,call_date,auditor_user_id,transcript_sha256,recording_key,report_json,status,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,?,?)").bind(id,agentName,callDate,a.u.id,transcriptHash,recordingKey,JSON.stringify(report),"pending_review",now,now).run();
+    return response({ok:true,auditId:id,status:"pending_review",recordingSaved:!!recordingKey,report});
+  }
   if(p==="/api/ai/assist" && req.method==="POST") {
     const a=await auth(req,env,false);if(a.res)return a.res;
     if(!env.AI)return error("Ashtavakra is not configured. Contact the Team Lead.",503);
