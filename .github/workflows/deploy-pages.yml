@@ -6,6 +6,10 @@ on:
       - main
     paths:
       - ".github/workflows/deploy-pages.yml"
+      - "index.html"
+      - "functions/**"
+      - "wrangler.toml"
+      - "migrations/**"
   workflow_dispatch:
 
 permissions:
