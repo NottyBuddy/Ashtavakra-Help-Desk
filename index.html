@@ -803,6 +803,8 @@ function renderScriptDocument(source){
 }
 
 function enhanceDocumentReaders(){
+ window._ashtavakraReaderTargets=[];
+ if(!window._ashtavakraReaderScrollBound){window.addEventListener("scroll",()=>{(window._ashtavakraReaderTargets||[]).forEach(fn=>fn())},{passive:true});window._ashtavakraReaderScrollBound=true;}
  document.querySelectorAll("#view .script-document").forEach((article,idx)=>{
   if(article.dataset.readerEnhanced==="1")return;
   const headings=[...article.querySelectorAll(".script-heading")];
@@ -826,7 +828,7 @@ function enhanceDocumentReaders(){
    let active=0;headings.forEach((h,i)=>{if(h.getBoundingClientRect().top<190)active=i});
    [...toc.querySelectorAll("button")].forEach((b,i)=>b.classList.toggle("active",i===active));
   };
-  window.addEventListener("scroll",update,{passive:true});update();
+  window._ashtavakraReaderTargets.push(update);update();
  });
 }
 function toggleNotifications(){
@@ -1109,7 +1111,7 @@ function assistPrompt(q){const i=document.getElementById("aiChatInput");if(i){i.
 function buildCurrentPageContext(){
  const root=document.getElementById("view");if(!root)return "";
  const title=root.querySelector(".head h1,.hero h1,h1,h2")?.textContent?.trim()||page;
- const body=(root.innerText||"").replace(/Our Partners[\\s\\S]*Powered by Ashtavakra[^\\n]*/g,"").replace(/\\s+/g," ").trim();
+ const body=(root.innerText||"").split("Our Partners")[0].replace(/\s+/g," ").trim();
  return "CURRENT WORKSPACE: "+title+" ("+page+"). Visible page context: "+body.slice(0,900);
 }
 function buildAssistContext(question){
@@ -1187,7 +1189,7 @@ async function sendAssistMessage(){
  const question=input.value.trim();input.value="";if(question.length>1200)return;
  appendAssistMessage(question,"user");const pending=appendAssistMessage("Let me think that through…","bot");if(send){send.disabled=true;send.textContent="…";}
  try{
-  const portalContext=buildAssistContext(question);const postalContext=await lookupPostalContext(question);const context=[portalContext.slice(0,6500),postalContext.slice(0,3000)].filter(Boolean).join("\\n\\n");
+  const pageContext=buildCurrentPageContext();const portalContext=buildAssistContext(question);const postalContext=await lookupPostalContext(question);const context=[pageContext,portalContext.slice(0,6000),postalContext.slice(0,3000)].filter(Boolean).join("\\n\\n").slice(0,9900);
   const history=ashtavakraHistory.slice(-10);
   const response=await fetch("/api/ai/assist",{method:"POST",headers:{"content-type":"application/json"},credentials:"same-origin",body:JSON.stringify({question,context:context||"No matching approved portal excerpt was found. Answer general conversational parts normally, but do not invent IndiFrame-specific facts.",history})});
   const data=await response.json().catch(()=>({error:"I couldn't read the response. Please try again."}));
