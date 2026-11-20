@@ -1019,14 +1019,14 @@ async function lookupPostalContext(question){
  if(!r.ok)throw new Error(d.error||"India postal search is temporarily unavailable.");
  const records=Array.isArray(d.results)?d.results:[];
  if(!records.length)return "INDIA POSTAL DIRECTORY LOOKUP\nQuery: "+term+"\nNo matching postal records were returned. Do not infer a PIN code or location.\nSource: "+(d.source||"India postal directory");
- return "INDIA POSTAL DIRECTORY LOOKUP (postal identity only; NOT company serviceability)\nQuery: "+term+"\n"+records.map((r,i)=>(i+1)+". Post office: "+r.office+" | PIN: "+r.pincode+" | District: "+r.district+" | State: "+r.state+" | Office type: "+r.officeType+" | Delivery: "+r.delivery).join("\n")+"\nDataset version: "+(d.datasetVersion||"not supplied")+"\nSource: "+(d.source||"India postal directory");
+ return "INDIA POSTAL DIRECTORY LOOKUP (postal identity only; NOT company serviceability)\nQuery: "+term+"\n"+records.slice(0,8).map((r,i)=>(i+1)+". Post office: "+r.office+" | PIN: "+r.pincode+" | District: "+r.district+" | State: "+r.state+" | Office type: "+r.officeType+" | Delivery: "+r.delivery).join("\n")+"\nDataset version: "+(d.datasetVersion||"not supplied")+"\nSource: "+(d.source||"India postal directory");
 }
 async function sendAssistMessage(){
  const input=document.getElementById("aiChatInput"),send=document.querySelector(".ai-chat-compose button");if(!input||!input.value.trim()||send?.disabled)return;
  const question=input.value.trim();input.value="";if(question.length>1200)return;
  appendAssistMessage(question,"user");const pending=appendAssistMessage("Let me think that through…","bot");if(send){send.disabled=true;send.textContent="…";}
  try{
-  const portalContext=buildAssistContext(question);const postalContext=await lookupPostalContext(question);const context=[portalContext,postalContext].filter(Boolean).join("\\n\\n");
+  const portalContext=buildAssistContext(question);const postalContext=await lookupPostalContext(question);const context=[portalContext.slice(0,6500),postalContext.slice(0,3000)].filter(Boolean).join("\\n\\n");
   const history=ashtavakraHistory.slice(-10);
   const response=await fetch("/api/ai/assist",{method:"POST",headers:{"content-type":"application/json"},credentials:"same-origin",body:JSON.stringify({question,context:context||"No matching approved portal excerpt was found. Answer general conversational parts normally, but do not invent IndiFrame-specific facts.",history})});
   const data=await response.json().catch(()=>({error:"I couldn't read the response. Please try again."}));
