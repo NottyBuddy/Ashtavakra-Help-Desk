@@ -674,6 +674,30 @@ body.sidebar-collapsed #view>.footer{
  }
 }
 
+
+/* ASHTAVAKRA PREMIUM WORKSPACE UPGRADE — READER, NOTIFICATIONS, ACCESSIBILITY */
+.top-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+#notificationBtn{position:relative;min-width:40px!important;font-size:18px!important}
+.notification-count{display:inline-grid;place-items:center;min-width:17px;height:17px;padding:0 4px;border-radius:20px;background:#bd7048;color:#fff;font-size:9px;font-weight:800;vertical-align:top}
+.notification-panel{position:fixed;z-index:1500;top:82px;right:22px;width:min(420px,calc(100vw - 28px));max-height:min(70vh,620px);overflow:auto;background:#fff;border:1px solid #dfcfc4;border-radius:15px;box-shadow:0 18px 55px #1b304822;padding:17px;color:#263444}
+.notification-panel[hidden]{display:none}
+.notification-panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.notification-panel h3{margin:0;color:#238fc4;font-size:16px}
+.notification-entry{padding:12px 2px;border-top:1px solid #eee5df}
+.notification-entry b{display:block;color:#263d55;font-size:13px}
+.notification-entry small{display:block;color:#758393;font-size:10px;margin:3px 0}
+.notification-entry p{margin:4px 0;color:#526274;font-size:12px;line-height:1.55}
+.notification-empty{padding:20px 4px;color:#697786;font-size:13px}
+.reader-progress{height:3px;background:#e9f0f3;border-radius:10px;overflow:hidden;margin:0 0 12px}
+.reader-progress>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#39a9df,#bd7048);transition:width .12s linear}
+.reader-toc{position:sticky;top:78px;z-index:8;display:flex;gap:7px;align-items:center;overflow-x:auto;padding:8px 0 10px;margin:0 0 12px;background:rgba(247,245,240,.96);scrollbar-width:thin}
+.reader-toc-label{flex:0 0 auto;font-size:9px;letter-spacing:1.4px;font-weight:900;color:#bd7048}
+.reader-toc button{flex:0 0 auto;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:7px 10px!important;border:1px solid #dfe8eb!important;border-radius:18px!important;background:#fff!important;color:#52677a!important;font-size:10px!important}
+.reader-toc button:hover,.reader-toc button.active{background:#eaf7fc!important;border-color:#39a9df!important;color:#187da9!important}
+.script-heading{scroll-margin-top:145px}
+.reader-actions .btn:focus-visible,.reader-toc button:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid rgba(57,169,223,.35);outline-offset:2px}
+@media(max-width:700px){.top-actions{gap:3px}.notification-panel{top:70px;right:10px}.reader-toc{top:64px}.reader-heading-label{display:none}}
+@media(prefers-reduced-motion:reduce){.reader-progress>span{transition:none}}
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body>
 <aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="brand">
   <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
@@ -704,7 +728,7 @@ body.sidebar-collapsed #view>.footer{
 <button data-page="cx"><span class="nav-icon" data-icon="headphones" aria-hidden="true"></span><span class="navtext">CX Questions</span></button>
 <button data-page="quickRefs"><span class="nav-icon" data-icon="library" aria-hidden="true"></span><span class="navtext">Quick References</span></button>
 </nav><div class="sidefoot"><div class="profile-card"><span class="profile-avatar">IF</span><span class="profile-copy"><b id="profileName">Agent workspace</b><small id="profileRole">Secure portal access</small></span><span class="profile-chevron">⌄</span></div><div class="profile-meta">Secure Workspace<br>Internal Use Only<br>© 2026 Ashtavakra</div></div></aside>
-<div class="main"><header class="top"><div><b>Ashtavakra</b><small>Your Intelligent AI Workspace</small></div><div><button class="top-assist" type="button" onclick="openAssist()">✦ Ashtavakra</button> <button id="searchBtn">⌕ Search... &nbsp; Ctrl K</button> <button class="login" id="portalSignOut" type="button">Sign out</button> <button id="adminConsole" type="button" hidden>Team Lead Console</button></div></header><main id="view"></main></div>
+<div class="main"><header class="top"><div><b>Ashtavakra</b><small>Your Intelligent AI Workspace</small></div><div class="top-actions"><button class="top-assist" type="button" onclick="openAssist()">✦ Ashtavakra</button> <button id="searchBtn">⌕ Search... &nbsp; Ctrl K</button> <button id="notificationBtn" type="button" aria-label="Open announcements" onclick="toggleNotifications()">♧ <span class="notification-count" id="notificationCount">4</span></button> <button class="login" id="portalSignOut" type="button">Sign out</button> <button id="adminConsole" type="button" hidden>Team Lead Console</button></div></header><main id="view"></main></div>
 <div id="globalSearchLayer" class="global-search-layer" hidden role="dialog" aria-modal="true" aria-label="Global knowledge search"><div class="global-search-card"><div class="global-search-top"><div><span class="eyebrow">KNOWLEDGE COMMAND</span><h2>Search the entire Agent Help Desk</h2><p>Find scripts, products, service areas, SOPs, FAQs and Sales contacts.</p></div><button class="global-search-close" type="button" onclick="closeGlobalSearch()">×</button></div><div class="global-search-input-wrap"><span>⌕</span><input id="globalSearchInput" type="search" placeholder="Search anything: Hyderabad, DGU, callback, warranty" oninput="runGlobalSearch(this.value)"><kbd>ESC</kbd></div><div id="globalSearchResults" class="global-search-results"><div class="global-search-empty">Start typing to search approved portal knowledge.</div></div><div class="global-search-foot"><span>Open a result</span><span>Ctrl / ⌘ + K</span></div></div></div>
 <script>
 const productData=[
@@ -776,6 +800,43 @@ function renderScriptDocument(source){
   i++;
  }
  return '<article class="script-document">'+html+'</article>';
+}
+
+function enhanceDocumentReaders(){
+ document.querySelectorAll("#view .script-document").forEach((article,idx)=>{
+  if(article.dataset.readerEnhanced==="1")return;
+  const headings=[...article.querySelectorAll(".script-heading")];
+  if(!headings.length)return;
+  article.dataset.readerEnhanced="1";
+  const reader=article.closest(".script-reader")||article.parentElement;
+  const progress=document.createElement("div");progress.className="reader-progress";progress.setAttribute("aria-label","Document reading progress");progress.innerHTML="<span></span>";
+  const toc=document.createElement("nav");toc.className="reader-toc";toc.setAttribute("aria-label","Document sections");
+  const label=document.createElement("span");label.className="reader-toc-label";label.textContent="ON THIS PAGE";toc.appendChild(label);
+  headings.forEach((h,i)=>{
+   const id="ashtavakra-reader-"+idx+"-"+i;h.id=id;
+   const b=document.createElement("button");b.type="button";b.textContent=h.textContent.trim().replace(/^\d+(?:\.\d+)*[.)]?\s*/,"").slice(0,34)||("Section "+(i+1));
+   b.title=h.textContent.trim();b.addEventListener("click",()=>h.scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"}));
+   toc.appendChild(b);
+  });
+  reader.insertBefore(progress,article);reader.insertBefore(toc,article);
+  const update=()=>{
+   const rect=article.getBoundingClientRect(),total=article.scrollHeight-innerHeight;
+   const travelled=Math.max(0,Math.min(total, -rect.top+110));
+   progress.firstElementChild.style.width=(total>0?Math.min(100,travelled/total*100):100)+"%";
+   let active=0;headings.forEach((h,i)=>{if(h.getBoundingClientRect().top<190)active=i});
+   [...toc.querySelectorAll("button")].forEach((b,i)=>b.classList.toggle("active",i===active));
+  };
+  window.addEventListener("scroll",update,{passive:true});update();
+ });
+}
+function toggleNotifications(){
+ const existing=document.getElementById("ashtavakraNotifications");if(existing){existing.remove();return;}
+ const panel=document.createElement("section");panel.id="ashtavakraNotifications";panel.className="notification-panel";
+ const holder=document.createElement("div");holder.innerHTML=updates();
+ const entries=[...holder.querySelectorAll(".list .item")].map(item=>({meta:item.querySelector("small")?.textContent||"",title:item.querySelector("h3")?.textContent||"Portal update",body:item.querySelector("p")?.textContent||""}));
+ panel.innerHTML='<div class="notification-panel-head"><div><span class="eyebrow">WORKSPACE NOTICES</span><h3>Announcements & Updates</h3></div><button type="button" aria-label="Close announcements" onclick="document.getElementById(\'ashtavakraNotifications\')?.remove()">×</button></div>';
+ panel.innerHTML+=entries.length?entries.map(x=>'<article class="notification-entry"><small>'+escapeSearchText(x.meta)+'</small><b>'+escapeSearchText(x.title)+'</b><p>'+escapeSearchText(x.body)+'</p></article>').join(""):'<div class="notification-empty">No announcements are available.</div>';
+ document.body.appendChild(panel);
 }
 function copyCurrentScript(){const value=scriptLibrary[scriptCategory]||"";if(value)copy(value);else alert("This script is not available in the current library.")}
 function scripts(){
@@ -1029,6 +1090,7 @@ function render(){
   document.body.appendChild(existingAssist);
  }else if(freshAssist)document.body.appendChild(freshAssist);
  paintIcons();
+ enhanceDocumentReaders();
  document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
 }
 function go(p){page=p;render();window.scrollTo(0,0)}
@@ -1038,12 +1100,18 @@ function searchCX(id){let el=document.getElementById(id||"homeSearch");let q=el.
 
 function copy(x){navigator.clipboard&&navigator.clipboard.writeText(x);alert("Copied")}
 document.getElementById("searchBtn").onclick=()=>openGlobalSearch();
-document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openGlobalSearch()}if(e.key==="Escape"){closeGlobalSearch();closeAssist()}});
+document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openGlobalSearch()}if(e.key==="Escape"){closeGlobalSearch();closeAssist();document.getElementById("ashtavakraNotifications")?.remove()}});
 function toggleSidebar(){const collapsed=document.body.classList.toggle("sidebar-collapsed");const b=document.getElementById("sidebarToggle");if(b){b.setAttribute("aria-label",collapsed?"Expand sidebar":"Collapse sidebar");b.title=collapsed?"Expand sidebar":"Collapse sidebar";}try{localStorage.setItem("hrhSidebarCollapsed",collapsed?"1":"0")}catch(e){}}
 let ashtavakraHistory=[];
 function openAssist(){let p=document.getElementById("aiChatPanel");if(!p){const holder=document.createElement("div");holder.innerHTML=home();p=holder.querySelector("#aiChatPanel");if(p)document.body.appendChild(p)}if(p){p.hidden=false;p.classList.add("chat-open");document.body.classList.add("assist-drawer-open");setTimeout(()=>document.getElementById("aiChatInput")?.focus(),120)}}
 function closeAssist(){const p=document.getElementById("aiChatPanel");if(p){p.classList.remove("chat-open");p.hidden=true}document.body.classList.remove("assist-drawer-open")}
 function assistPrompt(q){const i=document.getElementById("aiChatInput");if(i){i.value=q;sendAssistMessage()}}
+function buildCurrentPageContext(){
+ const root=document.getElementById("view");if(!root)return "";
+ const title=root.querySelector(".head h1,.hero h1,h1,h2")?.textContent?.trim()||page;
+ const body=(root.innerText||"").replace(/Our Partners[\\s\\S]*Powered by Ashtavakra[^\\n]*/g,"").replace(/\\s+/g," ").trim();
+ return "CURRENT WORKSPACE: "+title+" ("+page+"). Visible page context: "+body.slice(0,900);
+}
 function buildAssistContext(question){
  const stop=new Set(["the","and","for","with","what","when","where","which","how","does","can","you","are","from","this","that","have","has","about","please","tell","give","customer","agent","help","your","our","their","there","then","them","hai","hain","kya","kaise","kaha","aur","mein","mujhe","hume","ko","ki","ka","ke","se","hai","tha","thi","the","lo","che","emi","ela","undhi"]);
  const normalize=v=>String(v??"").toLocaleLowerCase().normalize("NFKC");
