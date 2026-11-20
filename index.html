@@ -583,6 +583,40 @@ body.assist-drawer-open:after{
  body.assist-drawer-open:after{display:none!important}
 }
 
+
+/* FIXED PARTNER FOOTER — anchored to workspace bottom */
+.main{
+ height:100vh!important;
+ min-height:100vh!important;
+ display:flex!important;
+ flex-direction:column!important;
+ overflow:hidden!important;
+}
+.main>.top{flex:0 0 auto!important}
+.main>main#view{
+ flex:1 1 auto!important;
+ min-height:0!important;
+ overflow-y:auto!important;
+ overflow-x:hidden!important;
+ display:flex!important;
+ flex-direction:column!important;
+}
+#view>.footer{
+ position:sticky!important;
+ bottom:0!important;
+ z-index:12!important;
+ flex:0 0 auto!important;
+ margin-top:auto!important;
+ width:100%!important;
+ box-sizing:border-box!important;
+ background:linear-gradient(105deg,#102f3c,#155d55)!important;
+ box-shadow:0 -5px 18px rgba(16,47,60,.10)!important;
+}
+@media(max-width:700px){
+ .main{height:100dvh!important;min-height:100dvh!important}
+ #view>.footer{gap:9px!important;padding:13px 14px!important}
+}
+
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body>
 <aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="brand">
   <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
