@@ -89,8 +89,14 @@ async function route(req,env) {
   }
   if(p==="/api/admin/knowledge" && req.method==="GET") {
     const x=await auth(req,env,true);if(x.res)return x.res;
-    const rows=await env.DB.prepare("SELECT k.id,k.title,k.category,k.content,k.status,k.created_at,k.updated_at,u.name AS submitted_by_name FROM knowledge_entries k JOIN users u ON u.id=k.submitted_by ORDER BY CASE k.status WHEN 'pending' THEN 0 WHEN 'approved' THEN 1 ELSE 2 END,k.updated_at DESC LIMIT 200").all();
+    const rows=await env.DB.prepare("SELECT k.id,k.title,k.category,k.content,k.status,k.created_at,k.updated_at,u.name AS submitted_by_name,(SELECT COUNT(*) FROM knowledge_entry_versions v WHERE v.knowledge_entry_id=k.id) AS version_count FROM knowledge_entries k JOIN users u ON u.id=k.submitted_by ORDER BY CASE k.status WHEN 'pending' THEN 0 WHEN 'approved' THEN 1 ELSE 2 END,k.updated_at DESC LIMIT 200").all();
     return response({ok:true,entries:rows.results||[]});
+  }
+  const knowledgeVersions=p.match(/^\/api\/admin\/knowledge\/([a-f0-9-]+)\/versions$/i);
+  if(knowledgeVersions&&req.method==="GET") {
+    const x=await auth(req,env,true);if(x.res)return x.res;
+    const rows=await env.DB.prepare("SELECT v.id,v.version_number,v.title,v.category,v.content,v.status,v.created_at,u.name AS changed_by_name FROM knowledge_entry_versions v LEFT JOIN users u ON u.id=v.changed_by WHERE v.knowledge_entry_id=? ORDER BY v.version_number DESC LIMIT 50").bind(knowledgeVersions[1]).all();
+    return response({ok:true,versions:rows.results||[]});
   }
   if(p==="/api/admin/knowledge" && req.method==="POST") {
     const x=await auth(req,env,true);if(x.res)return x.res;
@@ -98,14 +104,26 @@ async function route(req,env) {
     if(!title||title.length>160||!category||category.length>60||!content||content.length>6000)return error("Enter title, category and content (maximum 6,000 characters).");
     const id=crypto.randomUUID(),now=Date.now();
     await env.DB.prepare("INSERT INTO knowledge_entries(id,submitted_by,title,category,content,status,created_at,updated_at) VALUES(?,?,?,?,?,'pending',?,?)").bind(id,x.u.id,title,category,content,now,now).run();
+    await env.DB.prepare("INSERT INTO knowledge_entry_versions(id,knowledge_entry_id,version_number,title,category,content,status,changed_by,created_at) VALUES(?,?,1,?,?,?,'pending',?,?)").bind(crypto.randomUUID(),id,title,category,content,x.u.id,now).run();
     return response({ok:true,message:"Knowledge entry submitted for approval."},201);
   }
   const knowledgeReview=p.match(/^\/api\/admin\/knowledge\/([a-f0-9-]+)$/i);
   if(knowledgeReview&&req.method==="PATCH") {
     const x=await auth(req,env,true);if(x.res)return x.res;
-    const d=await input(req),status=String(d?.status||"");
+    const d=await input(req),now=Date.now();
+    if(d?.action==="revise") {
+      const current=await env.DB.prepare("SELECT id,title,category,content FROM knowledge_entries WHERE id=?").bind(knowledgeReview[1]).first();
+      if(!current)return error("Knowledge entry not found.",404);
+      const title=String(d?.title??current.title).trim(),category=String(d?.category??current.category).trim(),content=String(d?.content??"").trim();
+      if(!title||title.length>160||!category||category.length>60||!content||content.length>6000)return error("Enter title, category and content (maximum 6,000 characters).");
+      const next=await env.DB.prepare("SELECT COALESCE(MAX(version_number),0)+1 AS n FROM knowledge_entry_versions WHERE knowledge_entry_id=?").bind(current.id).first();
+      await env.DB.prepare("INSERT INTO knowledge_entry_versions(id,knowledge_entry_id,version_number,title,category,content,status,changed_by,created_at) VALUES(?,?,?,?,?,?,'pending',?,?)").bind(crypto.randomUUID(),current.id,Number(next?.n||1),title,category,content,x.u.id,now).run();
+      await env.DB.prepare("UPDATE knowledge_entries SET title=?,category=?,content=?,status='pending',reviewed_by=NULL,updated_at=? WHERE id=?").bind(title,category,content,now,current.id).run();
+      return response({ok:true,message:"Revised knowledge saved as a new pending version. It will be used by AI only after approval."});
+    }
+    const status=String(d?.status||"");
     if(!["approved","rejected"].includes(status))return error("Choose approved or rejected.");
-    const result=await env.DB.prepare("UPDATE knowledge_entries SET status=?,reviewed_by=?,updated_at=? WHERE id=?").bind(status,x.u.id,Date.now(),knowledgeReview[1]).run();
+    const result=await env.DB.prepare("UPDATE knowledge_entries SET status=?,reviewed_by=?,updated_at=? WHERE id=?").bind(status,x.u.id,now,knowledgeReview[1]).run();
     if(!result.meta?.changes)return error("Knowledge entry not found.",404);
     return response({ok:true,message:"Knowledge status updated."});
   }
