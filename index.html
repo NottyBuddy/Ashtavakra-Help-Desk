@@ -888,8 +888,10 @@ function render(){
  let f={home,scripts,products,brandSop,sop,faqs,sales,updates,cx:cxPage,quickRefs};
  document.getElementById("view").innerHTML=f[page]()+ '<footer class="footer"><span class="partner-label">Our Partners</span><span class="partner-name">HRHNEXT</span><span class="partner-divider"></span><span class="partner-name">IndiFrame</span><span class="footer-note">Powered by Ashtavakra · Internal Use Only</span></footer>';
  const freshAssist=document.getElementById("aiChatPanel");
- if(freshAssist)document.body.appendChild(freshAssist);
- else if(existingAssist)document.body.appendChild(existingAssist);
+ if(existingAssist){
+  if(freshAssist)freshAssist.remove();
+  document.body.appendChild(existingAssist);
+ }else if(freshAssist)document.body.appendChild(freshAssist);
  paintIcons();
  document.querySelectorAll("#nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
 }
