@@ -617,6 +617,44 @@ body.assist-drawer-open:after{
  #view>.footer{gap:9px!important;padding:13px 14px!important}
 }
 
+
+/* TRUE VIEWPORT-LOCKED PARTNER FOOTER — does not scroll with page */
+#view{padding-bottom:100px!important}
+#view>.footer{
+ position:fixed!important;
+ left:var(--sidebar-expanded,258px)!important;
+ right:0!important;
+ bottom:0!important;
+ width:auto!important;
+ min-height:58px!important;
+ margin:0!important;
+ padding:14px 22px!important;
+ border-radius:0!important;
+ z-index:100!important;
+ box-sizing:border-box!important;
+ display:flex!important;
+ align-items:center!important;
+}
+body.sidebar-collapsed #view>.footer{
+ left:var(--sidebar-collapsed,76px)!important;
+}
+@media(min-width:901px){
+ body.assist-drawer-open #view>.footer{
+  right:var(--ashtavakra-drawer-width,460px)!important;
+ }
+}
+@media(max-width:700px){
+ #view{padding-bottom:112px!important}
+ #view>.footer{
+  left:0!important;
+  right:0!important;
+  width:100%!important;
+  min-height:64px!important;
+  padding:12px 14px!important;
+ }
+ body.assist-drawer-open #view>.footer{display:none!important}
+}
+
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body>
 <aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="brand">
   <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
