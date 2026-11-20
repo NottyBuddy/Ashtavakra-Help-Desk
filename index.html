@@ -655,6 +655,25 @@ body.sidebar-collapsed #view>.footer{
  body.assist-drawer-open #view>.footer{display:none!important}
 }
 
+
+/* FOOTER CLEARANCE: add real scrollable space after page content */
+#view::after{
+ content:""!important;
+ display:block!important;
+ flex:0 0 96px!important;
+ height:96px!important;
+ min-height:96px!important;
+ width:100%!important;
+ pointer-events:none!important;
+}
+@media(max-width:700px){
+ #view::after{
+  flex-basis:112px!important;
+  height:112px!important;
+  min-height:112px!important;
+ }
+}
+
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body>
 <aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="brand">
   <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
