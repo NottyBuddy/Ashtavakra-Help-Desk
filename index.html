@@ -1006,6 +1006,7 @@ function buildAssistContext(question){
 function extractPostalSearchTerm(question){
  const pin=String(question||"").match(/\b[1-9][0-9]{5}\b/);if(pin)return pin[0];
  const q=String(question||"").trim();
+ if(/this (exact )?city|six[- ]digit pin|enter (a )?(city|pin)|provide (a )?(city|pin)|locality, district or six/i.test(q))return "";
  if(!/(pincode|pin\s*code|postal|post\s*office|city|district|state|location|serviceability|serviceable|coverage|locality|area|search|find|lookup|near|where)/i.test(q))return "";
  const stop=new Set(["what","whats","is","are","the","a","an","for","in","at","of","from","near","to","me","please","find","search","lookup","look","up","show","tell","give","check","city","cities","india","all","indian","pin","pincode","code","postal","post","office","district","state","location","serviceability","serviceable","coverage","locality","area","nearby","where","can","you","could","i","need","want","know","about","and","with","on","my"]);
  const words=(q.match(/[\p{L}\p{N}-]+/gu)||[]).filter(w=>!stop.has(w.toLowerCase()));
