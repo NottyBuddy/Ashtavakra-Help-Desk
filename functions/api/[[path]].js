@@ -126,7 +126,7 @@ async function route(req,env) {
       office:clean(r.office_name),pincode:clean(r.pincode),district:clean(r.district),
       state:clean(r.state),officeType:clean(r.office_type),delivery:clean(r.delivery_status),
       circle:clean(r.circle),region:clean(r.region),division:clean(r.division)
-    })).filter(r=>/^\\d{6}$/.test(r.pincode)&&(r.office||r.district||r.state));
+    })).filter(r=>/^\d{6}$/.test(r.pincode)&&(r.office||r.district||r.state));
     return response({ok:true,query:q,results,datasetVersion:clean(payload?.meta?.dataset_version),source:"Pincode API · India postal directory",message:results.length?"Postal records found.":"No matching postal records were found."});
   }
   if(p==="/api/ai/assist" && req.method==="POST") {
