@@ -108,6 +108,7 @@ async function route(req,env) {
     const rate=await env.DB.prepare("SELECT COUNT(*) n FROM login_attempts WHERE attempt_key=? AND attempted_at>?").bind(rateKey,windowStart).first();
     if((rate?.n||0)>=4)return error("Please wait a few seconds before searching another location.",429);
     const globalKey=await hash("postal-search-global");
+    await env.DB.prepare("DELETE FROM login_attempts WHERE attempt_key=? AND attempted_at<?").bind(globalKey,windowStart).run();
     const globalRate=await env.DB.prepare("SELECT COUNT(*) n FROM login_attempts WHERE attempt_key=? AND attempted_at>?").bind(globalKey,windowStart).first();
     if((globalRate?.n||0)>=5)return error("India postal search is busy. Please wait a few seconds and try again.",429);
     await env.DB.prepare("INSERT INTO login_attempts(attempt_key,attempted_at) VALUES(?,?)").bind(globalKey,now).run();
