@@ -902,7 +902,7 @@ function searchCX(id){let el=document.getElementById(id||"homeSearch");let q=el.
 
 function copy(x){navigator.clipboard&&navigator.clipboard.writeText(x);alert("Copied")}
 document.getElementById("searchBtn").onclick=()=>openGlobalSearch();
-document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openGlobalSearch()}if(e.key==="Escape")closeGlobalSearch()});
+document.addEventListener("keydown",e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="k"){e.preventDefault();openGlobalSearch()}if(e.key==="Escape"){closeGlobalSearch();closeAssist()}});
 function toggleSidebar(){const collapsed=document.body.classList.toggle("sidebar-collapsed");const b=document.getElementById("sidebarToggle");if(b){b.setAttribute("aria-label",collapsed?"Expand sidebar":"Collapse sidebar");b.title=collapsed?"Expand sidebar":"Collapse sidebar";}try{localStorage.setItem("hrhSidebarCollapsed",collapsed?"1":"0")}catch(e){}}
 let ashtavakraHistory=[];
 function openAssist(){let p=document.getElementById("aiChatPanel");if(!p){const holder=document.createElement("div");holder.innerHTML=home();p=holder.querySelector("#aiChatPanel");if(p)document.body.appendChild(p)}if(p){p.hidden=false;p.classList.add("chat-open");document.body.classList.add("assist-drawer-open");setTimeout(()=>document.getElementById("aiChatInput")?.focus(),120)}}
