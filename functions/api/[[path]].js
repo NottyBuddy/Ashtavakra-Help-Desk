@@ -61,6 +61,18 @@ async function route(req,env) {
     const rows=await env.DB.prepare("SELECT id,title,category,content,updated_at FROM knowledge_entries WHERE status='approved' ORDER BY updated_at DESC LIMIT 100").all();
     return response({ok:true,entries:rows.results||[]});
   }
+  if(p==="/api/admin/analytics" && req.method==="GET") {
+    const x=await auth(req,env,true);if(x.res)return x.res;
+    const weekAgo=Date.now()-7*86400000;
+    const [agents,knowledge,feedback,active]=await Promise.all([
+      env.DB.prepare("SELECT COUNT(*) total,SUM(CASE WHEN status='approved' THEN 1 ELSE 0 END) approved,SUM(CASE WHEN status='pending' THEN 1 ELSE 0 END) pending,SUM(CASE WHEN status='disabled' THEN 1 ELSE 0 END) disabled FROM users WHERE role='agent'").first(),
+      env.DB.prepare("SELECT COUNT(*) total,SUM(CASE WHEN status='approved' THEN 1 ELSE 0 END) approved,SUM(CASE WHEN status='pending' THEN 1 ELSE 0 END) pending,SUM(CASE WHEN status='rejected' THEN 1 ELSE 0 END) rejected FROM knowledge_entries").first(),
+      env.DB.prepare("SELECT COUNT(*) total,SUM(CASE WHEN status='new' THEN 1 ELSE 0 END) open,SUM(CASE WHEN rating=1 THEN 1 ELSE 0 END) helpful,SUM(CASE WHEN rating=-1 THEN 1 ELSE 0 END) not_helpful FROM ai_feedback").first(),
+      env.DB.prepare("SELECT COUNT(*) total FROM users WHERE role='agent' AND status='approved' AND last_login_at>=?").bind(weekAgo).first()
+    ]);
+    const n=v=>Number(v||0);
+    return response({ok:true,period:"Last 7 days",agents:{total:n(agents?.total),approved:n(agents?.approved),pending:n(agents?.pending),disabled:n(agents?.disabled),activeLast7Days:n(active?.total)},knowledge:{total:n(knowledge?.total),approved:n(knowledge?.approved),pending:n(knowledge?.pending),rejected:n(knowledge?.rejected)},feedback:{total:n(feedback?.total),open:n(feedback?.open),helpful:n(feedback?.helpful),notHelpful:n(feedback?.not_helpful)}});
+  }
   if(p==="/api/admin/ai-feedback" && req.method==="GET") {
     const x=await auth(req,env,true);if(x.res)return x.res;
     const rows=await env.DB.prepare("SELECT f.id,f.question,f.answer,f.rating,f.comment,f.status,f.created_at,u.name AS agent_name,u.email AS agent_email FROM ai_feedback f JOIN users u ON u.id=f.user_id ORDER BY f.created_at DESC LIMIT 100").all();
