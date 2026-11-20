@@ -1004,11 +1004,11 @@ function buildAssistContext(question){
  return selected.join("\n\n");
 }
 function extractPostalSearchTerm(question){
- const pin=String(question||"").match(/\\b[1-9][0-9]{5}\\b/);if(pin)return pin[0];
+ const pin=String(question||"").match(/\b[1-9][0-9]{5}\b/);if(pin)return pin[0];
  const q=String(question||"").trim();
- if(!/(pincode|pin\\s*code|postal|post\\s*office|city|district|state|location|serviceability|serviceable|coverage|locality|area|search|find|lookup|near|where)/i.test(q))return "";
+ if(!/(pincode|pin\s*code|postal|post\s*office|city|district|state|location|serviceability|serviceable|coverage|locality|area|search|find|lookup|near|where)/i.test(q))return "";
  const stop=new Set(["what","whats","is","are","the","a","an","for","in","at","of","from","near","to","me","please","find","search","lookup","look","up","show","tell","give","check","city","cities","india","all","indian","pin","pincode","code","postal","post","office","district","state","location","serviceability","serviceable","coverage","locality","area","nearby","where","can","you","could","i","need","want","know","about","and","with","on","my"]);
- const words=(q.match(/[\\p{L}\\p{N}-]+/gu)||[]).filter(w=>!stop.has(w.toLowerCase()));
+ const words=(q.match(/[\p{L}\p{N}-]+/gu)||[]).filter(w=>!stop.has(w.toLowerCase()));
  return words.join(" ").slice(0,80).trim();
 }
 async function lookupPostalContext(question){
@@ -1017,8 +1017,8 @@ async function lookupPostalContext(question){
  const d=await r.json().catch(()=>({}));
  if(!r.ok)throw new Error(d.error||"India postal search is temporarily unavailable.");
  const records=Array.isArray(d.results)?d.results:[];
- if(!records.length)return "INDIA POSTAL DIRECTORY LOOKUP\\nQuery: "+term+"\\nNo matching postal records were returned. Do not infer a PIN code or location.\\nSource: "+(d.source||"India postal directory");
- return "INDIA POSTAL DIRECTORY LOOKUP (postal identity only; NOT company serviceability)\\nQuery: "+term+"\\n"+records.map((r,i)=>(i+1)+". Post office: "+r.office+" | PIN: "+r.pincode+" | District: "+r.district+" | State: "+r.state+" | Office type: "+r.officeType+" | Delivery: "+r.delivery).join("\\n")+"\\nDataset version: "+(d.datasetVersion||"not supplied")+"\\nSource: "+(d.source||"India postal directory");
+ if(!records.length)return "INDIA POSTAL DIRECTORY LOOKUP\nQuery: "+term+"\nNo matching postal records were returned. Do not infer a PIN code or location.\nSource: "+(d.source||"India postal directory");
+ return "INDIA POSTAL DIRECTORY LOOKUP (postal identity only; NOT company serviceability)\nQuery: "+term+"\n"+records.map((r,i)=>(i+1)+". Post office: "+r.office+" | PIN: "+r.pincode+" | District: "+r.district+" | State: "+r.state+" | Office type: "+r.officeType+" | Delivery: "+r.delivery).join("\n")+"\nDataset version: "+(d.datasetVersion||"not supplied")+"\nSource: "+(d.source||"India postal directory");
 }
 async function sendAssistMessage(){
  const input=document.getElementById("aiChatInput"),send=document.querySelector(".ai-chat-compose button");if(!input||!input.value.trim()||send?.disabled)return;
