@@ -454,8 +454,46 @@ body{background:linear-gradient(135deg,#f8fbff 0%,#f8f7ff 48%,#f5fcf9 100%)}
 .logo.ashtavakra-mark svg{display:block;width:52px;height:52px;overflow:visible;filter:drop-shadow(0 0 7px rgba(212,175,55,.18));transition:transform .25s ease,filter .25s ease}
 .logo.ashtavakra-mark:hover svg{transform:scale(1.06);filter:drop-shadow(0 0 11px rgba(212,175,55,.34))}
 @media(max-width:850px){.brand{justify-content:center;padding:4px 0 15px}.logo.ashtavakra-mark{width:48px;height:48px}.logo.ashtavakra-mark svg{width:42px;height:42px}}
+
+/* ANIMATED GOLD ARCHER BRAND — isolated to the sidebar identity */
+.side .brand{justify-content:flex-start!important;align-items:center!important;gap:12px!important;padding:8px 7px 20px!important}
+.side .brand .logo.ashtavakra-mark{display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 56px!important;width:56px!important;height:56px!important;min-width:56px!important;padding:0!important;background:transparent!important;border:0!important;border-radius:14px!important;box-shadow:none!important;overflow:visible!important}
+.side .brand .logo.ashtavakra-mark svg{display:block!important;width:56px!important;height:56px!important;overflow:visible;filter:drop-shadow(0 0 7px rgba(212,175,55,.2));transition:transform .3s ease,filter .3s ease}
+.archer-bow{fill:none;stroke:#D4AF37;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;transform-origin:130px 100px;animation:archer-bow-draw 3.4s ease-in-out infinite}
+.archer-string{fill:none;stroke:#D4AF37;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:190;stroke-dashoffset:0;transform-origin:110px 100px;animation:archer-string-draw 3.4s ease-in-out infinite}
+.archer-arrow{fill:#D4AF37;stroke:#D4AF37;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;transform-box:fill-box;transform-origin:center;animation:archer-arrow-release 3.4s ease-in-out infinite}
+.archer-crest{fill:#D4AF37;filter:drop-shadow(0 0 2px rgba(212,175,55,.22));animation:archer-crest-glow 3.4s ease-in-out infinite}
+@keyframes archer-bow-draw{0%,38%,72%,100%{transform:scaleX(1)}52%{transform:scaleX(.975)}}
+@keyframes archer-string-draw{0%,38%,72%,100%{transform:translateX(0)}50%{transform:translateX(-4px)}}
+@keyframes archer-arrow-release{0%,42%,100%{transform:translateX(0)}50%{transform:translateX(-2px)}58%{transform:translateX(7px)}68%{transform:translateX(0)}}
+@keyframes archer-crest-glow{0%,42%,72%,100%{filter:drop-shadow(0 0 2px rgba(212,175,55,.18))}56%{filter:drop-shadow(0 0 8px rgba(212,175,55,.62))}}
+.side .brand .brandtext{display:flex!important;flex-direction:column!important;justify-content:center!important;gap:5px!important;min-width:0!important;white-space:nowrap!important}
+.side .brand .brandtext b{font-size:14px!important;line-height:1.1!important;font-weight:900!important;letter-spacing:1.65px!important;color:#f5e6b4!important}
+.side .brand .brandtext small{display:block!important;font-size:7.5px!important;line-height:1.25!important;font-weight:800!important;letter-spacing:1.05px!important;color:#c5b88f!important}
+.side .brand .logo.ashtavakra-mark:hover svg{transform:scale(1.07);filter:drop-shadow(0 0 12px rgba(212,175,55,.48))}
+.sidebar-collapsed .side .brand{justify-content:center!important;gap:0!important}
+@media(max-width:850px){.side .brand{justify-content:center!important;padding:4px 0 15px!important}.side .brand .logo.ashtavakra-mark{width:48px!important;height:48px!important;min-width:48px!important;flex-basis:48px!important}.side .brand .logo.ashtavakra-mark svg{width:46px!important;height:46px!important}.side .brand .brandtext{display:none!important}}
+@media(prefers-reduced-motion:reduce){.archer-bow,.archer-string,.archer-arrow,.archer-crest{animation:none!important}.side .brand .logo.ashtavakra-mark svg{transition:none!important}}
+
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body>
-<aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="brand"><div class="logo ashtavakra-mark" aria-label="Ashtavakra Archer emblem"><svg viewBox="0 0 200 200" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#D4AF37" stroke-linecap="round" stroke-linejoin="round"><path stroke-width="8" d="M105 30 L145 55 L155 100 L145 145 L105 170"/><polyline stroke-width="3.5" points="110,33 55,100 110,167"/><line stroke-width="5" x1="35" y1="100" x2="170" y2="100"/></g><polygon fill="#D4AF37" points="65,75 95,60 110,85 85,100 110,115 95,140 65,125 45,100"/><polygon fill="#D4AF37" points="165,90 185,100 165,110 170,100"/><polygon fill="#D4AF37" points="30,93 48,93 42,100 48,107 30,107 36,100"/></svg></div></div><div class="label">WORKSPACE</div><nav class="nav" id="nav">
+<aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="brand">
+  <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
+    <svg viewBox="0 0 200 200" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+      <path class="archer-bow" d="M105 30 L145 55 L155 100 L145 145 L105 170"/>
+      <polyline class="archer-string" points="110,33 55,100 110,167"/>
+      <g class="archer-arrow">
+        <line x1="35" y1="100" x2="170" y2="100"/>
+        <polygon points="165,90 185,100 165,110 170,100"/>
+        <polygon points="30,93 48,93 42,100 48,107 30,107 36,100"/>
+      </g>
+      <polygon class="archer-crest" points="65,75 95,60 110,85 85,100 110,115 95,140 65,125 45,100"/>
+    </svg>
+  </div>
+  <div class="brandtext">
+    <b>ASHTAVAKRA</b>
+    <small>INTELLIGENT WORKSPACE</small>
+  </div>
+</div><div class="label">WORKSPACE</div><nav class="nav" id="nav">
 <button class="active" data-page="home"><span class="nav-icon" data-icon="home" aria-hidden="true"></span><span class="navtext">Home</span></button>
 <button data-page="scripts"><span class="nav-icon" data-icon="file-text" aria-hidden="true"></span><span class="navtext">Scripts</span></button>
 <button data-page="products"><span class="nav-icon" data-icon="panels-top-left" aria-hidden="true"></span><span class="navtext">Products</span></button>
