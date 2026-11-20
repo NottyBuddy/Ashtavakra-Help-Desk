@@ -1007,8 +1007,10 @@ function extractPostalSearchTerm(question){
  const pin=String(question||"").match(/\b[1-9][0-9]{5}\b/);if(pin)return pin[0];
  const q=String(question||"").trim();
  if(/this (exact )?city|six[- ]digit pin|enter (a )?(city|pin)|provide (a )?(city|pin)|locality, district or six/i.test(q))return "";
- if(!/(pincode|pin\s*code|postal|post\s*office|city|district|state|location|serviceability|serviceable|coverage|locality|area|search|find|lookup|near|where)/i.test(q))return "";
- const stop=new Set(["what","whats","is","are","the","a","an","for","in","at","of","from","near","to","me","please","find","search","lookup","look","up","show","tell","give","check","city","cities","india","all","indian","pin","pincode","code","postal","post","office","district","state","location","serviceability","serviceable","coverage","locality","area","nearby","where","can","you","could","i","need","want","know","about","and","with","on","my"]);
+ const explicitLocationIntent=/(pincode|pin\\s*code|postal|post\\s*office|city|district|state|location|serviceability|serviceable|coverage|locality|area|search|find|lookup|near|where)/i.test(q);
+ const simplePlaceQuery=(q.match(/[\\p{L}\\p{N}-]+/gu)||[]).length<=3&&!/[?]/.test(q)&&!/^(hi|hello|hey|namaste|thanks|thank you|compare products|product comparison|window|windows|door|doors|script|crm|warranty|pricing|price|sales|lead|help|good morning|good afternoon)$/i.test(q);
+ if(!explicitLocationIntent&&!simplePlaceQuery)return "";
+ const stop=new Set(["what","whats","is","are","the","a","an","for","in","at","of","from","near","to","me","please","find","search","lookup","look","up","show","tell","give","check","city","cities","india","all","indian","pin","pincode","code","postal","post","office","district","state","location","serviceability","serviceable","coverage","locality","area","nearby","where","can","you","could","i","need","want","know","about","and","with","on","my","hi","hello","hey","namaste","thanks","thank","compare","comparison","products","product","windows","window","doors","door","script","crm","warranty","pricing","price","sales","lead","help","good","morning","afternoon","explain"]);
  const words=(q.match(/[\p{L}\p{N}-]+/gu)||[]).filter(w=>!stop.has(w.toLowerCase()));
  return words.join(" ").slice(0,80).trim();
 }
