@@ -125,6 +125,7 @@ async function route(req,env) {
     if(!["approved","rejected"].includes(status))return error("Choose approved or rejected.");
     const result=await env.DB.prepare("UPDATE knowledge_entries SET status=?,reviewed_by=?,updated_at=? WHERE id=?").bind(status,x.u.id,now,knowledgeReview[1]).run();
     if(!result.meta?.changes)return error("Knowledge entry not found.",404);
+    await env.DB.prepare("UPDATE knowledge_entry_versions SET status=? WHERE knowledge_entry_id=? AND version_number=(SELECT MAX(version_number) FROM knowledge_entry_versions WHERE knowledge_entry_id=?)").bind(status,knowledgeReview[1],knowledgeReview[1]).run();
     return response({ok:true,message:"Knowledge status updated."});
   }
   if(p==="/api/location/search" && req.method==="GET") {
