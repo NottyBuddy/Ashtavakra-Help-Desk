@@ -102,11 +102,15 @@ async function route(req,env) {
     const q=String(url.searchParams.get("q")||"").trim();
     if(q.length<2||q.length>80)return error("Enter a city, area, district, state or six-digit PIN code.");
     const isPin=/^[1-9][0-9]{5}$/.test(q);
-    if(/^\\d+$/.test(q)&&!isPin)return error("Enter a valid six-digit Indian PIN code.");
+    if(/^\d+$/.test(q)&&!isPin)return error("Enter a valid six-digit Indian PIN code.");
     const rateKey=await hash("postal-search|"+authResult.u.id),now=Date.now(),windowStart=now-10000;
     await env.DB.prepare("DELETE FROM login_attempts WHERE attempt_key=? AND attempted_at<?").bind(rateKey,windowStart).run();
     const rate=await env.DB.prepare("SELECT COUNT(*) n FROM login_attempts WHERE attempt_key=? AND attempted_at>?").bind(rateKey,windowStart).first();
     if((rate?.n||0)>=4)return error("Please wait a few seconds before searching another location.",429);
+    const globalKey=await hash("postal-search-global");
+    const globalRate=await env.DB.prepare("SELECT COUNT(*) n FROM login_attempts WHERE attempt_key=? AND attempted_at>?").bind(globalKey,windowStart).first();
+    if((globalRate?.n||0)>=5)return error("India postal search is busy. Please wait a few seconds and try again.",429);
+    await env.DB.prepare("INSERT INTO login_attempts(attempt_key,attempted_at) VALUES(?,?)").bind(globalKey,now).run();
     await env.DB.prepare("INSERT INTO login_attempts(attempt_key,attempted_at) VALUES(?,?)").bind(rateKey,now).run();
     const endpoint=isPin
       ? "https://api.pincodeapi.in/api/v1/pincode/"+encodeURIComponent(q)
