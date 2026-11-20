@@ -475,6 +475,28 @@ body{background:linear-gradient(135deg,#f8fbff 0%,#f8f7ff 48%,#f5fcf9 100%)}
 @media(max-width:850px){.side .brand{justify-content:center!important;padding:4px 0 15px!important}.side .brand .logo.ashtavakra-mark{width:48px!important;height:48px!important;min-width:48px!important;flex-basis:48px!important}.side .brand .logo.ashtavakra-mark svg{width:46px!important;height:46px!important}.side .brand .brandtext{display:none!important}}
 @media(prefers-reduced-motion:reduce){.archer-bow,.archer-string,.archer-arrow,.archer-crest{animation:none!important}.side .brand .logo.ashtavakra-mark svg{transition:none!important}}
 
+
+/* COLLAPSED BRAND: ICON ONLY — override expanded wordmark display */
+@media (min-width:701px){
+  .sidebar-collapsed .side .brandtext{
+    display:none!important;
+    visibility:hidden!important;
+    width:0!important;
+    max-width:0!important;
+    overflow:hidden!important;
+  }
+  .sidebar-collapsed .side .brand{
+    justify-content:center!important;
+    gap:0!important;
+    overflow:hidden!important;
+  }
+  .sidebar-collapsed .side .brand .logo.ashtavakra-mark{
+    display:grid!important;
+    margin-inline:auto!important;
+    flex:0 0 46px!important;
+  }
+}
+
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body>
 <aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="brand">
   <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
