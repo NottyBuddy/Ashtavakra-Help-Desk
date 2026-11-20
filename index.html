@@ -713,6 +713,30 @@ footer.footer,
   border-top:0!important;
   border-radius:0!important;
 }
+
+/* Liquid-glass partner footer: translucent blur with consistent navy typography */
+footer.footer.liquid-glass-footer{
+  background:rgba(255,255,255,.58)!important;
+  background-color:rgba(255,255,255,.58)!important;
+  background-image:none!important;
+  -webkit-backdrop-filter:blur(18px) saturate(165%)!important;
+  backdrop-filter:blur(18px) saturate(165%)!important;
+  border:1px solid rgba(23,59,96,.13)!important;
+  border-bottom:0!important;
+  box-shadow:0 -8px 28px rgba(23,59,96,.07)!important;
+  color:#173B60!important;
+}
+footer.footer.liquid-glass-footer .partner-label,
+footer.footer.liquid-glass-footer .partner-name,
+footer.footer.liquid-glass-footer .footer-note{
+  color:#173B60!important;
+  font-weight:700!important;
+  opacity:1!important;
+  text-shadow:none!important;
+}
+footer.footer.liquid-glass-footer .partner-divider{
+  background:rgba(23,59,96,.28)!important;
+}
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body>
 <aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="brand">
   <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
@@ -1100,7 +1124,7 @@ function render(){
  const existingAssist=document.getElementById("aiChatPanel");
  if(existingAssist)existingAssist.remove();
  let f={home,scripts,products,brandSop,sop,faqs,sales,updates,cx:cxPage,quickRefs};
- document.getElementById("view").innerHTML=f[page]()+ '<footer class="footer" style="background:transparent!important;background-color:transparent!important;background-image:none!important;box-shadow:none!important;border:0!important;border-top:0!important;"><span class="partner-label">Our Partners</span><span class="partner-name" style="display:inline-block!important">HRHNEXT</span><span class="partner-divider"></span><span class="partner-name" style="display:inline-block!important">INDIFRAME</span><span class="footer-note">Powered by Ashtavakra · Internal Use Only</span></footer>';
+ document.getElementById("view").innerHTML=f[page]()+ '<footer class="footer liquid-glass-footer"><span class="partner-label">Our Partners</span><span class="partner-name">HRHNEXT</span><span class="partner-divider"></span><span class="partner-name">INDIFRAME</span><span class="footer-note">Powered by Ashtavakra · Internal Use Only</span></footer>';
  const freshAssist=document.getElementById("aiChatPanel");
  if(existingAssist){
   if(freshAssist)freshAssist.remove();
