@@ -97,6 +97,38 @@ async function route(req,env) {
     if(!result.meta?.changes)return error("Knowledge entry not found.",404);
     return response({ok:true,message:"Knowledge status updated."});
   }
+  if(p==="/api/location/search" && req.method==="GET") {
+    const authResult=await auth(req,env,false);if(authResult.res)return authResult.res;
+    const q=String(url.searchParams.get("q")||"").trim();
+    if(q.length<2||q.length>80)return error("Enter a city, area, district, state or six-digit PIN code.");
+    const isPin=/^[1-9][0-9]{5}$/.test(q);
+    if(/^\\d+$/.test(q)&&!isPin)return error("Enter a valid six-digit Indian PIN code.");
+    const rateKey=await hash("postal-search|"+authResult.u.id),now=Date.now(),windowStart=now-10000;
+    await env.DB.prepare("DELETE FROM login_attempts WHERE attempt_key=? AND attempted_at<?").bind(rateKey,windowStart).run();
+    const rate=await env.DB.prepare("SELECT COUNT(*) n FROM login_attempts WHERE attempt_key=? AND attempted_at>?").bind(rateKey,windowStart).first();
+    if((rate?.n||0)>=4)return error("Please wait a few seconds before searching another location.",429);
+    await env.DB.prepare("INSERT INTO login_attempts(attempt_key,attempted_at) VALUES(?,?)").bind(rateKey,now).run();
+    const endpoint=isPin
+      ? "https://api.pincodeapi.in/api/v1/pincode/"+encodeURIComponent(q)
+      : "https://api.pincodeapi.in/api/v1/search?q="+encodeURIComponent(q)+"&limit=15&offset=0";
+    let upstream;
+    try{
+      upstream=await fetch(endpoint,{headers:{"accept":"application/json"},signal:AbortSignal.timeout(8000),cf:{cacheTtl:1800,cacheEverything:true}});
+    }catch(e){return error("India postal directory is temporarily unavailable. Please try again shortly.",502);}
+    if(upstream.status===404)return response({ok:true,query:q,results:[],source:"Pincode API · India postal directory",message:"No matching postal records were found."});
+    if(upstream.status===429)return error("Postal directory is busy. Please wait a few seconds and try again.",429);
+    if(!upstream.ok)return error("Postal directory lookup failed. Please try again.",502);
+    let payload;try{payload=await upstream.json()}catch{return error("Postal directory returned an unreadable response.",502);}
+    if(payload?.success!==true)return response({ok:true,query:q,results:[],source:"Pincode API · India postal directory",message:"No matching postal records were found."});
+    const raw=Array.isArray(payload?.data?.post_offices)?payload.data.post_offices:[];
+    const clean=s=>typeof s==="string"?s.slice(0,120):"";
+    const results=raw.slice(0,15).map(r=>({
+      office:clean(r.office_name),pincode:clean(r.pincode),district:clean(r.district),
+      state:clean(r.state),officeType:clean(r.office_type),delivery:clean(r.delivery_status),
+      circle:clean(r.circle),region:clean(r.region),division:clean(r.division)
+    })).filter(r=>/^\\d{6}$/.test(r.pincode)&&(r.office||r.district||r.state));
+    return response({ok:true,query:q,results,datasetVersion:clean(payload?.meta?.dataset_version),source:"Pincode API · India postal directory",message:results.length?"Postal records found.":"No matching postal records were found."});
+  }
   if(p==="/api/ai/assist" && req.method==="POST") {
     const a=await auth(req,env,false);if(a.res)return a.res;
     if(!env.AI)return error("Ashtavakra is not configured. Contact the Team Lead.",503);
