@@ -61,7 +61,23 @@ input::placeholder,textarea::placeholder{color:#77737a!important}
 .card,.panel,.box,.modal,.login-card,.auth-card,.stat,.table-wrap,.tablewrap{background:#fff!important;color:#17171B!important;border:1px solid #e5e2de!important;box-shadow:0 6px 20px #21151b0a!important}
 button:hover,.btn:hover,a:hover{box-shadow:0 0 14px #6d3b7022!important;transform:none!important}
 svg,.icon{color:#54243B!important;stroke:#54243B!important}
-</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body><div class="wrap"><header class="top"><div><div class="eyebrow">ASHTAVAKRA · SECURE WORKSPACE</div><h1>Team Lead Admin Console</h1><div class="muted" id="who">Secure agent access management</div></div><div class="actions"><button onclick="location.href='/'">Open Portal</button><button id="logout">Sign out</button></div></header>
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style id="ashtavakra-light-final">
+:root{color-scheme:light!important}
+html,body{background:#F7F7F5!important;color:#17171B!important;color-scheme:light!important}
+body{background:#F7F7F5!important;color:#17171B!important}
+body .top,body .wrap{color:#17171B!important}
+body .top,body .panel,body .metric-group,body .history-panel,body .tablewrap,body .editor-dialog{background:#FFFFFF!important;color:#17171B!important;border-color:#E5E2DE!important;box-shadow:0 6px 20px rgba(25,18,22,.05)!important}
+body h1,body h2,body h3,body h4,body label,body p,body small,body th,body td,body .eyebrow,body .muted,body .msg,body .empty{color:#17171B!important}
+body input,body textarea,body select,body .editor-dialog textarea{background:#FFFFFF!important;color:#17171B!important;border:1px solid #D9D5D0!important}
+body button{background:#FFFFFF!important;color:#17171B!important;border:1px solid #DEDAD5!important;box-shadow:none!important;transition:box-shadow .18s ease!important}
+body button.primary{background:#54243B!important;color:#FFFFFF!important;border-color:#54243B!important}
+body button.danger{background:#F8F4F5!important;color:#54243B!important;border-color:#E5D9DE!important}
+body button:hover,body .btn:hover{background:inherit!important;color:inherit!important;transform:none!important;box-shadow:0 0 14px rgba(84,36,59,.14)!important}
+body svg,body .icon{color:#54243B!important;stroke:#54243B!important}
+body th{background:#F0EEEB!important}
+body .metric,body .history-item pre{background:#F7F7F5!important;color:#17171B!important;border-color:#E5E2DE!important}
+</style>
+</head><body><div class="wrap"><header class="top"><div><div class="eyebrow">ASHTAVAKRA · SECURE WORKSPACE</div><h1>Team Lead Admin Console</h1><div class="muted" id="who">Secure agent access management</div></div><div class="actions"><button onclick="location.href='/'">Open Portal</button><button id="logout">Sign out</button></div></header>
 <section class="panel" id="analyticsPanel"><div class="top"><div><h2>Operational Overview</h2><p class="muted">Live account, approved knowledge and AI feedback metrics. Agent activity is based on last login, not call performance.</p></div><button id="analyticsRefresh">Refresh metrics</button></div><div class="analytics-grid" id="analyticsCards"><div class="metric"><span>Loading analytics…</span><b>—</b></div></div><div class="msg" id="analyticsMsg"></div></section>
 <section class="panel"><h2>Add Agent</h2><p class="muted">New agents are created as pending. Approve only after verifying their company work email.</p><form id="addForm"><div class="grid"><div><label>Agent full name</label><input id="name" required maxlength="100"></div><div><label>Company work email</label><input id="email" type="email" required maxlength="254"></div></div><button class="primary" id="addBtn">Add pending agent</button></form><div class="msg" id="addMsg"></div></section>
 <section class="panel"><div class="top"><div><h2>Agent Accounts</h2><p class="muted">Approve, disable or reset agent passwords. No agent can access this console.</p></div><button id="refresh">Refresh list</button></div><div class="tablewrap"><table><thead><tr><th>AGENT</th><th>WORK EMAIL</th><th>STATUS</th><th>FIRST LOGIN PASSWORD</th><th>LAST LOGIN</th><th>ACTIONS</th></tr></thead><tbody id="agents"><tr><td colspan="6" class="empty">Loading agents…</td></tr></tbody></table></div><div class="msg" id="listMsg"></div></section>
