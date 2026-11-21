@@ -1461,14 +1461,14 @@ function renderScriptDocument(source){
  while(i<lines.length){
   const line=lines[i],trim=line.trim();
   if(!trim){i++;continue;}
-  const tabbed=line.includes("\\t");
-  const spaced=!tabbed&&trim.split(/\\s{2,}/).filter(Boolean).length>=2;
+  const tabbed=line.includes("\t");
+  const spaced=!tabbed&&trim.split(/\s{2,}/).filter(Boolean).length>=2;
   if(tabbed||spaced){
    const rows=[];
    while(i<lines.length){
     const current=lines[i];
-    const isTabbed=current.includes("\\t");
-    const parts=isTabbed?current.split("\\t").map(x=>x.trim()).filter(Boolean):current.trim().split(/\\s{2,}/).map(x=>x.trim()).filter(Boolean);
+    const isTabbed=current.includes("\t");
+    const parts=isTabbed?current.split("\t").map(x=>x.trim()).filter(Boolean):current.trim().split(/\s{2,}/).map(x=>x.trim()).filter(Boolean);
     if(parts.length<2)break;
     rows.push(parts);
     i++;
