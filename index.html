@@ -1152,6 +1152,65 @@ body :is(.hero:after,.hero:before,.logo:before,.logo:after){display:none!importa
   #view>footer.footer.liquid-glass-footer .footer-note{width:auto!important;margin:0!important}
 }
 
+
+
+/* FOOTER — fixed to the bottom edge on every module, plain text only */
+#view{padding-bottom:76px!important}
+#view::after{display:none!important;content:none!important;height:0!important;min-height:0!important;flex:0 0 0!important}
+#view>footer.footer.liquid-glass-footer{
+ position:fixed!important;left:220px!important;right:0!important;bottom:0!important;top:auto!important;
+ z-index:100!important;width:auto!important;min-height:48px!important;margin:0!important;
+ padding:12px 24px!important;display:flex!important;align-items:center!important;
+ justify-content:space-between!important;gap:8px 18px!important;flex-wrap:wrap!important;
+ background:transparent!important;background-color:rgba(255,255,255,.96)!important;background-image:none!important;
+ border:0!important;border-top:1px solid #E5E5E5!important;border-radius:0!important;
+ box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+}
+body.sidebar-collapsed #view>footer.footer.liquid-glass-footer{left:76px!important}
+#view>footer.footer.liquid-glass-footer .partner-line,
+#view>footer.footer.liquid-glass-footer .footer-note{
+ display:inline!important;width:auto!important;margin:0!important;padding:0!important;
+ background:transparent!important;border:0!important;color:#171717!important;
+ -webkit-text-fill-color:#171717!important;font-size:11px!important;font-weight:400!important;
+ letter-spacing:.15px!important;line-height:1.4!important;white-space:normal!important;
+}
+@media(max-width:700px){
+ #view{padding-bottom:92px!important}
+ #view>footer.footer.liquid-glass-footer{left:0!important;right:0!important;min-height:58px!important;padding:10px 14px!important;justify-content:flex-start!important;gap:4px 14px!important}
+ #view>footer.footer.liquid-glass-footer .partner-line,#view>footer.footer.liquid-glass-footer .footer-note{font-size:10px!important}
+}
+
+/* Sidebar navigation icons — slightly smaller and visually balanced */
+.side .nav button .nav-icon{width:26px!important;height:26px!important;min-width:26px!important;flex:0 0 26px!important}
+.side .nav button .nav-icon svg,.side .nav button .nav-icon .ui-icon{width:16px!important;height:16px!important;min-width:16px!important;min-height:16px!important;stroke-width:1.7!important}
+
+/* Proper readable tables in Scripts, FAQ Bank and Brand & Product SOP */
+.script-reader .script-table-wrap,.script-document .script-table-wrap{
+ display:block!important;width:100%!important;max-width:100%!important;overflow-x:auto!important;
+ margin:16px 0!important;border:1px solid #D8D8D8!important;border-radius:4px!important;
+ background:#FFFFFF!important;box-shadow:none!important;
+}
+.script-reader table.script-table,.script-document table.script-table{
+ width:100%!important;min-width:560px!important;max-width:none!important;
+ border-collapse:collapse!important;border-spacing:0!important;table-layout:auto!important;
+ background:#FFFFFF!important;color:#171717!important;
+}
+.script-reader table.script-table th,.script-reader table.script-table td,
+.script-document table.script-table th,.script-document table.script-table td{
+ display:table-cell!important;position:static!important;vertical-align:top!important;
+ padding:11px 13px!important;border:1px solid #D8D8D8!important;
+ text-align:left!important;white-space:normal!important;line-height:1.5!important;
+ color:#171717!important;-webkit-text-fill-color:#171717!important;
+ background:#FFFFFF!important;font-size:12px!important;font-weight:400!important;
+}
+.script-reader table.script-table thead th,.script-document table.script-table thead th{
+ background:#F1F1F1!important;font-weight:400!important;border-bottom:1px solid #CFCFCF!important;
+}
+.script-reader table.script-table tbody tr:nth-child(even) td,
+.script-document table.script-table tbody tr:nth-child(even) td{background:#FAFAFA!important}
+.script-reader table.script-table tbody tr:hover td,
+.script-document table.script-table tbody tr:hover td{background:#FFFFFF!important}
+
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style id="ashtavakra-light-final">
 /* FINAL APPROVED PALETTE — OFF-WHITE / PEARL / BURGUNDY / BLACK ONLY */
 :root{color-scheme:light!important;--av-bg:#F7F7F5!important;--av-sidebar:#E8E6E1!important;--av-text:#17171B!important;--av-icon:#54243B!important;--av-hover:rgba(84,36,59,.14)!important}
@@ -1402,18 +1461,25 @@ function renderScriptDocument(source){
  while(i<lines.length){
   const line=lines[i],trim=line.trim();
   if(!trim){i++;continue;}
-  if(line.includes("\t")){
+  const tabbed=line.includes("\\t");
+  const spaced=!tabbed&&trim.split(/\\s{2,}/).filter(Boolean).length>=2;
+  if(tabbed||spaced){
    const rows=[];
-   while(i<lines.length&&lines[i].includes("\t")){
-    const cells=lines[i].split("\t").map(x=>x.trim());
-    if(cells.some(Boolean))rows.push(cells);
+   while(i<lines.length){
+    const current=lines[i];
+    const isTabbed=current.includes("\\t");
+    const parts=isTabbed?current.split("\\t").map(x=>x.trim()).filter(Boolean):current.trim().split(/\\s{2,}/).map(x=>x.trim()).filter(Boolean);
+    if(parts.length<2)break;
+    rows.push(parts);
     i++;
    }
-   if(rows.length){
+   if(rows.length>=2){
     const cols=Math.max(...rows.map(r=>r.length));
-    html+='<div class="script-table-wrap"><table class="script-table"><tbody>';
-    rows.forEach((r,ri)=>{html+='<tr>'+Array.from({length:cols},(_,ci)=>{const v=r[ci]||"";return ri===0?'<th>'+cell(v)+'</th>':'<td>'+cell(v)+'</td>'}).join("")+'</tr>'});
+    html+='<div class="script-table-wrap"><table class="script-table"><thead><tr>'+Array.from({length:cols},(_,ci)=>'<th>'+cell(rows[0][ci]||"")+'</th>').join("")+'</tr></thead><tbody>';
+    rows.slice(1).forEach(r=>{html+='<tr>'+Array.from({length:cols},(_,ci)=>'<td>'+cell(r[ci]||"")+'</td>').join("")+'</tr>'});
     html+='</tbody></table></div>';
+   }else{
+    rows.forEach(r=>{html+='<p class="script-paragraph">'+r.map(escapeScriptText).join(' · ')+'</p>'});
    }
    continue;
   }
