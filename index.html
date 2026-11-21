@@ -1211,6 +1211,29 @@ body.sidebar-collapsed #view>footer.footer.liquid-glass-footer{left:76px!importa
 .script-reader table.script-table tbody tr:hover td,
 .script-document table.script-table tbody tr:hover td{background:#FFFFFF!important}
 
+
+/* FINAL HOVER FIX: keep icons burgundy and the Ashtavakra logo completely static */
+body :is(.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon,[class*="icon"]) ,
+body :is(.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon,[class*="icon"]) * ,
+body button:hover :is(svg,.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon),
+body button:hover :is(svg,.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon) * ,
+body :is(.nav button,.tab,.item,.card,.quickref-card,.learning-path,.stat):hover :is(svg,.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon),
+body :is(.nav button,.tab,.item,.card,.quickref-card,.learning-path,.stat):hover :is(svg,.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon) * {
+  color:#54243B!important;
+  stroke:#54243B!important;
+}
+body .brand:hover,
+body .brand .logo:hover,
+body .brand .logo:hover *,
+body .brandtext:hover {
+  transform:none!important;
+  filter:none!important;
+  transition:none!important;
+}
+body .brand .logo:hover {
+  box-shadow:none!important;
+}
+
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style id="ashtavakra-light-final">
 /* FINAL APPROVED PALETTE — OFF-WHITE / PEARL / BURGUNDY / BLACK ONLY */
 :root{color-scheme:light!important;--av-bg:#F7F7F5!important;--av-sidebar:#E8E6E1!important;--av-text:#17171B!important;--av-icon:#54243B!important;--av-hover:rgba(84,36,59,.14)!important}
