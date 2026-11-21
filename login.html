@@ -408,4 +408,48 @@ $("recoveryForm").addEventListener("submit",async e=>{e.preventDefault();$("reco
 $("loginForm").addEventListener("submit",async e=>{e.preventDefault();$("loginBtn").disabled=true;$("message").textContent="";try{const d=await api("/api/auth/login",{email:$("email").value,password:$("password").value});if(d.user.mustChangePassword)showChange(d.user);else goFor(d.user);}catch(err){$("message").textContent=err.message;}finally{$("loginBtn").disabled=false;}});
 $("changeForm").addEventListener("submit",async e=>{e.preventDefault();$("changeBtn").disabled=true;$("message").textContent="";try{if($("newPassword").value!==$("confirmPassword").value)throw new Error("New password and confirmation do not match.");await api("/api/auth/change-password",{currentPassword:$("currentPassword").value,newPassword:$("newPassword").value});const d=await fetch("/api/auth/me",{credentials:"same-origin"}).then(r=>r.json());if(!d.ok)throw new Error("Please sign in again.");goFor({...d.user,mustChangePassword:false});}catch(err){$("message").textContent=err.message;}finally{$("changeBtn").disabled=false;}});
 (async()=>{try{const r=await fetch("/api/auth/me",{credentials:"same-origin"});if(r.ok){const d=await r.json();if(d.user.mustChangePassword)showChange(d.user);else goFor(d.user);}}catch(e){}})();
-</script></body></html>
+</script>
+<style id="ashtavakra-sidebar-hover-off">
+/* Sidebar only: icons keep their normal burgundy/cream appearance on hover */
+body .side #nav button:hover .nav-icon,
+body .side #nav button:focus-visible .nav-icon,
+body .side #nav button:hover .nav-icon svg,
+body .side #nav button:hover .nav-icon svg *,
+body .side #nav button:focus-visible .nav-icon svg,
+body .side #nav button:focus-visible .nav-icon svg * {
+  color:#54243B!important;
+  stroke:#54243B!important;
+  fill:none!important;
+  background:#FFF3E2!important;
+  background-color:#FFF3E2!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+  transform:none!important;
+  transition:none!important;
+}
+/* Archer logo: no hover, focus, or active effect */
+body .side .brand:hover,
+body .side .brand:focus,
+body .side .brand:focus-visible,
+body .side .brand:active,
+body .side .brand:hover .logo,
+body .side .brand:hover .logo svg,
+body .side .brand:hover .logo svg *,
+body .side .brand .logo:hover,
+body .side .brand .logo:hover svg,
+body .side .brand .logo:hover svg * {
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  color:inherit!important;
+  box-shadow:none!important;
+  filter:none!important;
+  text-shadow:none!important;
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
+  outline:none!important;
+}
+</style>
+</body></html>
