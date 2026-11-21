@@ -774,8 +774,47 @@ footer.footer.liquid-glass-footer .partner-divider{
   line-height:1.4!important;
   white-space:nowrap!important;
 }
+
+/* Sidebar collapse/expand control positioned above the signed-in user identity */
+.side .sidefoot{
+  display:block!important;
+  position:static!important;
+  margin-top:auto!important;
+  padding:10px 8px 0!important;
+}
+.side .sidefoot .sidebar-toggle{
+  position:relative!important;
+  top:auto!important;
+  right:auto!important;
+  left:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:34px!important;
+  height:30px!important;
+  margin:0 0 10px auto!important;
+  padding:4px 8px!important;
+}
+.sidebar-collapsed .side .sidefoot{
+  display:block!important;
+  padding:10px 0 0!important;
+}
+.sidebar-collapsed .side .sidefoot .profile-card,
+.sidebar-collapsed .side .sidefoot .profile-meta{
+  display:none!important;
+}
+.sidebar-collapsed .side .sidefoot .sidebar-toggle{
+  margin:0 auto 10px!important;
+}
+@media(max-width:850px){
+  .side .sidefoot{display:block!important}
+}
+@media(max-width:700px){
+  .side .sidefoot{display:flex!important;flex-direction:column!important}
+  .side .sidefoot .sidebar-toggle{margin-left:auto!important}
+}
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body>
-<aside class="side"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="brand">
+<aside class="side"><div class="brand">
   <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
     <svg viewBox="0 0 200 200" role="img" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
       <path class="archer-bow" d="M105 30 L145 55 L155 100 L145 145 L105 170"/>
@@ -803,7 +842,7 @@ footer.footer.liquid-glass-footer .partner-divider{
 <button data-page="updates"><span class="nav-icon" data-icon="bell" aria-hidden="true"></span><span class="navtext">Updates</span></button>
 <button data-page="cx"><span class="nav-icon" data-icon="headphones" aria-hidden="true"></span><span class="navtext">CX Questions</span></button>
 <button data-page="quickRefs"><span class="nav-icon" data-icon="library" aria-hidden="true"></span><span class="navtext">Quick References</span></button>
-</nav><div class="sidefoot"><div class="profile-card"><span class="profile-avatar">IF</span><span class="profile-copy"><b id="profileName">Agent workspace</b><small id="profileRole">Secure portal access</small></span><span class="profile-chevron">⌄</span></div><div class="profile-meta">Secure Workspace<br>Internal Use Only<br>© 2026 Ashtavakra</div></div></aside>
+</nav><div class="sidefoot"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="profile-card"><span class="profile-avatar">IF</span><span class="profile-copy"><b id="profileName">Agent workspace</b><small id="profileRole">Secure portal access</small></span><span class="profile-chevron">⌄</span></div><div class="profile-meta">Secure Workspace<br>Internal Use Only<br>© 2026 Ashtavakra</div></div></aside>
 <div class="main"><header class="top"><div><b>Ashtavakra</b><small>Your Intelligent AI Workspace</small></div><div class="top-actions"><button class="top-assist" type="button" onclick="openAssist()">✦ Ashtavakra</button> <button id="searchBtn">⌕ Search... &nbsp; Ctrl K</button> <button id="notificationBtn" type="button" aria-label="Open announcements" onclick="toggleNotifications()">♧ <span class="notification-count" id="notificationCount">4</span></button> <button class="login" id="portalSignOut" type="button">Sign out</button> <button id="adminConsole" type="button" hidden>Team Lead Console</button></div></header><main id="view"></main></div>
 <div id="globalSearchLayer" class="global-search-layer" hidden role="dialog" aria-modal="true" aria-label="Global knowledge search"><div class="global-search-card"><div class="global-search-top"><div><span class="eyebrow">KNOWLEDGE COMMAND</span><h2>Search the entire Agent Help Desk</h2><p>Find scripts, products, service areas, SOPs, FAQs and Sales contacts.</p></div><button class="global-search-close" type="button" onclick="closeGlobalSearch()">×</button></div><div class="global-search-input-wrap"><span>⌕</span><input id="globalSearchInput" type="search" placeholder="Search anything: Hyderabad, DGU, callback, warranty" oninput="runGlobalSearch(this.value)"><kbd>ESC</kbd></div><div id="globalSearchResults" class="global-search-results"><div class="global-search-empty">Start typing to search approved portal knowledge.</div></div><div class="global-search-foot"><span>Open a result</span><span>Ctrl / ⌘ + K</span></div></div></div>
 <script>
