@@ -1669,7 +1669,7 @@ function renderScriptDocument(source){
    }
    continue;
   }
-  if(/^(\\d+(?:\\.\\d+)*[.)]?\\s+|Scenario [A-E0-9]|[A-E]\d+\.\s)/i.test(trim)||(/^[A-Z][^.!?]{2,85}$/.test(trim)&&trim===trim.toUpperCase())){
+  if(/^(\d+(?:\.\d+)*[.)]?\s+|Scenario [A-E0-9]|[A-E]\d+\.\s)/i.test(trim)||(/^[A-Z][^.!?]{2,85}$/.test(trim)&&trim===trim.toUpperCase())){
    html+='<h3 class="script-heading">'+escapeScriptText(trim)+'</h3>';
   }else if(/^(Agent|Customer|Customer asks|Agent answers|Context|Rule|Important|Mandatory closing rule|If the customer|If Customer|If customer|Sample exchange)/i.test(trim)){
    html+='<p class="script-dialogue">'+escapeScriptText(trim)+'</p>';
