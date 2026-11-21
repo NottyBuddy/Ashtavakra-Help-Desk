@@ -82,6 +82,28 @@ body button,body .btn,body button.primary,body .primary,body a,body label,body p
 body input::placeholder,body textarea::placeholder{color:#17171B!important;opacity:1!important}
 body button:hover,body a:hover,body [role=button]:hover,body .nav button:hover,body .tab:hover,body .item:hover,body .stat:hover,body .card:hover{color:#17171B!important}
 body .nav button:hover svg,body .nav button:hover .nav-icon,body button:hover svg,body a:hover svg{color:#54243B!important;stroke:#54243B!important;filter:none!important}
+
+/* FINAL OVERRIDE — fixed text/icon colors; hover is glow only */
+html,body,body *{color:#17171B!important;font-weight:400!important}
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,li,td,th,a,button,div){color:#17171B!important;font-weight:400!important}
+body :is(.muted,.description,.hint,.eyebrow,.footer-note,.profile-meta,.brandtext small){color:#17171B!important;opacity:1!important}
+body .side{background:#E8E6E1!important}
+body .side .brand{display:flex!important;align-items:center!important;justify-content:flex-start!important;gap:12px!important}
+body .side .brand .logo.ashtavakra-mark{flex:0 0 56px!important;width:56px!important;height:56px!important;min-width:56px!important;background:transparent!important;border:0!important;box-shadow:none!important}
+body .side .brand .logo.ashtavakra-mark svg{width:56px!important;height:56px!important;display:block!important;transform:none!important}
+body .side .brandtext{display:flex!important;flex-direction:column!important;gap:4px!important}
+body .side .brandtext b{color:#17171B!important;font-weight:400!important;letter-spacing:2.15px!important}
+body .side .brandtext small{color:#17171B!important;font-weight:400!important;letter-spacing:1.35px!important}
+body .archer-bow,body .archer-string{stroke:#54243B!important;fill:none!important}
+body .archer-arrow{stroke:#54243B!important;fill:#54243B!important}
+body .archer-crest{fill:#54243B!important;stroke:#54243B!important}
+body .side .brand .logo.ashtavakra-mark svg{filter:drop-shadow(0 0 4px rgba(84,36,59,.12))!important;transition:filter .2s ease!important}
+body .side .brand .logo.ashtavakra-mark:hover svg{filter:drop-shadow(0 0 9px rgba(84,36,59,.25))!important;transform:none!important}
+body .nav-icon,body .nav-icon svg,body .nav-icon svg *,body .ui-icon,body .ui-icon svg,body .tile-icon,body .tile-icon svg,body .stat-symbol,body .stat-symbol svg,body [class*="icon"]:not(.logo),body [class*="icon"]:not(.logo) svg{color:#54243B!important;stroke:#54243B!important;fill:none!important;opacity:1!important}
+body .nav-icon:hover,body .nav-icon:hover svg,body .nav-icon:hover svg *,body [class*="icon"]:hover,body [class*="icon"]:hover svg,body [class*="icon"]:hover svg *{color:#54243B!important;stroke:#54243B!important;fill:none!important;filter:drop-shadow(0 0 4px rgba(84,36,59,.28))!important;opacity:1!important;transform:none!important}
+body button:hover,body a:hover,body [role=button]:hover,body .nav button:hover,body .tab:hover,body .item:hover,body .stat:hover,body .card:hover,body .btn:hover{color:#17171B!important;background-color:inherit!important;border-color:inherit!important;transform:none!important;filter:none!important;box-shadow:0 0 13px rgba(84,36,59,.14)!important}
+body button:hover svg,body a:hover svg,body [role=button]:hover svg{color:#54243B!important;stroke:#54243B!important;filter:drop-shadow(0 0 4px rgba(84,36,59,.28))!important}
+body input::placeholder,body textarea::placeholder{color:#17171B!important;opacity:1!important}
 </style>
 </head><body><main class="panel"><div class="brand">ASHTAVAKRA · INTELLIGENT AI WORKSPACE</div><h1 id="heading">Agent & Team Lead Sign in</h1><p class="tag" id="sub">Use your approved company work email to access Ashtavakra.</p>
 <form id="loginForm"><label>Company work email</label><input id="email" type="email" autocomplete="username" required maxlength="254"><label>Password</label><input id="password" type="password" autocomplete="current-password" required><button id="loginBtn">Sign in</button></form>
