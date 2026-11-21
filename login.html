@@ -46,7 +46,18 @@ input::placeholder,textarea::placeholder{color:#77737a!important}
 .card,.panel,.box,.modal,.login-card,.auth-card,.stat,.table-wrap,.tablewrap{background:#fff!important;color:#17171B!important;border:1px solid #e5e2de!important;box-shadow:0 6px 20px #21151b0a!important}
 button:hover,.btn:hover,a:hover{box-shadow:0 0 14px #6d3b7022!important;transform:none!important}
 svg,.icon{color:#54243B!important;stroke:#54243B!important}
-</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body><main class="panel"><div class="brand">ASHTAVAKRA · INTELLIGENT AI WORKSPACE</div><h1 id="heading">Agent & Team Lead Sign in</h1><p class="tag" id="sub">Use your approved company work email to access Ashtavakra.</p>
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style id="ashtavakra-light-final">
+:root{color-scheme:light!important}
+html,body{background:#F7F7F5!important;color:#17171B!important;color-scheme:light!important}
+body{background:radial-gradient(ellipse at 85% 0%,rgba(109,59,112,.045),transparent 38%),#F7F7F5!important;color:#17171B!important}
+body .panel,body .login-card,body .auth-card,body main{background:#FFFFFF!important;color:#17171B!important;border:1px solid #E5E2DE!important;box-shadow:0 12px 36px rgba(25,18,22,.08)!important}
+body h1,body h2,body h3,body p,body label,body small,body .tag,body .hint,body .muted{color:#17171B!important}
+body input,body textarea,body select{background:#FFFFFF!important;color:#17171B!important;border:1px solid #D9D5D0!important}
+body button,body .primary{background:#54243B!important;color:#FFFFFF!important;border:1px solid #54243B!important;box-shadow:none!important;transition:box-shadow .18s ease!important}
+body button:hover,body .primary:hover{background:inherit!important;color:inherit!important;transform:none!important;box-shadow:0 0 14px rgba(84,36,59,.15)!important}
+body svg,body .icon{color:#54243B!important;stroke:#54243B!important}
+</style>
+</head><body><main class="panel"><div class="brand">ASHTAVAKRA · INTELLIGENT AI WORKSPACE</div><h1 id="heading">Agent & Team Lead Sign in</h1><p class="tag" id="sub">Use your approved company work email to access Ashtavakra.</p>
 <form id="loginForm"><label>Company work email</label><input id="email" type="email" autocomplete="username" required maxlength="254"><label>Password</label><input id="password" type="password" autocomplete="current-password" required><button id="loginBtn">Sign in</button></form>
 <p class="switch" id="recoverySwitch"><a href="#" id="showRecovery">Forgot Team Lead password?</a></p>
 <form id="recoveryForm" class="hidden"><label>Admin recovery token</label><input id="recoveryToken" type="password" autocomplete="off" required minlength="32" maxlength="256"><label>New password (minimum 12 characters)</label><input id="recoveryNewPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" required><label>Confirm new password</label><input id="recoveryConfirmPassword" type="password" autocomplete="new-password" minlength="12" maxlength="128" required><button id="recoveryBtn">Reset Team Lead password</button><p class="switch"><a href="#" id="backToLogin">Back to sign in</a></p></form>
