@@ -190,6 +190,28 @@ body input,body select,body textarea{background:#FFFFFF!important;color:#17171B!
 body input::placeholder,body textarea::placeholder{color:#17171B!important;opacity:1!important}
 
 </style>
+<style id="ashtavakra-absolute-final-override">
+/* FINAL OVERRIDE: placed after every legacy stylesheet */
+:root{color-scheme:light!important;--av-bg:#F7F7F5!important;--av-sidebar:#E8E6E1!important;--av-text:#17171B!important;--av-icon:#54243B!important;--av-burgundy:#54243B!important}
+html,body{background:#F7F7F5!important;background-image:none!important;color:#17171B!important;color-scheme:light!important}
+body{font-weight:400!important}
+body *{font-weight:400!important;background-image:none!important;text-shadow:none!important}
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,a,li,td,th,summary,legend,div){color:#17171B!important;-webkit-text-fill-color:#17171B!important;font-weight:400!important}
+body :is(.side,aside,.sidebar){background:#E8E6E1!important;color:#17171B!important}
+body :is(.main,main,.content,.page,.shell,.container,.top){background:transparent!important;color:#17171B!important}
+body :is([class*="card"],[class*="tile"],[class*="stat"],.item,.feature-card,.module-card,.shortcut-card,.knowledge-card,.product-card,.sop-card,.script-placeholder,.quickref-card,.info-card){background:transparent!important;background-color:transparent!important;background-image:none!important;box-shadow:none!important;backdrop-filter:none!important}
+body :is([class*="card"],[class*="tile"],[class*="stat"],.item,.feature-card,.module-card,.shortcut-card,.knowledge-card,.product-card,.sop-card,.script-placeholder,.quickref-card,.info-card):hover{background:transparent!important;background-color:transparent!important;background-image:none!important;box-shadow:0 0 13px rgba(84,36,59,.14)!important;transform:none!important;filter:none!important}
+body :is(.badge,.pill,.status,.tag,.eyebrow,.section-count,.notice,.review,.source-note,.partner-line,[class*="badge"],[class*="chip"],[class*="highlight"]){background:transparent!important;background-color:transparent!important;background-image:none!important;color:#17171B!important;border-color:transparent!important}
+body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]){background:#54243B!important;background-color:#54243B!important;background-image:none!important;color:#FFFFFF!important;border-color:#54243B!important;transform:none!important}
+body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]):hover,body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]):focus-visible{background:#54243B!important;background-color:#54243B!important;background-image:none!important;color:#FFFFFF!important;box-shadow:0 0 13px rgba(84,36,59,.16)!important;transform:none!important;filter:none!important}
+body :is(.nav button,.tab,.side .nav button){background:transparent!important;background-color:transparent!important;color:#17171B!important;border-color:transparent!important}
+body :is(.nav button,.tab,.side .nav button):hover,body :is(.nav button,.tab,.side .nav button).active{background:transparent!important;background-color:transparent!important;color:#17171B!important;box-shadow:0 0 12px rgba(84,36,59,.13)!important;transform:none!important}
+body :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"]),body :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"]) *{color:#54243B!important;stroke:#54243B!important;fill:currentColor}
+body :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"]):hover{color:#54243B!important;stroke:#54243B!important;box-shadow:0 0 10px rgba(84,36,59,.14)!important;transform:none!important}
+body input,body select,body textarea{background:#FFFFFF!important;background-image:none!important;color:#17171B!important;border-color:#D9D5D0!important}
+body input::placeholder,body textarea::placeholder{color:#17171B!important;opacity:1!important}
+body *:hover{font-weight:400!important;transform:none!important}
+</style>
 </head><body><div class="wrap"><header class="top"><div><div class="eyebrow">ASHTAVAKRA · SECURE WORKSPACE</div><h1>Team Lead Admin Console</h1><div class="muted" id="who">Secure agent access management</div></div><div class="actions"><button onclick="location.href='/'">Open Portal</button><button id="logout">Sign out</button></div></header>
 <section class="panel" id="analyticsPanel"><div class="top"><div><h2>Operational Overview</h2><p class="muted">Live account, approved knowledge and AI feedback metrics. Agent activity is based on last login, not call performance.</p></div><button id="analyticsRefresh">Refresh metrics</button></div><div class="analytics-grid" id="analyticsCards"><div class="metric"><span>Loading analytics…</span><b>—</b></div></div><div class="msg" id="analyticsMsg"></div></section>
 <section class="panel"><h2>Add Agent</h2><p class="muted">New agents are created as pending. Approve only after verifying their company work email.</p><form id="addForm"><div class="grid"><div><label>Agent full name</label><input id="name" required maxlength="100"></div><div><label>Company work email</label><input id="email" type="email" required maxlength="254"></div></div><button class="primary" id="addBtn">Add pending agent</button></form><div class="msg" id="addMsg"></div></section>
