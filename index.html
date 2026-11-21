@@ -1519,6 +1519,53 @@ body .side .brand .logo.ashtavakra-mark svg * {
  background:transparent!important;box-shadow:none!important;filter:none!important;transform:none!important;transition:none!important;
 }
 </style>
+
+<style id="ashtavakra-hover-lock-final">
+/* ICON HOVER: preserve the exact default icon colours/surfaces even when the parent tile or nav item is hovered */
+body .nav button:hover .nav-icon,
+body .nav button:hover .nav-icon *,
+body .nav button:focus-visible .nav-icon,
+body .nav button:focus-visible .nav-icon *,
+body .item:hover .tile-icon,
+body .item:hover .tile-icon *,
+body .quickref-card:hover .quickref-icon,
+body .quickref-card:hover .quickref-icon *,
+body .card:hover .ui-icon,
+body .card:hover .ui-icon *,
+body .stat:hover .stat-symbol,
+body .stat:hover .stat-symbol *,
+body button:hover .nav-icon,
+body button:hover .nav-icon *,
+body button:hover .ui-icon,
+body button:hover .ui-icon *,
+body a:hover .ui-icon,
+body a:hover .ui-icon *,
+body :is(.item,.card,.quickref-card,.learning-path,.stat,button,a):hover :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.feature-icon,.module-icon,.card-icon),
+body :is(.item,.card,.quickref-card,.learning-path,.stat,button,a):hover :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.feature-icon,.module-icon,.card-icon) * {
+ color:#54243B!important;stroke:#54243B!important;fill:none!important;
+ background:#FFF3E2!important;background-color:#FFF3E2!important;background-image:none!important;
+ border-color:transparent!important;box-shadow:none!important;filter:none!important;
+ transform:none!important;transition:none!important;opacity:1!important;
+}
+/* The Archer logo and its entire brand area have no hover/focus/active animation or effect */
+body .side .brand:hover,
+body .side .brand:focus,
+body .side .brand:focus-visible,
+body .side .brand:active,
+body .side .brand:hover .logo,
+body .side .brand:hover .logo svg,
+body .side .brand:hover .logo svg *,
+body .side .brand .logo:hover,
+body .side .brand .logo:hover svg,
+body .side .brand .logo:hover svg *,
+body .brand:hover .logo,
+body .brand:hover .logo svg,
+body .brand:hover .logo svg * {
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:inherit!important;box-shadow:none!important;filter:none!important;text-shadow:none!important;
+ transform:none!important;transition:none!important;animation:none!important;outline:none!important;
+}
+</style>
 </head><body>
 <aside class="side"><div class="brand">
   <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
