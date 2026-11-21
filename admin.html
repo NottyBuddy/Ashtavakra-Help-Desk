@@ -339,6 +339,29 @@ body .archer-crest{fill:#D4AF37!important;stroke:#D4AF37!important}
 body .side .brandtext b,body .side .brandtext small{color:#17171B!important;-webkit-text-fill-color:#17171B!important}
 
 </style>
+
+<style id="ashtavakra-no-blue-icon-hover">
+/* Targeted fix only: icons keep their approved burgundy/cream appearance on hover; logo stays completely static */
+body :is(.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon-wrap,.icon-circle,.feature-icon,.module-icon,.card-icon,.nav-icon-wrap,.quick-access-icon),
+body :is(.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon-wrap,.icon-circle,.feature-icon,.module-icon,.card-icon,.nav-icon-wrap,.quick-access-icon) svg,
+body :is(.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon-wrap,.icon-circle,.feature-icon,.module-icon,.card-icon,.nav-icon-wrap,.quick-access-icon) svg * {
+ color:#54243B!important;stroke:#54243B!important;filter:none!important;transform:none!important;
+}
+body :is(.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon-wrap,.icon-circle,.feature-icon,.module-icon,.card-icon,.nav-icon-wrap,.quick-access-icon):hover,
+body :is(.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon-wrap,.icon-circle,.feature-icon,.module-icon,.card-icon,.nav-icon-wrap,.quick-access-icon):hover svg,
+body :is(.nav-icon,.tile-icon,.quickref-icon,.path-icon,.stat-symbol,.ui-icon,.icon-wrap,.icon-circle,.feature-icon,.module-icon,.card-icon,.nav-icon-wrap,.quick-access-icon):hover svg * {
+ color:#54243B!important;stroke:#54243B!important;filter:none!important;transform:none!important;box-shadow:none!important;
+}
+body .side .brand .logo.ashtavakra-mark,
+body .side .brand .logo.ashtavakra-mark:hover,
+body .side .brand .logo.ashtavakra-mark:focus,
+body .side .brand .logo.ashtavakra-mark:active,
+body .side .brand .logo.ashtavakra-mark svg,
+body .side .brand .logo.ashtavakra-mark:hover svg,
+body .side .brand .logo.ashtavakra-mark svg * {
+ background:transparent!important;box-shadow:none!important;filter:none!important;transform:none!important;transition:none!important;
+}
+</style>
 </head><body><div class="wrap"><header class="top"><div><div class="eyebrow">ASHTAVAKRA · SECURE WORKSPACE</div><h1>Team Lead Admin Console</h1><div class="muted" id="who">Secure agent access management</div></div><div class="actions"><button onclick="location.href='/'">Open Portal</button><button id="logout">Sign out</button></div></header>
 <section class="panel" id="analyticsPanel"><div class="top"><div><h2>Operational Overview</h2><p class="muted">Live account, approved knowledge and AI feedback metrics. Agent activity is based on last login, not call performance.</p></div><button id="analyticsRefresh">Refresh metrics</button></div><div class="analytics-grid" id="analyticsCards"><div class="metric"><span>Loading analytics…</span><b>—</b></div></div><div class="msg" id="analyticsMsg"></div></section>
 <section class="panel"><h2>Add Agent</h2><p class="muted">New agents are created as pending. Approve only after verifying their company work email.</p><form id="addForm"><div class="grid"><div><label>Agent full name</label><input id="name" required maxlength="100"></div><div><label>Company work email</label><input id="email" type="email" required maxlength="254"></div></div><button class="primary" id="addBtn">Add pending agent</button></form><div class="msg" id="addMsg"></div></section>
