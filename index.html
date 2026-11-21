@@ -1050,31 +1050,32 @@ a{color:#54243B}
 button:focus-visible,[role=button]:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #54243B!important;outline-offset:2px!important}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition-duration:.01ms!important;animation-duration:.01ms!important}}
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style id="ashtavakra-light-final">
-/* FINAL OVERRIDE — light surfaces, burgundy icons, black text, glow-only hover */
-:root{color-scheme:light!important}
+/* FINAL APPROVED PALETTE — OFF-WHITE / PEARL / BURGUNDY / BLACK ONLY */
+:root{color-scheme:light!important;--av-bg:#F7F7F5!important;--av-sidebar:#E8E6E1!important;--av-text:#17171B!important;--av-icon:#54243B!important;--av-hover:rgba(84,36,59,.14)!important}
 html,body{background:#F7F7F5!important;color:#17171B!important;color-scheme:light!important}
-body{background:radial-gradient(ellipse at 85% 0%,rgba(109,59,112,.045),transparent 38%),#F7F7F5!important;color:#17171B!important}
-body .side{background:#E7E5E2!important;color:#17171B!important;border-right:1px solid #D3D0CC!important;box-shadow:4px 0 20px rgba(20,15,18,.045)!important}
-body .side .brand{border-bottom:1px solid #D3D0CC!important}
+body{background:#F7F7F5!important;color:#17171B!important}
+body *{scrollbar-color:#BDB8B2 #F7F7F5}
+body .side{background:#E8E6E1!important;color:#17171B!important;border-right:1px solid #D5D1CB!important;box-shadow:4px 0 20px rgba(20,15,18,.04)!important}
+body .side .brand{border-bottom:1px solid #D5D1CB!important}
 body .side .brand b,body .side .brand small,body .side .label,body .side .sidefoot,body .side .profile-meta{color:#17171B!important}
 body .main,body main{background:transparent!important;color:#17171B!important}
-body .top{background:rgba(247,247,245,.96)!important;color:#17171B!important;border-bottom:1px solid #E0DDDA!important;box-shadow:0 3px 14px rgba(20,15,18,.035)!important;backdrop-filter:blur(16px)!important}
+body .top{background:rgba(247,247,245,.97)!important;color:#17171B!important;border-bottom:1px solid #E0DDDA!important;box-shadow:0 3px 14px rgba(20,15,18,.035)!important;backdrop-filter:blur(16px)!important}
 body .top b,body .top small{color:#17171B!important}
-body .side .nav button,body .side .nav button span,body .side .nav button .navtext{color:#17171B!important}
-body .side .nav button .nav-icon,body .side .nav button .nav-icon svg,body .nav-icon,body .ui-icon,body .tile-icon,body .tile-icon svg,body .stat-symbol,body .stat-symbol svg{color:#54243B!important;stroke:#54243B!important;fill:none!important;opacity:1!important;visibility:visible!important}
-body .side .nav button.active{background:rgba(84,36,59,.075)!important;border-color:rgba(84,36,59,.16)!important;color:#17171B!important;box-shadow:inset 3px 0 #54243B!important}
+body .side .nav button,body .side .nav button span,body .side .nav button .navtext{color:#17171B!important;background:transparent!important}
+body .side .nav button .nav-icon,body .side .nav button .nav-icon svg,body .nav-icon,body .ui-icon,body .tile-icon,body .tile-icon svg,body .stat-symbol,body .stat-symbol svg,body svg.icon{color:#54243B!important;stroke:#54243B!important;fill:none!important;opacity:1!important;visibility:visible!important}
+body .side .nav button.active{background:rgba(84,36,59,.07)!important;border-color:rgba(84,36,59,.15)!important;color:#17171B!important;box-shadow:inset 3px 0 #54243B!important}
 body .side .nav button.active .nav-icon,body .side .nav button.active .nav-icon svg{color:#54243B!important;stroke:#54243B!important}
-body .side .nav button:hover,body .side .nav button:focus-visible{background:transparent!important;border-color:transparent!important;color:#17171B!important;transform:none!important;box-shadow:0 0 15px rgba(84,36,59,.13)!important}
+body .side .nav button:hover,body .side .nav button:focus-visible{background:transparent!important;border-color:transparent!important;color:#17171B!important;transform:none!important;filter:none!important;box-shadow:0 0 15px rgba(84,36,59,.14)!important}
 body .side .nav button:hover .nav-icon,body .side .nav button:hover .nav-icon svg,body .side .nav button:focus-visible .nav-icon,body .side .nav button:focus-visible .nav-icon svg{color:#54243B!important;stroke:#54243B!important;filter:drop-shadow(0 0 4px rgba(84,36,59,.28))!important;transform:none!important}
 body .item,body .stat,body .card,body .script-reader,body .script-placeholder,body .product-card,body .knowledge-card,body .sop-card,body .tablewrap{background:#FFFFFF!important;color:#17171B!important;border:1px solid #E5E2DE!important;box-shadow:0 5px 18px rgba(25,18,22,.045)!important}
 body .item h3,body .card h1,body .card h2,body .card h3,body .stat h3,body .head h1,body .hero h1,body .hero h2,body .item p,body .card p,body .stat strong{color:#17171B!important}
 body .muted,body .description,body .item small,body .card small{color:#55535A!important}
-body .tile-icon,body .stat-symbol{background:rgba(84,36,59,.055)!important;border:1px solid rgba(84,36,59,.17)!important;color:#54243B!important}
-body .hero{background:linear-gradient(120deg,#FFFFFF,#F0EEEB)!important;border:1px solid #E1DDD7!important;color:#17171B!important;box-shadow:0 8px 26px rgba(25,18,22,.05)!important}
+body .tile-icon,body .stat-symbol{background:rgba(84,36,59,.05)!important;border:1px solid rgba(84,36,59,.16)!important;color:#54243B!important}
+body .hero{background:#FFFFFF!important;border:1px solid #E1DDD7!important;color:#17171B!important;box-shadow:0 8px 26px rgba(25,18,22,.05)!important}
 body .hero h1,body .hero h2,body .hero p,body .hero .eyebrow,body .eyebrow,body .section-count{color:#17171B!important}
 body .btn,body .top button,body .tab{background:#FFFFFF!important;color:#17171B!important;border:1px solid #DEDAD5!important}
-body .btn:hover,body .top button:hover,body .tab:hover,body .ai-launch-button:hover,body .sidebar-toggle:hover{background:inherit!important;color:#17171B!important;border-color:inherit!important;box-shadow:0 0 14px rgba(84,36,59,.14)!important;transform:none!important}
-body .tab.active{background:rgba(84,36,59,.07)!important;color:#54243B!important;border-color:rgba(84,36,59,.25)!important}
+body .btn:hover,body .top button:hover,body .tab:hover,body .ai-launch-button:hover,body .sidebar-toggle:hover{background:inherit!important;color:inherit!important;border-color:inherit!important;box-shadow:0 0 14px rgba(84,36,59,.14)!important;transform:none!important}
+body .tab.active{background:rgba(84,36,59,.06)!important;color:#17171B!important;border-color:rgba(84,36,59,.2)!important}
 body input,body select,body textarea,body .search input{background:#FFFFFF!important;color:#17171B!important;border:1px solid #D9D5D0!important}
 body input::placeholder,body textarea::placeholder{color:#77737A!important}
 body .tablewrap,body table{background:#FFFFFF!important;color:#17171B!important}
@@ -1087,9 +1088,11 @@ body .ai-chat-panel{background:#FFFFFF!important;color:#17171B!important;border:
 body .ai-chat-head,body .ai-chat-compose{background:#F3F1EE!important;color:#17171B!important;border-color:#DEDAD5!important}
 body .ai-chat-head b,body .ai-chat-head small,body .ai-chat-messages,body .ai-message,body .ai-bot{color:#17171B!important}
 body .ai-chat-avatar{background:rgba(84,36,59,.06)!important;border-color:rgba(84,36,59,.2)!important}
-body .ai-chat-prompts button{background:#FFFFFF!important;color:#54243B!important;border:1px solid #DEDAD5!important}
+body .ai-chat-prompts button{background:#FFFFFF!important;color:#17171B!important;border:1px solid #DEDAD5!important}
 body .ai-chat-prompts button:hover{box-shadow:0 0 13px rgba(84,36,59,.14)!important}
 body .footer,body .footer-note{color:#55535A!important;border-color:#DEDAD5!important}
+body button,body a,body [role=button]{transition:box-shadow .18s ease,filter .18s ease!important}
+body button:hover,body a:hover,body [role=button]:hover{transform:none!important;filter:none!important}
 @media(prefers-reduced-motion:reduce){body *{transition:none!important;animation:none!important}}
 </style>
 </head><body>
