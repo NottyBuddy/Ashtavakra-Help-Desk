@@ -2394,4 +2394,64 @@ body .side .brand .logo:hover svg * {
   outline:none!important;
 }
 </style>
+<style id="ashtavakra-global-hover-off">
+/* Site-wide: keep every component in its normal resting state while hovered */
+*:hover{
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
+  filter:none!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+.nav button:hover:not(.active),
+.nav button:focus-visible:not(.active){
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  border-color:transparent!important;
+  color:inherit!important;
+}
+.nav button:hover .nav-icon,
+.nav button:hover .nav-icon svg,
+.nav button:hover .nav-icon svg *,
+.side .brand:hover,
+.side .brand:hover *,
+.side .brand .logo:hover,
+.side .brand .logo:hover *{
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
+  filter:none!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+.top button:hover,.btn:hover,.tab:hover,.item:hover,.stat:hover,
+.item button:hover,.script-placeholder:hover,.quickref-card:hover,
+.quickref-icon:hover,.tile-icon:hover{
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
+  filter:none!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+  border-color:inherit!important;
+  color:inherit!important;
+}
+.top button:hover,.btn:hover,.tab:hover,.item:hover,.stat:hover,.item button:hover{
+  background-color:inherit!important;
+}
+.script-placeholder:hover{background:linear-gradient(135deg,#ffffff,#f4faff)!important}
+.quickref-card:hover{background:linear-gradient(145deg,#fff,#f5fbfd)!important}
+.quickref-icon:hover{background:#e8f7fc!important}
+.tile-icon:hover{background:linear-gradient(145deg,#eaf8fc,#fff2e9)!important}
+.script-reader{
+  width:100%!important;
+  max-width:none!important;
+  margin:14px 0!important;
+  box-sizing:border-box!important;
+}
+.script-document,.script-table-wrap{width:100%!important;max-width:none!important}
+.script-button-grid{width:100%!important;max-width:none!important}
+</style>
 </body></html>
