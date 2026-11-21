@@ -1387,57 +1387,62 @@ body button:hover,body button:focus,body button:focus-visible,body button.btn.pr
 
 </style>
 <style id="ashtavakra-burgundy-cream-approved">
-/* ASHTAVAKRA LIGHT BURGUNDY + CREAM THEME — approved visual direction */
+
+/* ASHTAVAKRA FINAL CREAM + DEEPER LIGHT BURGUNDY THEME */
 :root{
- color-scheme:light!important;
  --av-page:#FFFFFF!important;
- --av-card:#F3DDE3!important;
- --av-card-soft:#F8EAF0!important;
+ --av-card:#EBCBD5!important;
+ --av-card-soft:#F1DCE3!important;
  --av-cream:#FFF3E2!important;
  --av-burgundy:#54243B!important;
  --av-text:#54243B!important;
- --av-muted:#6B4A59!important;
- --av-line:#EAD7DE!important;
+ --av-muted:#70515F!important;
+ --av-line:transparent!important;
 }
 html,body{background:#FFFFFF!important;color:#54243B!important}
-body,body *{font-weight:400!important;text-shadow:none!important}
 body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,a,li,td,th,summary,legend,div,pre,code){color:#54243B!important;-webkit-text-fill-color:#54243B!important}
-body :is(.side,aside,.sidebar){background:#FBF5F3!important;color:#54243B!important;border-color:transparent!important}
+body :is(.side,aside,.sidebar){background:#FBF7F5!important;border-color:transparent!important;box-shadow:none!important}
 body :is(.main,main,.content,.page,.shell,.container,.wrap){background:transparent!important}
-body :is([class*="card"],[class*="tile"],[class*="stat"],.item,.feature-card,.module-card,.shortcut-card,.knowledge-card,.product-card,.sop-card,.script-placeholder,.quickref-card,.info-card,.panel,.metric,.metric-group,.history-panel,.history-item,.section-card,.dashboard-card,.reader-card){
- background:#F3DDE3!important;background-color:#F3DDE3!important;background-image:none!important;
+body :is([class*="card"],[class*="tile"],[class*="stat"],.item,.feature-card,.module-card,.shortcut-card,.knowledge-card,.product-card,.sop-card,.script-placeholder,.quickref-card,.info-card,.panel,.metric,.metric-group,.history-panel,.history-item,.section-card,.dashboard-card,.reader-card,.hero,.notice,.review,.tablewrap,.table-wrap,.ai-chat-panel,.assist-launcher){
+ background:#EBCBD5!important;background-color:#EBCBD5!important;background-image:none!important;
  border:0!important;border-color:transparent!important;border-radius:16px!important;
  box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
 }
-body :is([class*="card"],[class*="tile"],[class*="stat"],.item,.feature-card,.module-card,.shortcut-card,.knowledge-card,.product-card,.sop-card,.script-placeholder,.quickref-card,.info-card,.panel,.metric,.metric-group,.history-panel,.history-item,.section-card,.dashboard-card,.reader-card):hover{
- background:#F3DDE3!important;box-shadow:none!important;transform:none!important;filter:none!important
+body :is([class*="card"],[class*="tile"],[class*="stat"],.item,.feature-card,.module-card,.shortcut-card,.knowledge-card,.product-card,.sop-card,.script-placeholder,.quickref-card,.info-card,.panel,.metric,.metric-group,.history-panel,.history-item,.section-card,.dashboard-card,.reader-card,.hero,.notice,.review,.tablewrap,.table-wrap,.ai-chat-panel,.assist-launcher):hover{
+ background:#EBCBD5!important;box-shadow:none!important;transform:none!important;filter:none!important
 }
 body :is(.icon-wrap,.icon-circle,.tile-icon,.stat-symbol,.feature-icon,.module-icon,.card-icon,.nav-icon-wrap,.quick-access-icon){
  background:#FFF3E2!important;background-color:#FFF3E2!important;border:0!important;border-radius:50%!important;
  color:#54243B!important;box-shadow:none!important
 }
-body :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"]){color:#54243B!important;stroke:#54243B!important}
-body :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"]) *{stroke:#54243B!important;fill:currentColor!important}
+body :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"]):not(.ashtavakra-mark svg){color:#54243B!important;stroke:#54243B!important}
 body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]){
- background:#F3DDE3!important;background-color:#F3DDE3!important;color:#54243B!important;
+ background:#EBCBD5!important;background-color:#EBCBD5!important;color:#54243B!important;
  -webkit-text-fill-color:#54243B!important;border:0!important;box-shadow:none!important;
  border-radius:999px!important;transform:none!important
 }
 body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]):hover,
 body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]):focus-visible{
- background:#F3DDE3!important;color:#54243B!important;box-shadow:none!important;transform:none!important
+ background:#EBCBD5!important;color:#54243B!important;box-shadow:none!important;transform:none!important
 }
 body :is(.nav button,.tab,.side .nav button){background:transparent!important;color:#54243B!important;border:0!important}
 body :is(.nav button,.tab,.side .nav button):hover,body :is(.nav button,.tab,.side .nav button).active{
- background:#F3DDE3!important;color:#54243B!important;box-shadow:none!important;transform:none!important
+ background:#EBCBD5!important;color:#54243B!important;box-shadow:none!important;transform:none!important
 }
-body input,body select,body textarea{background:#FFFFFF!important;color:#54243B!important;-webkit-text-fill-color:#54243B!important;border:1px solid #EAD7DE!important;box-shadow:none!important}
+body input,body select,body textarea{background:#FFFFFF!important;color:#54243B!important;-webkit-text-fill-color:#54243B!important;border:1px solid #E8D9DE!important;box-shadow:none!important}
 body input::placeholder,body textarea::placeholder{color:#8A6A78!important;-webkit-text-fill-color:#8A6A78!important;opacity:1!important}
-body :is(.badge,.pill,.status,.tag,.eyebrow,.section-count,.notice,.review,.source-note,.partner-line,[class*="badge"],[class*="chip"]){
+body :is(.badge,.pill,.status,.tag,.eyebrow,.section-count,.source-note,.partner-line,[class*="badge"],[class*="chip"]){
  background:#FFF3E2!important;color:#54243B!important;border:0!important
 }
 body *:hover{transform:none!important;filter:none!important;text-shadow:none!important}
-body :is(.footer,footer){background:#FFFFFF!important;color:#54243B!important;border-top:1px solid #EAD7DE!important}
+body :is(.footer,footer){background:#FFFFFF!important;color:#54243B!important;border:0!important}
+body .side .brand .logo.ashtavakra-mark{background:transparent!important;border:0!important;box-shadow:none!important}
+body .side .brand .logo.ashtavakra-mark svg{background:transparent!important;filter:none!important}
+body .archer-bow,body .archer-string{stroke:#D4AF37!important;fill:none!important}
+body .archer-arrow{stroke:#D4AF37!important;fill:#D4AF37!important}
+body .archer-crest{fill:#D4AF37!important;stroke:#D4AF37!important}
+body .side .brandtext b,body .side .brandtext small{color:#17171B!important;-webkit-text-fill-color:#17171B!important}
+
 </style>
 </head><body>
 <aside class="side"><div class="brand">
