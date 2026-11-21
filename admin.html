@@ -251,6 +251,12 @@ body input::placeholder,body textarea::placeholder{color:#666666!important;-webk
 body *:hover{transform:none!important;filter:none!important;text-shadow:none!important}
 body :is(.hero:before,.hero:after,.panel:before,.panel:after){background:none!important;box-shadow:none!important}
 
+
+/* FINAL WHITE BUTTON + REMOVE EXTRA READER NAV */
+body button,body button.btn,body button.primary,body button.btn.primary,body input[type="submit"],body input[type="button"],body [role="button"]{background:#FFFFFF!important;background-color:#FFFFFF!important;background-image:none!important;color:#171717!important;-webkit-text-fill-color:#171717!important;border:1px solid #D8D8D8!important;box-shadow:none!important;filter:none!important;transform:none!important}
+body button:hover,body button:focus,body button:focus-visible,body button.btn.primary:hover,body button.btn.primary:focus-visible,body input[type="submit"]:hover,body input[type="button"]:hover,body [role="button"]:hover{background:#FFFFFF!important;background-color:#FFFFFF!important;background-image:none!important;color:#171717!important;-webkit-text-fill-color:#171717!important;border-color:#D8D8D8!important;box-shadow:none!important;filter:none!important;transform:none!important}
+.reader-toc,.reader-toc-label{display:none!important}
+
 </style>
 </head><body><div class="wrap"><header class="top"><div><div class="eyebrow">ASHTAVAKRA · SECURE WORKSPACE</div><h1>Team Lead Admin Console</h1><div class="muted" id="who">Secure agent access management</div></div><div class="actions"><button onclick="location.href='/'">Open Portal</button><button id="logout">Sign out</button></div></header>
 <section class="panel" id="analyticsPanel"><div class="top"><div><h2>Operational Overview</h2><p class="muted">Live account, approved knowledge and AI feedback metrics. Agent activity is based on last login, not call performance.</p></div><button id="analyticsRefresh">Refresh metrics</button></div><div class="analytics-grid" id="analyticsCards"><div class="metric"><span>Loading analytics…</span><b>—</b></div></div><div class="msg" id="analyticsMsg"></div></section>
