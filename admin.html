@@ -124,6 +124,18 @@ body .nav-icon:hover,body .nav-icon:hover svg,body .nav-icon:hover svg *,body [c
 body button:hover,body a:hover,body [role=button]:hover,body .nav button:hover,body .tab:hover,body .item:hover,body .stat:hover,body .card:hover,body .btn:hover{color:#17171B!important;background-color:inherit!important;border-color:inherit!important;transform:none!important;filter:none!important;box-shadow:0 0 13px rgba(84,36,59,.14)!important}
 body button:hover svg,body a:hover svg,body [role=button]:hover svg{color:#54243B!important;stroke:#54243B!important;filter:drop-shadow(0 0 4px rgba(84,36,59,.28))!important}
 body input::placeholder,body textarea::placeholder{color:#17171B!important;opacity:1!important}
+
+/* SITE-WIDE FINAL HOVER LOCK — text stays dark black on every state */
+html,body,body *{color:#17171B!important;font-weight:400!important}
+body *:hover,body *:focus,body *:focus-visible,body *:active{color:#17171B!important;font-weight:400!important}
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,li,a,button,th,td,summary,div){color:#17171B!important;font-weight:400!important}
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,li,a,button,th,td,summary,div):hover,
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,li,a,button,th,td,summary,div):hover *{color:#17171B!important}
+body button:hover,body a:hover,body [role="button"]:hover,body .nav button:hover,body .tab:hover,body .item:hover,body .stat:hover,body .card:hover,body .btn:hover,body input:hover,body select:hover,body textarea:hover{background-color:inherit!important;background-image:none!important;border-color:inherit!important;transform:none!important;filter:none!important;box-shadow:0 0 13px rgba(84,36,59,.14)!important}
+body .nav-icon,body .nav-icon *,body .ui-icon,body .ui-icon *,body .tile-icon,body .tile-icon *,body .stat-symbol,body .stat-symbol *,body svg,body svg *,body i[class*="fa"]{color:#54243B!important;stroke:#54243B!important}
+body .nav-icon:hover,body .nav-icon:hover *,body .ui-icon:hover,body .tile-icon:hover,body .stat-symbol:hover,body svg:hover,body svg:hover *,body i[class*="fa"]:hover{color:#54243B!important;stroke:#54243B!important;filter:drop-shadow(0 0 4px rgba(84,36,59,.24))!important;transform:none!important}
+body input::placeholder,body textarea::placeholder{color:#17171B!important;opacity:1!important}
+
 </style>
 </head><body><div class="wrap"><header class="top"><div><div class="eyebrow">ASHTAVAKRA · SECURE WORKSPACE</div><h1>Team Lead Admin Console</h1><div class="muted" id="who">Secure agent access management</div></div><div class="actions"><button onclick="location.href='/'">Open Portal</button><button id="logout">Sign out</button></div></header>
 <section class="panel" id="analyticsPanel"><div class="top"><div><h2>Operational Overview</h2><p class="muted">Live account, approved knowledge and AI feedback metrics. Agent activity is based on last login, not call performance.</p></div><button id="analyticsRefresh">Refresh metrics</button></div><div class="analytics-grid" id="analyticsCards"><div class="metric"><span>Loading analytics…</span><b>—</b></div></div><div class="msg" id="analyticsMsg"></div></section>
