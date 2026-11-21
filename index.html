@@ -1153,6 +1153,30 @@ body .nav-icon,body .nav-icon *,body .ui-icon,body .ui-icon *,body .tile-icon,bo
 body .nav-icon:hover,body .nav-icon:hover *,body .ui-icon:hover,body .tile-icon:hover,body .stat-symbol:hover,body svg:hover,body svg:hover *,body i[class*="fa"]:hover{color:#54243B!important;stroke:#54243B!important;filter:drop-shadow(0 0 4px rgba(84,36,59,.24))!important;transform:none!important}
 body input::placeholder,body textarea::placeholder{color:#17171B!important;opacity:1!important}
 
+
+/* FINAL COLOR CLEANUP — remove navy/neon-purple text and icon surfaces */
+:root{--av-bg:#F7F7F5!important;--av-sidebar:#E8E6E1!important;--av-text:#17171B!important;--av-icon:#54243B!important;--av-icon-bg:rgba(84,36,59,.06)!important}
+html,body{background:#F7F7F5!important;color:#17171B!important}
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,a,li,td,th,summary,legend){color:#17171B!important;background-color:transparent!important;background-image:none!important;-webkit-text-fill-color:#17171B!important;text-shadow:none!important}
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,a,li,td,th,summary,legend):hover,
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,a,li,td,th,summary,legend):focus,
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,a,li,td,th,summary,legend):active{color:#17171B!important;-webkit-text-fill-color:#17171B!important;background-color:transparent!important;background-image:none!important}
+body :is(.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"],.icon){color:#54243B!important;background-color:rgba(84,36,59,.06)!important;background-image:none!important;border-color:rgba(84,36,59,.16)!important}
+body :is(.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"],.icon) svg,
+body :is(.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"],.icon) svg *{color:#54243B!important;stroke:#54243B!important;fill:none!important}
+body :is(.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"],.icon):hover,
+body :is(.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"],.icon):focus{color:#54243B!important;background-color:rgba(84,36,59,.06)!important;box-shadow:0 0 12px rgba(84,36,59,.14)!important;transform:none!important}
+body :is(.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"],.icon):hover svg,
+body :is(.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"],.icon):hover svg *{color:#54243B!important;stroke:#54243B!important;filter:drop-shadow(0 0 3px rgba(84,36,59,.22))!important}
+body :is(.badge,.pill,.status,.tag,.eyebrow,.section-count,.script-heading,.notice,.review,.source-note,.partner-line){background:#F2F0EE!important;background-image:none!important;color:#17171B!important;-webkit-text-fill-color:#17171B!important;border-color:#E1DDD8!important}
+body :is(.badge,.pill,.status,.tag,.eyebrow,.section-count,.script-heading,.notice,.review,.source-note,.partner-line):hover{background:#F2F0EE!important;color:#17171B!important;-webkit-text-fill-color:#17171B!important;box-shadow:0 0 12px rgba(84,36,59,.12)!important}
+body .side{background:#E8E6E1!important}
+body .card,body .panel,body .item,body .stat,body .tablewrap,body .script-reader,body .knowledge-card,body .product-card,body .sop-card{background:#FFFFFF!important;color:#17171B!important}
+body button,body .btn,body .tab{color:#17171B!important}
+body button:hover,body .btn:hover,body .tab:hover,body a:hover{color:#17171B!important;-webkit-text-fill-color:#17171B!important;transform:none!important;filter:none!important;box-shadow:0 0 13px rgba(84,36,59,.14)!important}
+body input,body select,body textarea{background:#FFFFFF!important;color:#17171B!important}
+body input::placeholder,body textarea::placeholder{color:#17171B!important;opacity:1!important}
+
 </style>
 </head><body>
 <aside class="side"><div class="brand">
