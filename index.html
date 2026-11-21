@@ -1390,7 +1390,7 @@ function enhanceDocumentReaders(){
   const reader=article.closest(".script-reader")||article.parentElement;
   const progress=document.createElement("div");progress.className="reader-progress";progress.setAttribute("aria-label","Document reading progress");progress.innerHTML="<span></span>";
   const toc=document.createElement("nav");toc.className="reader-toc";toc.setAttribute("aria-label","Document sections");
-  const label=document.createElement("span");label.className="reader-toc-label";label.textContent="ON THIS PAGE";toc.appendChild(label);
+  const label=document.createElement("span");label.className="reader-toc-label";label.textContent="";toc.appendChild(label);
   headings.forEach((h,i)=>{
    const id="ashtavakra-reader-"+idx+"-"+i;h.id=id;
    const b=document.createElement("button");b.type="button";b.textContent=h.textContent.trim().replace(/^\d+(?:\.\d+)*[.)]?\s*/,"").slice(0,34)||("Section "+(i+1));
