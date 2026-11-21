@@ -823,6 +823,112 @@ footer.footer.liquid-glass-footer .partner-divider{
 .side > .brand .logo.ashtavakra-mark{
   flex:0 0 44px!important;
 }
+
+/* ASHTAVAKRA GLASS DESIGN SYSTEM v1 — visual-only layer */
+:root{
+ --as-navy-950:#071426;--as-navy-900:#0b1c33;--as-navy-800:#102846;--as-navy-700:#173b60;
+ --as-gold:#d4af37;--as-gold-soft:#f0d98a;--as-ink:#edf3fb;--as-muted:#a8b8cc;
+ --as-line:rgba(197,216,240,.16);--as-glass:rgba(19,42,69,.62);--as-glass-strong:rgba(14,33,56,.82);
+ --as-shadow:0 18px 54px rgba(0,8,22,.26);
+}
+html{background:var(--as-navy-950);scroll-behavior:smooth}
+body{
+ background:
+ radial-gradient(ellipse at 82% -8%,rgba(212,175,55,.13),transparent 31%),
+ radial-gradient(ellipse at 8% 28%,rgba(74,139,190,.18),transparent 34%),
+ linear-gradient(145deg,#071426 0%,#0b1c33 52%,#0a1b30 100%)!important;
+ color:var(--as-ink)!important;
+}
+body:before{opacity:.32;background-size:48px 48px}
+.side{
+ background:linear-gradient(180deg,rgba(8,25,46,.94),rgba(6,19,36,.91))!important;
+ border-right:1px solid rgba(212,175,55,.20)!important;
+ box-shadow:12px 0 42px rgba(0,0,0,.22)!important;
+ -webkit-backdrop-filter:blur(26px) saturate(145%)!important;backdrop-filter:blur(26px) saturate(145%)!important;
+}
+.brand{border-bottom-color:var(--as-line)!important}
+.logo.ashtavakra-mark{background:rgba(212,175,55,.10)!important;border:1px solid rgba(212,175,55,.32)!important;box-shadow:0 0 26px rgba(212,175,55,.12)!important}
+.logo.ashtavakra-mark svg{width:28px;height:28px;overflow:visible}
+.logo.ashtavakra-mark svg path,.logo.ashtavakra-mark svg polyline,.logo.ashtavakra-mark svg line,.logo.ashtavakra-mark svg polygon{stroke:var(--as-gold);fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.logo.ashtavakra-mark svg .archer-crest{fill:var(--as-gold);stroke:var(--as-gold)}
+.brand b{color:#f4f7fc!important;letter-spacing:2.2px!important}
+.brand small{color:var(--as-gold-soft)!important;letter-spacing:1.2px}
+.label{color:#8fa6c0!important;font-weight:800}
+.nav button{display:flex!important;align-items:center!important;gap:12px!important;min-height:44px!important;padding:10px 12px!important;border:1px solid transparent!important;border-radius:12px!important;color:#b8c8da!important;font-size:13px!important;font-weight:600!important;letter-spacing:.01em;transition:background .22s,border-color .22s,transform .22s,color .22s!important}
+.nav button .nav-icon{width:20px!important;height:20px!important;flex:0 0 20px!important;display:inline-flex!important;align-items:center;justify-content:center;color:#9fb2c9!important}
+.nav button .nav-icon svg,.stat-symbol svg{width:19px!important;height:19px!important;stroke:currentColor!important;stroke-width:1.7!important;fill:none!important}
+.nav button:hover{background:rgba(255,255,255,.065)!important;border-color:rgba(212,175,55,.20)!important;color:#fff!important;transform:translateX(3px)!important}
+.nav button.active{background:linear-gradient(105deg,rgba(212,175,55,.16),rgba(92,145,188,.12))!important;border:1px solid rgba(212,175,55,.28)!important;color:#fff!important;box-shadow:inset 3px 0 var(--as-gold),0 8px 24px rgba(0,0,0,.12)!important}
+.nav button.active .nav-icon{color:var(--as-gold)!important}
+.sidefoot{color:#8fa3ba!important}
+.sidebar-toggle{background:rgba(255,255,255,.06)!important;border:1px solid var(--as-line)!important;color:#e6edf7!important;border-radius:10px!important}
+.profile-card{background:rgba(255,255,255,.055)!important;border:1px solid var(--as-line)!important;border-radius:13px!important;color:#edf3fb!important}
+.profile-avatar{background:rgba(212,175,55,.16)!important;color:var(--as-gold-soft)!important;border:1px solid rgba(212,175,55,.28)!important}
+.main{background:transparent!important}
+.top{
+ background:rgba(9,27,48,.70)!important;border-bottom:1px solid var(--as-line)!important;
+ -webkit-backdrop-filter:blur(24px) saturate(155%)!important;backdrop-filter:blur(24px) saturate(155%)!important;
+ box-shadow:0 8px 30px rgba(0,0,0,.10)!important;
+}
+.top>div:first-child b{color:#f5f7fb!important;letter-spacing:.08em!important}
+.top small{color:#9eb2c9!important}
+.top button,.btn,.tab,.reader-toc button{
+ background:rgba(255,255,255,.065)!important;border:1px solid rgba(197,216,240,.19)!important;color:#eaf1f8!important;
+ -webkit-backdrop-filter:blur(14px)!important;backdrop-filter:blur(14px)!important;
+}
+.top button:hover,.btn:hover,.tab:hover{border-color:rgba(212,175,55,.42)!important;background:rgba(212,175,55,.10)!important;color:#fff!important}
+.top .login,.btn.primary,.login{background:linear-gradient(120deg,#d4af37,#b98e24)!important;color:#13243a!important;border:1px solid rgba(240,217,138,.55)!important;font-weight:800!important}
+main{max-width:1580px!important}
+.hero{
+ background:linear-gradient(118deg,rgba(14,39,66,.90),rgba(22,57,88,.78) 62%,rgba(94,78,37,.42))!important;
+ border:1px solid rgba(212,175,55,.27)!important;border-radius:24px!important;
+ box-shadow:var(--as-shadow),inset 0 1px rgba(255,255,255,.12)!important;
+ -webkit-backdrop-filter:blur(24px)!important;backdrop-filter:blur(24px)!important;
+}
+.hero:after{background:rgba(212,175,55,.10)!important;box-shadow:0 0 110px rgba(212,175,55,.16)!important}
+.hero h1{color:#fff!important}.hero p{color:#c5d4e4!important}.hero .eyebrow{color:var(--as-gold-soft)!important}
+.hero .btn{background:rgba(255,255,255,.09)!important;border-color:rgba(255,255,255,.23)!important;color:#fff!important}
+.stat,.item,.card,.tablewrap,.script-reader,.full-script,.notification-panel,.global-search-card,.assist-drawer,.assist-panel{
+ background:linear-gradient(145deg,rgba(23,48,76,.76),rgba(11,30,52,.82))!important;
+ border:1px solid rgba(197,216,240,.16)!important;border-radius:17px!important;color:var(--as-ink)!important;
+ box-shadow:0 14px 38px rgba(0,0,0,.16)!important;
+ -webkit-backdrop-filter:blur(22px) saturate(145%)!important;backdrop-filter:blur(22px) saturate(145%)!important;
+}
+.stat:hover,.item:hover{border-color:rgba(212,175,55,.34)!important;transform:translateY(-3px)!important}
+.stat strong,.item h3,.head h1{color:#f3f6fb!important}
+.item p,.card p,.muted,small{color:var(--as-muted)!important}
+.eyebrow,.section-count,.reader-toc-label{color:var(--as-gold-soft)!important}
+.notice{background:rgba(212,175,55,.09)!important;border:1px solid rgba(212,175,55,.25)!important;color:#f4e3ad!important}
+.notice p{color:#d8c99e!important}
+.pill{background:rgba(51,176,129,.15)!important;color:#8be0bd!important;border:1px solid rgba(90,212,163,.22)!important}
+.review{background:rgba(212,175,55,.14)!important;color:#f2d98b!important}
+.tab.active,.reader-toc button.active{background:rgba(212,175,55,.14)!important;border-color:rgba(212,175,55,.42)!important;color:#f6e4a8!important}
+.search input,.global-search-input-wrap input,.item input,.item textarea,.item select{
+ background:rgba(5,20,37,.58)!important;border:1px solid rgba(197,216,240,.20)!important;color:#f1f5fa!important;border-radius:11px!important
+}
+.search input:focus,.global-search-input-wrap input:focus{border-color:var(--as-gold)!important;box-shadow:0 0 0 3px rgba(212,175,55,.13)!important}
+.search input::placeholder{color:#8298b0!important}
+table{color:#dbe6f1!important}td,th{border-bottom-color:rgba(197,216,240,.13)!important;color:#c7d5e3!important}
+th{background:rgba(212,175,55,.09)!important;color:#e9d48f!important}
+.script-table,.full-script{background:rgba(8,25,44,.62)!important}
+.script-table th,.script-table td{border-color:rgba(197,216,240,.15)!important;color:#dbe6f1!important}
+.script-table th{background:rgba(212,175,55,.11)!important;color:#f0dda0!important}
+.scripttext,.master-script,.script-document,.script-document p{color:#dbe6f1!important}
+.script-heading{background:rgba(212,175,55,.10)!important;border-left-color:var(--as-gold)!important;color:#f3dda0!important}
+.script-reader{background:rgba(17,41,66,.70)!important}
+.reader-toc{background:rgba(9,27,48,.90)!important}
+.reader-toc button:hover,.reader-toc button.active{background:rgba(212,175,55,.12)!important;border-color:rgba(212,175,55,.38)!important;color:#f4dfa0!important}
+.reader-progress{background:rgba(255,255,255,.10)!important}.reader-progress>span{background:linear-gradient(90deg,#d4af37,#f0d98a)!important}
+.footer{border-color:rgba(197,216,240,.14)!important;color:#a8b8cc!important}
+#view>footer.footer.liquid-glass-footer{background:rgba(15,39,64,.38)!important;border:1px solid rgba(212,175,55,.20)!important;border-bottom:0!important;border-radius:14px 14px 0 0!important;backdrop-filter:blur(24px) saturate(160%)!important;-webkit-backdrop-filter:blur(24px) saturate(160%)!important;box-shadow:0 -8px 28px rgba(0,0,0,.10)!important}
+#view>footer.footer.liquid-glass-footer .partner-line,#view>footer.footer.liquid-glass-footer .footer-note{color:#e8d28b!important;font-weight:800!important}
+.global-search-layer{background:rgba(3,12,24,.72)!important;backdrop-filter:blur(12px)!important}
+.global-search-card{border-color:rgba(212,175,55,.28)!important}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--as-gold)!important;outline-offset:3px!important}
+@media(max-width:850px){.side{background:rgba(7,22,40,.97)!important}.top{background:rgba(9,27,48,.88)!important}}
+@media(max-width:560px){main{padding:16px!important}.hero{border-radius:18px!important}.top-actions button{font-size:11px!important}.stat,.item{border-radius:14px!important}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
 </style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"></head><body>
 <aside class="side"><div class="brand">
   <div class="logo ashtavakra-mark" aria-label="Ashtavakra golden Archer emblem">
