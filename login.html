@@ -57,6 +57,20 @@ body input,body textarea,body select{background:#FFFFFF!important;color:#17171B!
 body button,body .primary{background:#54243B!important;color:#FFFFFF!important;border:1px solid #54243B!important;box-shadow:none!important;transition:box-shadow .18s ease!important}
 body button:hover,body .primary:hover{background:inherit!important;color:inherit!important;transform:none!important;box-shadow:0 0 14px rgba(84,36,59,.15)!important}
 body svg,body .icon{color:#54243B!important;stroke:#54243B!important}
+
+/* USER-LOCKED UI RULES: no bold, no hover recolouring, no legacy palette */
+:root{color-scheme:light!important;--av-bg:#F7F7F5!important;--av-panel:#FFFFFF!important;--av-sidebar:#E8E6E1!important;--av-text:#17171B!important;--av-burgundy:#54243B!important;--av-purple:transparent!important;--av-gold:transparent!important;--av-gold2:transparent!important}
+html,body{background:#F7F7F5!important;color:#17171B!important;color-scheme:light!important}
+body .side{background:#E8E6E1!important}
+body *{font-weight:400!important}
+body b,body strong,body th,body .brand b,body .nav button,body button,body .btn{font-weight:400!important}
+body .side .nav button:hover,body .side .nav button:focus-visible{background:transparent!important;color:#17171B!important;border-color:transparent!important;box-shadow:0 0 14px rgba(84,36,59,.14)!important;transform:none!important;filter:none!important}
+body .btn:hover,body button:hover,body a:hover,body [role=button]:hover,body .tab:hover,body .item:hover,body .stat:hover,body .card:hover,body .script-placeholder:hover,body .quickref-card:hover{color:inherit!important;border-color:inherit!important;transform:none!important;filter:none!important;box-shadow:0 0 14px rgba(84,36,59,.14)!important}
+body .item:hover,body .stat:hover,body .card:hover,body .script-placeholder:hover,body .quickref-card:hover{background:#FFFFFF!important}
+body .btn:hover,body button:hover,body .tab:hover{background:inherit!important}
+body button.primary:hover,body .btn.primary:hover{background:#54243B!important;color:#FFFFFF!important;border-color:#54243B!important}
+body input:hover,body select:hover,body textarea:hover{color:#17171B!important;border-color:#D9D5D0!important;box-shadow:0 0 12px rgba(84,36,59,.10)!important}
+body svg,body .icon,body .nav-icon{color:#54243B!important;stroke:#54243B!important}
 </style>
 </head><body><main class="panel"><div class="brand">ASHTAVAKRA · INTELLIGENT AI WORKSPACE</div><h1 id="heading">Agent & Team Lead Sign in</h1><p class="tag" id="sub">Use your approved company work email to access Ashtavakra.</p>
 <form id="loginForm"><label>Company work email</label><input id="email" type="email" autocomplete="username" required maxlength="254"><label>Password</label><input id="password" type="password" autocomplete="current-password" required><button id="loginBtn">Sign in</button></form>
