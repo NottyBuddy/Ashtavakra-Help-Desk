@@ -1637,18 +1637,24 @@ function escapeScriptText(v){return String(v||"").replace(/&/g,"&amp;").replace(
 function renderScriptDocument(source){
  const lines=String(source||"").replace(/\r/g,"").split("\n");
  let html="",i=0;
- const cell=(v)=>escapeScriptText(v.trim()).replace(/\n/g,"<br>");
+ const cell=(v)=>escapeScriptText(String(v??"").trim()).replace(/\n/g,"<br>");
+ const getCells=(line)=>{
+  const tabbed=line.includes("\t");
+  return tabbed
+   ? line.split("\t").map(x=>x.trim()).filter(Boolean)
+   : line.trim().split(/\s{2,}/).map(x=>x.trim()).filter(Boolean);
+ };
  while(i<lines.length){
   const line=lines[i],trim=line.trim();
   if(!trim){i++;continue;}
-  const tabbed=line.includes("\t");
-  const spaced=!tabbed&&trim.split(/\s{2,}/).filter(Boolean).length>=2;
-  if(tabbed||spaced){
+  const firstCells=getCells(line);
+  const tableCandidate=line.includes("\t")?firstCells.length>=2:firstCells.length>=2;
+  if(tableCandidate){
    const rows=[];
    while(i<lines.length){
     const current=lines[i];
-    const isTabbed=current.includes("\t");
-    const parts=isTabbed?current.split("\t").map(x=>x.trim()).filter(Boolean):current.trim().split(/\s{2,}/).map(x=>x.trim()).filter(Boolean);
+    if(!current.trim())break;
+    const parts=getCells(current);
     if(parts.length<2)break;
     rows.push(parts);
     i++;
@@ -1663,7 +1669,7 @@ function renderScriptDocument(source){
    }
    continue;
   }
-  if(/^(\d+(?:\.\d+)*[.)]?\s+|Scenario [A-E0-9]|[A-E]\d+\.\s)/i.test(trim)||(/^[A-Z][^.!?]{2,85}$/.test(trim)&&trim===trim.toUpperCase())){
+  if(/^(\\d+(?:\\.\\d+)*[.)]?\\s+|Scenario [A-E0-9]|[A-E]\d+\.\s)/i.test(trim)||(/^[A-Z][^.!?]{2,85}$/.test(trim)&&trim===trim.toUpperCase())){
    html+='<h3 class="script-heading">'+escapeScriptText(trim)+'</h3>';
   }else if(/^(Agent|Customer|Customer asks|Agent answers|Context|Rule|Important|Mandatory closing rule|If the customer|If Customer|If customer|Sample exchange)/i.test(trim)){
    html+='<p class="script-dialogue">'+escapeScriptText(trim)+'</p>';
