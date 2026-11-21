@@ -233,6 +233,24 @@ body :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"]):h
 body input,body select,body textarea{background:#FFFFFF!important;background-image:none!important;color:#17171B!important;border-color:#D9D5D0!important}
 body input::placeholder,body textarea::placeholder{color:#17171B!important;opacity:1!important}
 body *:hover{font-weight:400!important;transform:none!important}
+
+/* ASHTAVAKRA PURE WHITE RESET — final override across the complete page */
+:root{color-scheme:light!important;--nav:#FFFFFF!important;--blue:#171717!important;--bg:#FFFFFF!important;--ink:#171717!important;--muted:#555555!important;--line:#E5E5E5!important;--soft:#FFFFFF!important;--panel:#FFFFFF!important}
+html,body{background:#FFFFFF!important;background-image:none!important;color:#171717!important;color-scheme:light!important}
+body:before,body:after{background:none!important;background-image:none!important;box-shadow:none!important;filter:none!important}
+body,body *{color:#171717!important;-webkit-text-fill-color:#171717!important;text-shadow:none!important;font-weight:400!important;background-image:none!important;animation:none!important}
+body :is(.side,aside,.sidebar,.top,.main,main,.content,.page,.shell,.container,.wrap,.hero,.panel,.card,.item,.stat,.feature-card,.module-card,.shortcut-card,.knowledge-card,.product-card,.sop-card,.script-placeholder,.quickref-card,.info-card,.tablewrap,.table-wrap,.script-reader,.full-script,.notice,.pill,.badge,.status,.tag,.eyebrow,.tab,.metric-group,.metric,.history-panel,.history-item,.editor-dialog,.footer){background:#FFFFFF!important;background-color:#FFFFFF!important;background-image:none!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border-color:#E5E5E5!important}
+body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]){background:#FFFFFF!important;background-color:#FFFFFF!important;background-image:none!important;color:#171717!important;-webkit-text-fill-color:#171717!important;border:1px solid #D8D8D8!important;box-shadow:none!important;transform:none!important;filter:none!important}
+body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]):hover,body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]):focus,body :is(button,.btn,.primary,[role="button"],input[type="submit"],input[type="button"]):focus-visible{background:#FFFFFF!important;background-color:#FFFFFF!important;color:#171717!important;border-color:#BDBDBD!important;box-shadow:none!important;transform:none!important;filter:none!important}
+body :is(.nav button,.tab,.nav button.active,.tab.active){background:#FFFFFF!important;background-color:#FFFFFF!important;color:#171717!important;border-color:#E5E5E5!important;box-shadow:none!important}
+body :is(.nav button,.tab):hover{background:#FFFFFF!important;color:#171717!important;box-shadow:none!important;transform:none!important}
+body :is(h1,h2,h3,h4,h5,h6,p,span,small,strong,b,label,a,li,td,th,summary,legend,div,pre,code){color:#171717!important;-webkit-text-fill-color:#171717!important;font-weight:400!important}
+body :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"]),body :is(svg,.icon,.nav-icon,.ui-icon,.tile-icon,.stat-symbol,[class*="icon"])*{color:#171717!important;stroke:#171717!important;fill:currentColor!important}
+body input,body select,body textarea,body .editor-dialog textarea{background:#FFFFFF!important;background-color:#FFFFFF!important;color:#171717!important;-webkit-text-fill-color:#171717!important;border:1px solid #D8D8D8!important;box-shadow:none!important}
+body input::placeholder,body textarea::placeholder{color:#666666!important;-webkit-text-fill-color:#666666!important;opacity:1!important}
+body *:hover{transform:none!important;filter:none!important;text-shadow:none!important}
+body :is(.hero:before,.hero:after,.panel:before,.panel:after){background:none!important;box-shadow:none!important}
+
 </style>
 </head><body><div class="wrap"><header class="top"><div><div class="eyebrow">ASHTAVAKRA · SECURE WORKSPACE</div><h1>Team Lead Admin Console</h1><div class="muted" id="who">Secure agent access management</div></div><div class="actions"><button onclick="location.href='/'">Open Portal</button><button id="logout">Sign out</button></div></header>
 <section class="panel" id="analyticsPanel"><div class="top"><div><h2>Operational Overview</h2><p class="muted">Live account, approved knowledge and AI feedback metrics. Agent activity is based on last login, not call performance.</p></div><button id="analyticsRefresh">Refresh metrics</button></div><div class="analytics-grid" id="analyticsCards"><div class="metric"><span>Loading analytics…</span><b>—</b></div></div><div class="msg" id="analyticsMsg"></div></section>
