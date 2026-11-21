@@ -2209,4 +2209,48 @@ function serviceabilityAssignmentPolicy(){
 
 render();
 (async()=>{try{const r=await fetch("/api/auth/me",{credentials:"same-origin"});if(!r.ok){location.replace("/login.html");return;}const d=await r.json();if(d.user.mustChangePassword){location.replace("/login.html?force=1");return;}const profileName=document.getElementById("profileName"),profileRole=document.getElementById("profileRole");if(profileName)profileName.textContent=d.user.name||"Agent";if(profileRole)profileRole.textContent=d.user.role==="admin"?"Team Lead · Administrator":"Agent · Secure access";const adminButton=document.getElementById("adminConsole");adminButton.hidden=true;adminButton.onclick=null;if(d.user.role==="admin"){adminButton.hidden=false;adminButton.onclick=()=>location.href="/admin.html";}document.getElementById("portalSignOut").onclick=async()=>{await fetch("/api/auth/logout",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:"{}"});location.replace("/login.html");};}catch(e){location.replace("/login.html");}})();
-</script></body></html>
+</script>
+<style id="ashtavakra-sidebar-hover-off">
+/* Sidebar only: icons keep their normal burgundy/cream appearance on hover */
+body .side #nav button:hover .nav-icon,
+body .side #nav button:focus-visible .nav-icon,
+body .side #nav button:hover .nav-icon svg,
+body .side #nav button:hover .nav-icon svg *,
+body .side #nav button:focus-visible .nav-icon svg,
+body .side #nav button:focus-visible .nav-icon svg * {
+  color:#54243B!important;
+  stroke:#54243B!important;
+  fill:none!important;
+  background:#FFF3E2!important;
+  background-color:#FFF3E2!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+  transform:none!important;
+  transition:none!important;
+}
+/* Archer logo: no hover, focus, or active effect */
+body .side .brand:hover,
+body .side .brand:focus,
+body .side .brand:focus-visible,
+body .side .brand:active,
+body .side .brand:hover .logo,
+body .side .brand:hover .logo svg,
+body .side .brand:hover .logo svg *,
+body .side .brand .logo:hover,
+body .side .brand .logo:hover svg,
+body .side .brand .logo:hover svg * {
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  color:inherit!important;
+  box-shadow:none!important;
+  filter:none!important;
+  text-shadow:none!important;
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
+  outline:none!important;
+}
+</style>
+</body></html>
