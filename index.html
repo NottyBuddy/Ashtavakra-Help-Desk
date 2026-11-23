@@ -3379,3 +3379,70 @@ html body aside.side .sidebar-quick-actions #adminConsole:focus-visible .nav-ico
   color:#F7F7F5!important;fill:#F7F7F5!important;stroke:#F7F7F5!important;
 }
 </style>
+
+<style id="ashtavakra-content-card-hover-visibility-fix">
+/* Workspace tiles and script-library cards: keep every child visible on hover. */
+html body #view .grid > .item:hover,
+html body #view .script-button-grid > .script-placeholder:hover,
+html body #view .script-reader:hover {
+  background:#54243B!important;
+  background-color:#54243B!important;
+  background-image:none!important;
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+  box-shadow:none!important;
+  outline:none!important;
+  transform:none!important;
+  text-shadow:none!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body #view .grid > .item:hover *,
+html body #view .script-button-grid > .script-placeholder:hover *,
+html body #view .script-reader:hover * {
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+  fill:#F7F7F5!important;
+  stroke:#F7F7F5!important;
+  opacity:1!important;
+  visibility:visible!important;
+  text-shadow:none!important;
+  filter:none!important;
+}
+html body #view .grid > .item:hover :is(span,b,small,p,h1,h2,h3,h4,label,i,svg),
+html body #view .script-button-grid > .script-placeholder:hover :is(span,b,small,p,h1,h2,h3,h4,label,i,svg) {
+  display:revert!important;
+  opacity:1!important;
+  visibility:visible!important;
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+}
+/* Nested icon/text wrappers stay transparent so there is no separate square tile. */
+html body #view .grid > .item:hover :is(.tile-icon,.script-placeholder-number,.script-placeholder-label,.script-placeholder-hint),
+html body #view .script-button-grid > .script-placeholder:hover :is(.tile-icon,.script-placeholder-number,.script-placeholder-label,.script-placeholder-hint) {
+  background:transparent!important;
+  background-color:transparent!important;
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+}
+/* Other module content cards follow the same readable inversion. */
+html body #view .item:not(.script-placeholder):hover {
+  background:#54243B!important;
+  background-color:#54243B!important;
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+html body #view .item:not(.script-placeholder):hover * {
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+  fill:#F7F7F5!important;
+  stroke:#F7F7F5!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+</style>
