@@ -42,6 +42,22 @@ body a:hover,body a:focus,body a:focus-visible{color:#F7F7F5!important;backgroun
 body .msg{color:#F7D5D5!important}
 body *::before,body *::after{background-image:none!important;box-shadow:none!important}
 @media(prefers-reduced-motion:no-preference){body button{transition:none!important}}
+
+/* FINAL LOGIN OVERRIDE — flat off-white, burgundy headings, black text */
+:root{color-scheme:light!important}
+html,body{min-height:100%!important;background:#F7F7F5!important;background-image:none!important;color:#17171B!important}
+body{display:grid!important;place-items:center!important}
+body .panel{width:min(100%,500px)!important;padding:32px!important;background:transparent!important;background-color:transparent!important;background-image:none!important;color:#17171B!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+body .brand,body p,body label,body .switch,body .hint,body a,body .msg{color:#17171B!important;background:transparent!important;border:0!important;box-shadow:none!important}
+body h1,body h2,body h3{color:#54243B!important;background:transparent!important;border:0!important;box-shadow:none!important}
+body .brand{border-bottom:0!important;padding-bottom:8px!important}
+body input,body input:focus,body input:focus-visible{background:#FFFFFF!important;color:#17171B!important;border:1px solid #D8D4CF!important;border-radius:6px!important;box-shadow:none!important;outline:none!important}
+body button,body .primary,body button:hover,body button:focus,body button:focus-visible{background:#E8E6E1!important;background-image:none!important;color:#17171B!important;border:0!important;border-radius:6px!important;box-shadow:none!important;outline:none!important;transform:none!important;filter:none!important;transition:none!important}
+body a:hover,body a:focus,body a:focus-visible{color:#17171B!important;background:transparent!important;text-decoration:none!important;outline:none!important;box-shadow:none!important}
+body *{text-shadow:none!important}
+body *:hover{color:inherit!important;background-color:inherit!important;background-image:none!important;border-color:inherit!important;box-shadow:none!important;outline:none!important;transform:none!important;filter:none!important;text-decoration:none!important;transition:none!important}
+body .hidden{display:none!important}
+
 </style>
 </head><body><main class="panel"><div class="brand">ASHTAVAKRA · INTELLIGENT AI WORKSPACE</div><h1 id="heading">Agent & Team Lead Sign in</h1><p class="tag" id="sub">Use your approved company work email to access Ashtavakra.</p>
 <form id="loginForm"><label>Company work email</label><input id="email" type="email" autocomplete="username" required maxlength="254"><label>Password</label><input id="password" type="password" autocomplete="current-password" required><button id="loginBtn">Sign in</button></form>
