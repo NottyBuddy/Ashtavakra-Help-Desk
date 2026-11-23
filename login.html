@@ -664,4 +664,46 @@ body input::placeholder,body textarea::placeholder{color:#54243B!important;opaci
 body *:hover,body *:focus-visible,body *:active{color:#54243B!important;background-color:transparent!important;background-image:none!important;border-color:transparent!important;box-shadow:none!important;text-shadow:none!important;filter:none!important;transform:none!important;transition:none!important;animation:none!important}
 body .side .nav button.active{background:transparent!important;background-color:transparent!important;border:0!important}
 </style>
+<style id="ashtavakra-clean-white-black-override">
+/* Simple neutral theme: white surfaces and black text, preserving layout and behavior */
+html,body{background:#fff!important;color:#000!important}
+body,body *{
+  color:#000!important;
+  font-weight:400!important;
+  text-shadow:none!important;
+  box-shadow:none!important;
+  filter:none!important;
+  background-image:none!important;
+}
+body *:not(svg):not(path):not(circle):not(rect):not(line):not(polyline):not(polygon):not(img):not(video):not(canvas){
+  background-color:#fff!important;
+}
+body svg,body svg *{filter:none!important;box-shadow:none!important}
+body button,body [role="button"],body input,body textarea,body select{
+  color:#000!important;
+  background:#fff!important;
+  background-color:#fff!important;
+  border-color:#ddd!important;
+}
+body input::placeholder,body textarea::placeholder{color:#555!important;opacity:1!important}
+body *:hover,body *:focus-visible,body *:active{
+  color:#000!important;
+  background-color:#fff!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+  filter:none!important;
+  transform:none!important;
+  transition:none!important;
+  animation:none!important;
+  outline-color:#ddd!important;
+}
+body .side .nav button.active,body .side .nav button:hover,
+body .side .nav button:focus-visible{
+  color:#000!important;
+  background:#fff!important;
+  background-color:#fff!important;
+  border-color:#ddd!important;
+}
+</style>
 </body></html>
