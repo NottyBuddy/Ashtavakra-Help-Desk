@@ -821,3 +821,41 @@ html body .panel:hover input,html body .login-card:hover input,html body .auth-c
   -webkit-text-fill-color:#17171B!important;border-color:#D9D5D0!important;
 }
 </style>
+
+<style id="ashtavakra-login-hover-scope-correction">
+/* The login page container itself must never enter hover state. Only actionable controls invert. */
+html body .panel,html body .panel:hover,
+html body .login-card,html body .login-card:hover,
+html body .auth-card,html body .auth-card:hover,
+html body main,html body main:hover {
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+  border-color:transparent!important;box-shadow:none!important;outline:none!important;
+  filter:none!important;transform:none!important;transition:none!important;
+}
+html body .panel:hover *,html body .login-card:hover *,html body .auth-card:hover *,html body main:hover * {
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+}
+html body button,html body button.primary,html body .primary {
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+  border:1px solid rgba(84,36,59,.35)!important;box-shadow:none!important;transform:none!important;
+}
+html body button:hover,html body button.primary:hover,html body .primary:hover {
+  background:#54243B!important;background-color:#54243B!important;background-image:none!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;box-shadow:none!important;outline:none!important;
+  transform:none!important;filter:none!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body button:hover *,html body button.primary:hover *,html body .primary:hover * {
+  background:transparent!important;background-color:transparent!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  fill:#F7F7F5!important;stroke:#F7F7F5!important;
+}
+html body input,html body input:hover,html body input:focus {
+  background:transparent!important;background-color:transparent!important;color:#54243B!important;
+  -webkit-text-fill-color:#54243B!important;border-color:rgba(84,36,59,.35)!important;
+  box-shadow:none!important;outline:none!important;
+}
+</style>
