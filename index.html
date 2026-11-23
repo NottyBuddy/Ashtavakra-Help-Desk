@@ -3299,3 +3299,58 @@ html body :is(button, .btn, [role="button"], .nav-item, .nav-link):hover :is(svg
   stroke: #F7F7F5 !important;
 }
 </style>
+
+<style id="ashtavakra-teamlead-login-hover-match">
+/* Team Lead Console entry and console controls use the same burgundy/off-white hover. */
+html body #adminConsole:hover,
+html body #adminConsole:hover *,
+html body :is([id*="admin"], [class*="admin"], [id*="team-lead"], [class*="team-lead"]):is(button, [role="button"], .card, .panel, .tile):hover,
+html body :is([id*="admin"], [class*="admin"], [id*="team-lead"], [class*="team-lead"]) :is(button, [role="button"], .card, .panel, .tile):hover {
+  background: #54243B !important;
+  background-color: #54243B !important;
+  background-image: none !important;
+  color: #F7F7F5 !important;
+  -webkit-text-fill-color: #F7F7F5 !important;
+  border-color: #54243B !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  filter: none !important;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease !important;
+}
+html body #adminConsole:hover * ,
+html body :is([id*="admin"], [class*="admin"], [id*="team-lead"], [class*="team-lead"]) :is(button, [role="button"], .card, .panel, .tile):hover :is(span, small, strong, b, svg, svg *, i, [class*="icon"]) {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #F7F7F5 !important;
+  -webkit-text-fill-color: #F7F7F5 !important;
+  fill: #F7F7F5 !important;
+  stroke: #F7F7F5 !important;
+}
+/* Login/authentication card and its actions follow the identical hover treatment. */
+html body :is(.login-card, .login-panel, .login-box, .auth-card, .auth-panel, [id*="login"], [class*="login"], [id*="auth"], [class*="auth"]):hover {
+  background: #54243B !important;
+  background-color: #54243B !important;
+  background-image: none !important;
+  color: #F7F7F5 !important;
+  -webkit-text-fill-color: #F7F7F5 !important;
+  border-color: #54243B !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease !important;
+}
+html body :is(.login-card, .login-panel, .login-box, .auth-card, .auth-panel, [id*="login"], [class*="login"], [id*="auth"], [class*="auth"]):hover :is(span, p, small, strong, b, label, i, svg, svg *, [class*="icon"]) {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #F7F7F5 !important;
+  -webkit-text-fill-color: #F7F7F5 !important;
+  fill: #F7F7F5 !important;
+  stroke: #F7F7F5 !important;
+}
+/* Nested icon holders stay transparent; only the control/card itself is filled. */
+html body :is(#adminConsole, .login-card, .login-panel, .login-box, .auth-card, .auth-panel, [id*="login"], [class*="login"], [id*="auth"], [class*="auth"]):hover :is(.icon, .nav-icon, [class*="icon"], svg) {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+</style>
