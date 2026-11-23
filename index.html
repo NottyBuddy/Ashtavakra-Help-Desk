@@ -3284,3 +3284,18 @@ html body .footer:hover * {
   transition: none !important;
 }
 </style>
+
+<style id="ashtavakra-hover-remove-inner-icon-tile">
+/* Keep nested icon wrappers transparent: only the outer hovered control is burgundy. */
+html body :is(button, .btn, [role="button"], .nav-item, .nav-link):hover * {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+html body :is(button, .btn, [role="button"], .nav-item, .nav-link):hover :is(svg, svg *, .icon, .nav-icon, [class*="icon"], i) {
+  color: #F7F7F5 !important;
+  -webkit-text-fill-color: #F7F7F5 !important;
+  fill: #F7F7F5 !important;
+  stroke: #F7F7F5 !important;
+}
+</style>
