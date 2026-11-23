@@ -3430,3 +3430,22 @@ html body #view .item:not(.script-placeholder):hover * {
   visibility:visible!important;
 }
 </style>
+<style id="indiframe-directory-quickref-hover-visibility">
+/* Scoped hover visibility for Sales Directory and Quick Reference content only */
+#teamRows tr:hover,#teamRows tr:hover td,
+.tablewrap:has(#teamRows) tr:hover,.tablewrap:has(#teamRows) tr:hover td,
+#coverageRows tr:hover,#coverageRows tr:hover td{
+ background:#54243B !important;color:#F7F7F5 !important;opacity:1 !important;visibility:visible !important;
+}
+#teamRows tr:hover *,#coverageRows tr:hover *{
+ color:#F7F7F5 !important;opacity:1 !important;visibility:visible !important;
+}
+.quickref-card:hover,.quickref-grid .quickref-card:hover,.coverage-distance-grid .quickref-card:hover{
+ background:#54243B !important;color:#F7F7F5 !important;opacity:1 !important;visibility:visible !important;
+}
+.quickref-card:hover *,.quickref-grid .quickref-card:hover *,.coverage-distance-grid .quickref-card:hover *{
+ color:#F7F7F5 !important;opacity:1 !important;visibility:visible !important;
+}
+.quickref-card:hover a,.quickref-card:hover button{color:#F7F7F5 !important;background:transparent !important}
+#teamRows tr:hover button{background:transparent !important;color:#F7F7F5 !important;border-color:#F7F7F5 !important}
+</style>
