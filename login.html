@@ -655,35 +655,75 @@ body .side .brand .logo:hover svg * {
 </style>
 
 
-<style id="ashtavakra-restored-transparent-burgundy-theme">
-/* Preserve the existing layout and component geometry; change visual surfaces only. */
+<style id="ashtavakra-final-palette-precision">
+/* User-approved palette. High-specificity selectors override legacy theme declarations without changing layout. */
 :root{color-scheme:light!important}
-html,body{background:#F7F7F5!important;background-color:#F7F7F5!important;color:#54243B!important}
-body,body *{
+html,html body,body html,html body body{background:#F7F7F5!important;background-color:#F7F7F5!important;background-image:none!important;color:#54243B!important}
+html body *:not(svg):not(path):not(script):not(style):not(meta):not(link):not(title){
   color:#54243B!important;
-  font-weight:400!important;
-  box-shadow:none!important;
-  text-shadow:none!important;
-}
-body *{
-  background-color:transparent!important;
-  background-image:none!important;
-}
-body *:hover,body *:focus-visible,body *:active{
-  color:#54243B!important;
+  -webkit-text-fill-color:#54243B!important;
   background-color:transparent!important;
   background-image:none!important;
   box-shadow:none!important;
   text-shadow:none!important;
+}
+html body .side,html body .top,html body .main,html body main,html body #view,
+html body aside,html body section,html body article,html body .workspace,
+html body .content,html body .page,html body .panel,html body .hero,
+html body .card,html body .item,html body .stat,html body .tablewrap,
+html body .script-reader,html body .script-placeholder,html body .product-card,
+html body .knowledge-card,html body .sop-card,html body .quickref-card,
+html body .ai-chat-panel,html body .ai-chat-head,html body .ai-chat-compose,
+html body [class*="card"],html body [class*="tile"],html body [class*="section"],
+html body [class*="panel"],html body [class*="stat"]{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html body button,html body .btn,html body .primary,html body .tab,
+html body [role="button"],html body input[type="button"],
+html body input[type="submit"],html body .nav button,
+html body .top button,html body .side .nav button{
+  color:#54243B!important;
+  -webkit-text-fill-color:#54243B!important;
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+}
+html body button:hover,html body button:focus,html body button:focus-visible,
+html body .btn:hover,html body .primary:hover,html body .tab:hover,
+html body [role="button"]:hover,html body .nav button:hover,
+html body .side .nav button:hover,html body .top button:hover,
+html body a:hover,html body input:hover,html body textarea:hover,html body select:hover{
+  color:#54243B!important;
+  -webkit-text-fill-color:#54243B!important;
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
   filter:none!important;
   transform:none!important;
   transition:none!important;
   animation:none!important;
 }
-body input,body textarea,body select{
+html body svg,html body svg *,html body .nav-icon,html body .ui-icon,
+html body .tile-icon,html body .stat-symbol{
   color:#54243B!important;
+  stroke:#54243B!important;
+  filter:none!important;
+}
+html body input,html body textarea,html body select{
+  color:#54243B!important;
+  -webkit-text-fill-color:#54243B!important;
+  background:transparent!important;
   background-color:transparent!important;
   border-color:rgba(84,36,59,.35)!important;
+  box-shadow:none!important;
 }
-body input::placeholder,body textarea::placeholder{color:#54243B!important;opacity:.7!important}
+html body input::placeholder,html body textarea::placeholder{color:#54243B!important;-webkit-text-fill-color:#54243B!important;opacity:.75!important}
+html body *:hover{transform:none!important;transition:none!important;animation:none!important;filter:none!important;text-shadow:none!important}
 </style></body></html>
