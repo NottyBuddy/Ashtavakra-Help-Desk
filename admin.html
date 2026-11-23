@@ -825,3 +825,64 @@ html body :is(.panel,.metric-group,.metric,.history-panel,.history-item,.editor-
   -webkit-text-fill-color:#17171B!important;border-color:#D9D5D0!important;
 }
 </style>
+
+<style id="ashtavakra-admin-hover-scope-correction">
+/* Large layout panels are containers, not hover cards. Keep them neutral at all times. */
+html body .panel,html body .panel:hover,
+html body .history-panel,html body .history-panel:hover,
+html body .editor-dialog,html body .editor-dialog:hover {
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+  border-color:transparent!important;box-shadow:none!important;outline:none!important;
+  filter:none!important;transform:none!important;transition:none!important;
+}
+html body .panel *,html body .panel:hover *,
+html body .history-panel *,html body .history-panel:hover *,
+html body .editor-dialog *,html body .editor-dialog:hover * {
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+}
+/* Actual metric cards stay transparent normally and invert only when individually hovered. */
+html body .metric-group,html body .metric,
+html body .metric-group:hover,html body .metric:hover {
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+  border-color:transparent!important;box-shadow:none!important;outline:none!important;
+  transform:none!important;filter:none!important;
+}
+html body .metric-group:hover,html body .metric:hover {
+  background:#54243B!important;background-color:#54243B!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body .metric-group:hover *,html body .metric:hover * {
+  background:transparent!important;background-color:transparent!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  fill:#F7F7F5!important;stroke:#F7F7F5!important;border-color:transparent!important;
+}
+/* Buttons invert independently; no nested icon tile, glow, or movement. */
+html body button,html body button.primary,html body button.danger {
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+  border-color:rgba(84,36,59,.35)!important;box-shadow:none!important;transform:none!important;
+}
+html body button:hover,html body button.primary:hover,html body button.danger:hover {
+  background:#54243B!important;background-color:#54243B!important;background-image:none!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;box-shadow:none!important;outline:none!important;
+  filter:none!important;transform:none!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body button:hover *,html body button.primary:hover *,html body button.danger:hover * {
+  background:transparent!important;background-color:transparent!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  fill:#F7F7F5!important;stroke:#F7F7F5!important;border-color:transparent!important;
+}
+/* Inputs remain neutral and readable. */
+html body input,html body input:hover,html body input:focus,
+html body textarea,html body select {
+  background:transparent!important;background-color:transparent!important;color:#54243B!important;
+  -webkit-text-fill-color:#54243B!important;border-color:rgba(84,36,59,.35)!important;
+  box-shadow:none!important;outline:none!important;
+}
+</style>
