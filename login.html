@@ -783,3 +783,41 @@ body button{width:100%!important;margin-top:20px!important;padding:13px!importan
 body button:hover,body button:focus,body button:active,body a:hover{background:transparent!important;background-color:transparent!important;background-image:none!important;color:#54243B!important;-webkit-text-fill-color:#54243B!important;box-shadow:none!important;filter:none!important;transform:none!important;transition:none!important;animation:none!important}
 body *,body *::before,body *::after{transition:none!important;animation:none!important;box-shadow:none!important;text-shadow:none!important}
 </style>
+
+<style id="ashtavakra-login-hover-final">
+/* Login form/card hover: burgundy surface with off-white copy; fields remain readable. */
+html body .panel:hover,
+html body .login-card:hover,
+html body .auth-card:hover,
+html body main:hover {
+  background:#54243B!important;background-color:#54243B!important;background-image:none!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;box-shadow:none!important;filter:none!important;transform:none!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body .panel:hover :is(h1,h2,h3,p,label,small,span,b,strong,a,.brand,.tag,.hint,.eyebrow,.switch),
+html body .login-card:hover :is(h1,h2,h3,p,label,small,span,b,strong,a,.brand,.tag,.hint,.eyebrow,.switch),
+html body .auth-card:hover :is(h1,h2,h3,p,label,small,span,b,strong,a,.brand,.tag,.hint,.eyebrow,.switch),
+html body main:hover :is(h1,h2,h3,p,label,small,span,b,strong,a) {
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  background:transparent!important;background-color:transparent!important;
+}
+/* Action buttons invert independently; nested icon wrappers never get a tile. */
+html body button:hover,html body .primary:hover,
+html body button:hover *,html body .primary:hover * {
+  background:#54243B!important;background-color:#54243B!important;background-image:none!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;box-shadow:none!important;outline:0!important;transform:none!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body button:hover *,html body .primary:hover * {
+  background:transparent!important;background-color:transparent!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  fill:#F7F7F5!important;stroke:#F7F7F5!important;
+}
+/* Keep input fields and their text unchanged when the login panel is hovered. */
+html body .panel:hover input,html body .login-card:hover input,html body .auth-card:hover input,html body main:hover input {
+  background:#FFFFFF!important;background-color:#FFFFFF!important;color:#17171B!important;
+  -webkit-text-fill-color:#17171B!important;border-color:#D9D5D0!important;
+}
+</style>
