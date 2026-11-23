@@ -2805,3 +2805,95 @@ body::-webkit-scrollbar,
 .side{overflow-y:auto!important;scrollbar-width:none!important}
 #view{overflow-y:auto!important;scrollbar-width:none!important}
 </style>
+<style id="ashtavakra-sidebar-final-surface-and-logo">
+/* One uniform off-white sidebar surface: no white/pink tiles or footer fills. */
+html body aside.side,
+html body aside.side *,
+html body aside.side *::before,
+html body aside.side *::after{
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+html body aside.side{
+  background:#F7F7F5!important;
+  color:#54243B!important;
+  border-right:1px solid rgba(84,36,59,.14)!important;
+}
+html body aside.side .brand,
+html body aside.side .nav,
+html body aside.side .sidebar-quick-actions,
+html body aside.side .sidefoot,
+html body aside.side .profile-card,
+html body aside.side .profile-meta{
+  background:transparent!important;
+  border-color:transparent!important;
+}
+/* Keep the brand/logo fixed at the top of the sidebar, centered and free of a tile. */
+html body aside.side .brand{
+  position:sticky!important;
+  top:0!important;
+  z-index:20!important;
+  width:100%!important;
+  min-height:78px!important;
+  height:78px!important;
+  margin:0!important;
+  padding:12px 14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:10px!important;
+  border:0!important;
+  border-bottom:1px solid rgba(84,36,59,.12)!important;
+  border-radius:0!important;
+  overflow:visible!important;
+}
+html body aside.side .brand .logo{
+  width:42px!important;height:42px!important;min-width:42px!important;
+  margin:0!important;padding:0!important;display:flex!important;
+  align-items:center!important;justify-content:center!important;
+  background:transparent!important;border:0!important;border-radius:0!important;
+}
+html body aside.side .brand .logo svg{
+  display:block!important;width:42px!important;height:42px!important;
+  max-width:42px!important;background:transparent!important;
+}
+html body aside.side .brand .brandtext{
+  display:flex!important;flex-direction:column!important;
+  justify-content:center!important;gap:2px!important;
+  background:transparent!important;color:#54243B!important;
+}
+html body aside.side .brand .brandtext b,
+html body aside.side .brand .brandtext small{
+  color:#54243B!important;background:transparent!important;
+}
+/* Workspace rows, utility rows and account/footer area share the same transparent surface. */
+html body aside.side #nav button,
+html body aside.side #nav button.active,
+html body aside.side #nav button:hover,
+html body aside.side #nav button:focus,
+html body aside.side .sidebar-quick-actions button,
+html body aside.side .sidebar-quick-actions button:hover,
+html body aside.side .sidebar-quick-actions button:focus,
+html body aside.side .sidefoot button,
+html body aside.side .sidefoot .profile-avatar{
+  background:transparent!important;background-color:transparent!important;
+  background-image:none!important;border-color:transparent!important;
+  box-shadow:none!important;filter:none!important;transform:none!important;
+}
+html body aside.side .sidefoot{
+  background:transparent!important;border:0!important;
+  border-top:1px solid rgba(84,36,59,.12)!important;
+  color:#54243B!important;
+}
+html body aside.side .sidefoot *,
+html body aside.side .navtext,
+html body aside.side .label{
+  color:#54243B!important;
+}
+html body aside.side .profile-avatar{
+  border:1px solid rgba(84,36,59,.22)!important;
+  border-radius:50%!important;
+}
+</style>
