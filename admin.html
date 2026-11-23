@@ -131,3 +131,82 @@ $("refresh").onclick=load;$("logout").onclick=async()=>{await api("/api/auth/log
 
 
 
+
+
+<style id="ashtavakra-admin-hover-visibility-fix">
+/* Deterministic hover contrast for analytics cards and every nested text node. */
+html body .wrap #analyticsCards .metric-group:hover,
+html body .wrap #analyticsCards .metric-group:focus-within {
+  background:#54243B!important;
+  background-color:#54243B!important;
+  color:#F7F7F5!important;
+  border-color:#54243B!important;
+  opacity:1!important;
+  visibility:visible!important;
+  filter:none!important;
+}
+html body .wrap #analyticsCards .metric-group:hover *,
+html body .wrap #analyticsCards .metric-group:focus-within * {
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+  opacity:1!important;
+  visibility:visible!important;
+  text-shadow:none!important;
+}
+html body .wrap #analyticsCards .metric-group:hover .metric,
+html body .wrap #analyticsCards .metric-group:focus-within .metric {
+  background:rgba(247,247,245,.08)!important;
+  background-color:rgba(247,247,245,.08)!important;
+  border-color:rgba(247,247,245,.35)!important;
+  color:#F7F7F5!important;
+  opacity:1!important;
+}
+html body .wrap #analyticsCards .metric-group:hover .metric *,
+html body .wrap #analyticsCards .metric-group:focus-within .metric * {
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+html body .wrap #analyticsCards .metric:hover,
+html body .wrap #analyticsCards .metric:focus-visible {
+  background:#54243B!important;
+  background-color:#54243B!important;
+  border-color:#F7F7F5!important;
+  color:#F7F7F5!important;
+}
+html body .wrap #analyticsCards .metric:hover *,
+html body .wrap #analyticsCards .metric:focus-visible * {
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+/* All admin buttons use one consistent hover inversion, including primary actions. */
+html body .wrap button:hover:not(:disabled),
+html body .wrap button:focus-visible:not(:disabled),
+html body .wrap button.primary:hover:not(:disabled),
+html body .wrap button.danger:hover:not(:disabled) {
+  background:#54243B!important;
+  background-color:#54243B!important;
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;
+  opacity:1!important;
+  box-shadow:none!important;
+  outline:none!important;
+  transform:none!important;
+  filter:none!important;
+}
+html body .wrap button:hover:not(:disabled) *,
+html body .wrap button:focus-visible:not(:disabled) * {
+  background:transparent!important;
+  background-color:transparent!important;
+  color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;
+  fill:#F7F7F5!important;
+  stroke:#F7F7F5!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+</style>
