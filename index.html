@@ -2460,42 +2460,25 @@ body .side .brand .logo:hover svg * {
 .script-document,.script-table-wrap{width:100%!important;max-width:none!important}
 .script-button-grid{width:100%!important;max-width:none!important}
 </style>
-<style id="ashtavakra-transparent-burgundy-final">
-html,body{background:#fff!important;color:#54243B!important}
-body *{color:#54243B!important;font-weight:400!important;box-shadow:none!important;text-shadow:none!important;filter:none!important}
-body *:not(svg):not(path):not(circle):not(rect):not(line):not(polyline):not(polygon):not(input):not(textarea):not(select){background-color:transparent!important;background-image:none!important}
-body button,body [role="button"],body .btn,body .tab,body .item,body .stat,body .card,body .tile,body .panel,body .notice,body .quickref-card,body .quickref-icon,body .tile-icon,body .script-placeholder,body .chat-panel,body .chat-header,body .chat-body,body .chat-composer,body section,body article,body aside,body .content,body .main,body .workspace,body .page,body .section,body .section-card{background:transparent!important;background-color:transparent!important;background-image:none!important;border-color:transparent!important;box-shadow:none!important}
-body button,body [role="button"],body .btn,body .tab{border:0!important;outline-color:transparent!important}
-body input,body textarea,body select{color:#54243B!important;background:transparent!important;background-color:transparent!important;border-color:#54243B!important}
-body input::placeholder,body textarea::placeholder{color:#54243B!important;opacity:.75!important}
-body *:hover,body *:focus-visible,body *:active{color:#54243B!important;background-color:transparent!important;background-image:none!important;border-color:transparent!important;box-shadow:none!important;text-shadow:none!important;filter:none!important;transform:none!important;transition:none!important;animation:none!important}
-body .side .nav button.active{background:transparent!important;background-color:transparent!important;border:0!important}
-</style>
-<style id="ashtavakra-clean-white-black-override">
-/* Simple neutral theme: white surfaces and black text, preserving layout and behavior */
-html,body{background:#fff!important;color:#000!important}
+
+
+<style id="ashtavakra-restored-transparent-burgundy-theme">
+/* Preserve the existing layout and component geometry; change visual surfaces only. */
+:root{color-scheme:light!important}
+html,body{background:#F7F7F5!important;background-color:#F7F7F5!important;color:#54243B!important}
 body,body *{
-  color:#000!important;
+  color:#54243B!important;
   font-weight:400!important;
-  text-shadow:none!important;
   box-shadow:none!important;
-  filter:none!important;
+  text-shadow:none!important;
+}
+body *{
+  background-color:transparent!important;
   background-image:none!important;
 }
-body *:not(svg):not(path):not(circle):not(rect):not(line):not(polyline):not(polygon):not(img):not(video):not(canvas){
-  background-color:#fff!important;
-}
-body svg,body svg *{filter:none!important;box-shadow:none!important}
-body button,body [role="button"],body input,body textarea,body select{
-  color:#000!important;
-  background:#fff!important;
-  background-color:#fff!important;
-  border-color:#ddd!important;
-}
-body input::placeholder,body textarea::placeholder{color:#555!important;opacity:1!important}
 body *:hover,body *:focus-visible,body *:active{
-  color:#000!important;
-  background-color:#fff!important;
+  color:#54243B!important;
+  background-color:transparent!important;
   background-image:none!important;
   box-shadow:none!important;
   text-shadow:none!important;
@@ -2503,14 +2486,11 @@ body *:hover,body *:focus-visible,body *:active{
   transform:none!important;
   transition:none!important;
   animation:none!important;
-  outline-color:#ddd!important;
 }
-body .side .nav button.active,body .side .nav button:hover,
-body .side .nav button:focus-visible{
-  color:#000!important;
-  background:#fff!important;
-  background-color:#fff!important;
-  border-color:#ddd!important;
+body input,body textarea,body select{
+  color:#54243B!important;
+  background-color:transparent!important;
+  border-color:rgba(84,36,59,.35)!important;
 }
-</style>
-</body></html>
+body input::placeholder,body textarea::placeholder{color:#54243B!important;opacity:.7!important}
+</style></body></html>
