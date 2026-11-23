@@ -2736,3 +2736,72 @@ body .side .sidebar-quick-actions button:hover .nav-icon{
  filter:none!important;box-shadow:none!important;transform:none!important;
 }
 </style>
+<style id="ashtavakra-sidebar-footer-scrollbar-cleanup">
+/* Sidebar footer/profile: remove colored surfaces and keep typography consistent. */
+body .side .sidefoot,
+body .side .sidefoot .profile-card,
+body .side .sidefoot .profile-meta,
+body .side .sidefoot .profile-avatar,
+body .side .sidefoot .sidebar-toggle,
+body .side .sidefoot .profile-chevron{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+body .side .sidefoot{
+  color:#54243B!important;
+  border:0!important;
+  border-top:1px solid rgba(84,36,59,.16)!important;
+}
+body .side .sidefoot .profile-card{
+  color:#54243B!important;
+  border:0!important;
+  border-radius:0!important;
+}
+body .side .sidefoot .profile-avatar{
+  color:#54243B!important;
+  border:1px solid rgba(84,36,59,.22)!important;
+}
+body .side .sidefoot .profile-copy b,
+body .side .sidefoot .profile-copy small,
+body .side .sidefoot .profile-meta,
+body .side .sidefoot .profile-chevron{
+  color:#54243B!important;
+}
+body .side .sidefoot .sidebar-toggle{
+  color:#54243B!important;
+  border:0!important;
+  border-radius:0!important;
+}
+/* Partner footer strip: transparent, no gradient, tint or shadow. */
+#view>.footer,
+body #view .footer,
+body .footer{
+  background:transparent!important;
+  background-color:transparent!important;
+  background-image:none!important;
+  color:#54243B!important;
+  border:0!important;
+  border-top:1px solid rgba(84,36,59,.14)!important;
+  box-shadow:none!important;
+  text-shadow:none!important;
+}
+body #view .footer *,
+body .footer *{color:#54243B!important}
+/* Hide scrollbar tracks/thumbs while preserving normal scrolling. */
+html,body,*{
+  scrollbar-width:none!important;
+  -ms-overflow-style:none!important;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar{
+  width:0!important;
+  height:0!important;
+  display:none!important;
+}
+.side{overflow-y:auto!important;scrollbar-width:none!important}
+#view{overflow-y:auto!important;scrollbar-width:none!important}
+</style>
