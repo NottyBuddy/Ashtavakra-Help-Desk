@@ -2559,6 +2559,32 @@ html body :is(.ai-chat-panel, .ai-chat-panel *)::before,
 html body :is(.ai-chat-panel, .ai-chat-panel *)::after{background:transparent!important;box-shadow:none!important}
 html body :is(input,textarea,select){background:transparent!important;background-color:transparent!important;color:#54243B!important;-webkit-text-fill-color:#54243B!important;box-shadow:none!important}
 html body :is(input,textarea)::placeholder{color:#54243B!important;-webkit-text-fill-color:#54243B!important;opacity:.65!important}
+</style><style id="ashtavakra-no-hover-background-final">
+/* Final neutral-state lock: never tint any surface on hover, focus, or press. */
+html body *,html body *::before,html body *::after,
+html body *:hover,html body *:focus,html body *:focus-visible,html body *:active,
+html body *:hover::before,html body *:hover::after,
+html body *:focus::before,html body *:focus::after,
+html body *:active::before,html body *:active::after,
+html body *:has(:hover),html body *:has(:focus-visible){
+ background:transparent!important;
+ background-color:transparent!important;
+ background-image:none!important;
+ box-shadow:none!important;
+ filter:none!important;
+ text-shadow:none!important;
+ transform:none!important;
+ transition:none!important;
+ animation:none!important;
+}
+html body :is(button,a,[role="button"],input,select,textarea,[tabindex]):hover,
+html body :is(button,a,[role="button"],input,select,textarea,[tabindex]):focus,
+html body :is(button,a,[role="button"],input,select,textarea,[tabindex]):active{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+ box-shadow:none!important;filter:none!important;outline:none!important;
+ transform:none!important;transition:none!important;animation:none!important;
+}
 </style></body></html>
 <style id="ashtavakra-user-requested-view-cleanup">
 /* Remove the pink content canvas and all filled surfaces in the workspace view. */
