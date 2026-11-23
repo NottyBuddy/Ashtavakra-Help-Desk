@@ -3075,3 +3075,28 @@ html body .ai-chat-panel *::after{
  transition:none!important;animation:none!important;text-shadow:none!important;
 }
 </style>
+<style id="ashtavakra-ai-page-background-hover-lock">
+html,html:hover,body,body:hover,body:has(:hover),
+body:has(.ai-chat-panel:hover),body:has(.ai-chat-panel *:hover),
+#view,#view:hover,.main,.main:hover,main,main:hover,
+.workspace,.workspace:hover,.content,.content:hover{
+ background:#F7F7F5!important;background-color:#F7F7F5!important;
+ background-image:none!important;box-shadow:none!important;filter:none!important;
+ transition:none!important;animation:none!important;
+}
+html body .ai-chat-panel,html body .ai-chat-panel:hover,
+html body .ai-chat-panel:focus,html body .ai-chat-panel:focus-within,
+html body .ai-chat-panel *,html body .ai-chat-panel *:hover,
+html body .ai-chat-panel *:focus,html body .ai-chat-panel *:focus-visible,
+html body .ai-chat-panel *:active,html body .ai-chat-panel *::before,
+html body .ai-chat-panel *::after{
+ background:transparent!important;background-color:transparent!important;
+ background-image:none!important;box-shadow:none!important;filter:none!important;
+ text-shadow:none!important;transition:none!important;animation:none!important;
+}
+html body:has(:hover),html body:has(:hover) #view,
+html body:has(:hover) .main,html body:has(:hover) .workspace,
+html body:has(:hover) .content{
+ background-color:#F7F7F5!important;background-image:none!important;
+}
+</style>
