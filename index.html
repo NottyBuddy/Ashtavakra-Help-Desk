@@ -2534,3 +2534,51 @@ html body input,html body textarea,html body select{
 html body input::placeholder,html body textarea::placeholder{color:#54243B!important;-webkit-text-fill-color:#54243B!important;opacity:.75!important}
 html body *:hover{transform:none!important;transition:none!important;animation:none!important;filter:none!important;text-shadow:none!important}
 </style></body></html>
+<style id="ashtavakra-user-requested-view-cleanup">
+/* Remove the pink content canvas and all filled surfaces in the workspace view. */
+html, body, .main, #view {
+  background: #F7F7F5 !important;
+  background-color: #F7F7F5 !important;
+  background-image: none !important;
+}
+#view,
+#view *:not(svg):not(path):not(script):not(style) {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+#view *::before,
+#view *::after {
+  background-image: none !important;
+}
+#view .script-reader,
+#view .script-document,
+#view .script-heading,
+#view .script-dialogue,
+#view .script-bullet,
+#view .script-table-wrap,
+#view .script-table th,
+#view .script-table td,
+#view .source-section,
+#view .source-note,
+#view .notice,
+#view .item,
+#view .card,
+#view .stat,
+#view button,
+#view .btn,
+#view .tab {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+#view, #view *:not(svg):not(path) {
+  color: #54243B !important;
+}
+.main > header.top {
+  display: none !important;
+}
+.main {
+  padding-top: 0 !important;
+}
+</style>
