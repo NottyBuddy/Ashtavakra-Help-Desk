@@ -785,3 +785,43 @@ html body input,html body textarea,html body select{
 html body input::placeholder,html body textarea::placeholder{color:#54243B!important;-webkit-text-fill-color:#54243B!important;opacity:.75!important}
 html body *:hover{transform:none!important;transition:none!important;animation:none!important;filter:none!important;text-shadow:none!important}
 </style></body></html>
+
+<style id="ashtavakra-admin-hover-final">
+/* Team Lead Console cards/panels: same burgundy/off-white hover treatment. */
+html body .panel:hover,
+html body .metric-group:hover,
+html body .metric:hover,
+html body .history-panel:hover,
+html body .history-item:hover,
+html body .editor-dialog:hover {
+  background:#54243B!important;background-color:#54243B!important;background-image:none!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;box-shadow:none!important;filter:none!important;transform:none!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body :is(.panel,.metric-group,.metric,.history-panel,.history-item,.editor-dialog):hover :is(h1,h2,h3,h4,p,span,small,b,strong,label,th,td,summary,code,pre,.muted,.eyebrow,.empty,.status) {
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  background:transparent!important;background-color:transparent!important;border-color:rgba(247,247,245,.22)!important;
+}
+/* Buttons invert independently. Nested icon spans/SVGs remain transparent, never a square tile. */
+html body button:hover,
+html body button.primary:hover,
+html body button.danger:hover {
+  background:#54243B!important;background-color:#54243B!important;background-image:none!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;box-shadow:none!important;filter:none!important;transform:none!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body button:hover *,
+html body button.primary:hover *,
+html body button.danger:hover * {
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  fill:#F7F7F5!important;stroke:#F7F7F5!important;box-shadow:none!important;
+}
+/* Inputs retain a light surface and dark entered text even while their panel is hovered. */
+html body :is(.panel,.metric-group,.metric,.history-panel,.history-item,.editor-dialog):hover :is(input,textarea,select) {
+  background:#FFFFFF!important;background-color:#FFFFFF!important;color:#17171B!important;
+  -webkit-text-fill-color:#17171B!important;border-color:#D9D5D0!important;
+}
+</style>
