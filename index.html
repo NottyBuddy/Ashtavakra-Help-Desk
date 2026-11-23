@@ -1592,11 +1592,14 @@ body .brand:hover .logo svg * {
 <button data-page="sop"><span class="nav-icon" data-icon="settings" aria-hidden="true"></span><span class="navtext">Process SOP</span></button>
 <button data-page="faqs"><span class="nav-icon" data-icon="messages" aria-hidden="true"></span><span class="navtext">FAQs</span></button>
 <button data-page="sales"><span class="nav-icon" data-icon="users" aria-hidden="true"></span><span class="navtext">Sales Team</span></button>
-<button data-page="updates"><span class="nav-icon" data-icon="bell" aria-hidden="true"></span><span class="navtext">Updates</span></button>
 <button data-page="cx"><span class="nav-icon" data-icon="headphones" aria-hidden="true"></span><span class="navtext">CX Questions</span></button>
 <button data-page="quickRefs"><span class="nav-icon" data-icon="library" aria-hidden="true"></span><span class="navtext">Quick References</span></button>
-</nav><div class="sidefoot"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="profile-card"><span class="profile-avatar">IF</span><span class="profile-copy"><b id="profileName">Agent workspace</b><small id="profileRole">Secure portal access</small></span><span class="profile-chevron">⌄</span></div><div class="profile-meta">Secure Workspace<br>Internal Use Only<br>© 2026 Ashtavakra</div></div></aside>
-<div class="main"><header class="top"><div><b>Ashtavakra</b><small>Your Intelligent AI Workspace</small></div><div class="top-actions"><button class="top-assist" type="button" onclick="openAssist()">✦ Ashtavakra</button> <button id="searchBtn">⌕ Search... &nbsp; Ctrl K</button> <button id="notificationBtn" type="button" aria-label="Open announcements" onclick="toggleNotifications()">♧ <span class="notification-count" id="notificationCount">4</span></button> <button class="login" id="portalSignOut" type="button">Sign out</button> <button id="adminConsole" type="button" hidden>Team Lead Console</button></div></header><main id="view"></main></div>
+</nav><div class="sidebar-quick-actions">
+<button type="button" class="sidebar-action" id="sidebarAskAI" onclick="openAssist()"><span class="nav-icon" aria-hidden="true">✦</span><span class="navtext">Ask AI</span></button>
+<button type="button" class="sidebar-action" id="adminConsole" hidden><span class="nav-icon" data-icon="shield" aria-hidden="true"></span><span class="navtext">Team Lead Console</span></button>
+<button type="button" class="sidebar-action" id="portalSignOut"><span class="nav-icon" data-icon="log-out" aria-hidden="true"></span><span class="navtext">Sign out</span></button>
+</div><div class="sidefoot"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="profile-card"><span class="profile-avatar">IF</span><span class="profile-copy"><b id="profileName">Agent workspace</b><small id="profileRole">Secure portal access</small></span><span class="profile-chevron">⌄</span></div><div class="profile-meta">Secure Workspace<br>Internal Use Only<br>© 2026 Ashtavakra</div></div></aside>
+<div class="main"><header class="top"><div><b>Ashtavakra</b><small>Your Intelligent AI Workspace</small></div><div class="top-actions"><button class="top-assist" type="button" onclick="openAssist()">✦ Ashtavakra</button> <button id="searchBtn">⌕ Search... &nbsp; Ctrl K</button></div></header><main id="view"></main></div>
 <div id="globalSearchLayer" class="global-search-layer" hidden role="dialog" aria-modal="true" aria-label="Global knowledge search"><div class="global-search-card"><div class="global-search-top"><div><span class="eyebrow">KNOWLEDGE COMMAND</span><h2>Search the entire Agent Help Desk</h2><p>Find scripts, products, service areas, SOPs, FAQs and Sales contacts.</p></div><button class="global-search-close" type="button" onclick="closeGlobalSearch()">×</button></div><div class="global-search-input-wrap"><span>⌕</span><input id="globalSearchInput" type="search" placeholder="Search anything: Hyderabad, DGU, callback, warranty" oninput="runGlobalSearch(this.value)"><kbd>ESC</kbd></div><div id="globalSearchResults" class="global-search-results"><div class="global-search-empty">Start typing to search approved portal knowledge.</div></div><div class="global-search-foot"><span>Open a result</span><span>Ctrl / ⌘ + K</span></div></div></div>
 <script>
 const productData=[
@@ -2581,4 +2584,13 @@ html, body, .main, #view {
 .main {
   padding-top: 0 !important;
 }
+</style>
+
+<style id="ashtavakra-sidebar-actions">
+.sidebar-quick-actions{display:flex;flex-direction:column;gap:5px;padding:10px 0 12px;border-top:1px solid #E4E4E2;margin-top:12px}
+.sidebar-action{display:flex!important;align-items:center;gap:12px;width:100%;padding:11px 14px!important;border:0!important;border-radius:9999px!important;background:transparent!important;color:#54243B!important;text-align:left!important;cursor:pointer;font:inherit!important;font-size:12px!important;box-shadow:none!important}
+.sidebar-action .nav-icon{width:18px;height:18px;display:inline-grid;place-items:center;color:#54243B!important}
+.sidebar-action:hover,.sidebar-action:focus,.sidebar-action:active{background:transparent!important;color:#54243B!important;transform:none!important;box-shadow:none!important}
+.sidebar-action[hidden],#adminConsole[hidden]{display:none!important}
+@media(max-width:760px){.sidebar-action{justify-content:center;padding:11px 6px!important}.sidebar-action .navtext{display:none}}
 </style>
