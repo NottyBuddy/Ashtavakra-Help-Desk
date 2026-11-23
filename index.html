@@ -3163,3 +3163,124 @@ html body .footer * {
   transition: none !important;
 }
 </style>
+
+
+<style id="ashtavakra-hover-colour-inversion-final">
+/* FINAL HOVER: Burgundy surface + off-white foreground. Colour only; no glow, border or movement. */
+html body :is(
+  button, .btn, [role="button"], .tab, .nav-item, .nav-link,
+  .card, .item, .stat, [class*="card"], [class*="tile"], [class*="stat"],
+  .script-reader, .script-placeholder, .quickref-card, .knowledge-card,
+  .product-card, .sop-card, .feature-card, .dashboard-card, .module-card,
+  .shortcut-card, .info-card, .section-card, .reader-card, .history-item,
+  .metric, .metric-group, .tablewrap, .table-wrap,
+  .login-card, .login-panel, .login-box, .auth-card, .auth-panel,
+  .ai-chat-prompts button, .ai-chat-compose button
+):not(footer):not(.footer):not(.brand):not(.logo):not(.ashtavakra-mark):hover {
+  background: #54243B !important;
+  background-color: #54243B !important;
+  background-image: none !important;
+  color: #F7F7F5 !important;
+  -webkit-text-fill-color: #F7F7F5 !important;
+  border-color: #54243B !important;
+  outline: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease !important;
+}
+/* All labels, text and icons inside hovered buttons/cards invert together. */
+html body :is(
+  button, .btn, [role="button"], .tab, .nav-item, .nav-link,
+  .card, .item, .stat, [class*="card"], [class*="tile"], [class*="stat"],
+  .script-reader, .script-placeholder, .quickref-card, .knowledge-card,
+  .product-card, .sop-card, .feature-card, .dashboard-card, .module-card,
+  .shortcut-card, .info-card, .section-card, .reader-card, .history-item,
+  .metric, .metric-group, .tablewrap, .table-wrap,
+  .login-card, .login-panel, .login-box, .auth-card, .auth-panel
+):not(footer):not(.footer):not(.brand):not(.logo):not(.ashtavakra-mark):hover :is(
+  span, p, small, strong, b, em, label, i, svg, svg *, .nav-icon, .icon,
+  .material-symbols-rounded, .lucide, .fa, [class*="icon"]
+) {
+  color: #F7F7F5 !important;
+  -webkit-text-fill-color: #F7F7F5 !important;
+  fill: #F7F7F5 !important;
+  stroke: #F7F7F5 !important;
+  border-color: #F7F7F5 !important;
+  background-color: transparent !important;
+  text-shadow: none !important;
+  filter: none !important;
+  transition: color 200ms ease, fill 200ms ease, stroke 200ms ease !important;
+}
+/* Sidebar navigation: hover fills the button surface and turns its icon off-white. */
+html body aside.side #nav button:hover,
+html body aside.side .sidebar-quick-actions button:hover {
+  background: #54243B !important;
+  background-color: #54243B !important;
+  color: #F7F7F5 !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html body aside.side #nav button:hover *,
+html body aside.side .sidebar-quick-actions button:hover *,
+html body aside.side #nav button:hover .nav-icon,
+html body aside.side .sidebar-quick-actions button:hover .nav-icon {
+  color: #F7F7F5 !important;
+  -webkit-text-fill-color: #F7F7F5 !important;
+  fill: #F7F7F5 !important;
+  stroke: #F7F7F5 !important;
+  background: transparent !important;
+}
+/* Ask AI panel rules previously locked hover off; explicitly allow the same inversion here. */
+html body .ai-chat-panel button:hover,
+html body .ai-chat-panel button:hover *,
+html body .ai-chat-panel .ai-chat-prompts button:hover,
+html body .ai-chat-panel .ai-chat-compose button:hover {
+  background: #54243B !important;
+  background-color: #54243B !important;
+  background-image: none !important;
+  color: #F7F7F5 !important;
+  -webkit-text-fill-color: #F7F7F5 !important;
+  fill: #F7F7F5 !important;
+  stroke: #F7F7F5 !important;
+  border-color: #54243B !important;
+  box-shadow: none !important;
+  transform: none !important;
+  filter: none !important;
+  transition: background-color 200ms ease, color 200ms ease, fill 200ms ease, stroke 200ms ease !important;
+}
+/* Standalone icons: invert only the icon hit-area, with no outline or glow. */
+html body .nav-icon:hover,
+html body svg.nav-icon:hover,
+html body button:hover .nav-icon,
+html body [role="button"]:hover .nav-icon {
+  background: #54243B !important;
+  background-color: #54243B !important;
+  color: #F7F7F5 !important;
+  fill: #F7F7F5 !important;
+  stroke: #F7F7F5 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  transform: none !important;
+}
+/* Logo and footer remain completely unaffected. */
+html body aside.side .brand:hover,
+html body aside.side .brand:hover *,
+html body footer:hover,
+html body footer:hover *,
+html body .footer:hover,
+html body .footer:hover * {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: inherit !important;
+  -webkit-text-fill-color: inherit !important;
+  fill: inherit !important;
+  stroke: inherit !important;
+  border-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+</style>
