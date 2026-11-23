@@ -2536,6 +2536,29 @@ html body input,html body textarea,html body select{
 }
 html body input::placeholder,html body textarea::placeholder{color:#54243B!important;-webkit-text-fill-color:#54243B!important;opacity:.75!important}
 html body *:hover{transform:none!important;transition:none!important;animation:none!important;filter:none!important;text-shadow:none!important}
+</style><style id="ashtavakra-ai-theme-match">
+/* FINAL: all workspace cards and Ask AI surfaces stay transparent in every state. */
+html,body{background:#F7F7F5!important;background-color:#F7F7F5!important;background-image:none!important;color:#54243B!important}
+html body :is(.ai-chat-panel,.ai-chat-head,.ai-chat-messages,.ai-chat-prompts,.ai-chat-compose,.ai-message,.ai-bot,.ai-user,.ai-chat-avatar,.ai-chat-close,[class*="card"],[class*="tile"],[class*="panel"],[class*="bubble"],[class*="prompt"],[class*="suggestion"],.item,.feature-card,.module-card,.shortcut-card,.knowledge-card,.product-card,.sop-card,.script-placeholder,.quickref-card,.info-card,.section-card,.dashboard-card,.reader-card,.hero,.notice,.review,.tablewrap,.table-wrap){
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ box-shadow:none!important;border-color:transparent!important;
+ -webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+}
+html body :is(button,.btn,.primary,[role="button"],input[type="button"],input[type="submit"],.ai-chat-prompts button,.ai-chat-compose button){
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+ box-shadow:none!important;border-color:rgba(84,36,59,.25)!important;
+}
+html body :is(*):hover,html body :is(*):focus,html body :is(*):focus-visible,html body :is(*):active{
+ background:transparent!important;background-color:transparent!important;background-image:none!important;
+ box-shadow:none!important;text-shadow:none!important;filter:none!important;
+ transform:none!important;transition:none!important;animation:none!important;
+}
+html body :is(.ai-chat-panel,.ai-chat-panel *){color:#54243B!important;-webkit-text-fill-color:#54243B!important}
+html body :is(.ai-chat-panel, .ai-chat-panel *)::before,
+html body :is(.ai-chat-panel, .ai-chat-panel *)::after{background:transparent!important;box-shadow:none!important}
+html body :is(input,textarea,select){background:transparent!important;background-color:transparent!important;color:#54243B!important;-webkit-text-fill-color:#54243B!important;box-shadow:none!important}
+html body :is(input,textarea)::placeholder{color:#54243B!important;-webkit-text-fill-color:#54243B!important;opacity:.65!important}
 </style></body></html>
 <style id="ashtavakra-user-requested-view-cleanup">
 /* Remove the pink content canvas and all filled surfaces in the workspace view. */
