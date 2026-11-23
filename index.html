@@ -3100,3 +3100,66 @@ html body:has(:hover) .content{
  background-color:#F7F7F5!important;background-image:none!important;
 }
 </style>
+
+<style id="ashtavakra-approved-burgundy-hover">
+/* Approved hover: burgundy outline + soft glow only; never recolour or move elements. */
+html body :is(button, .btn, [role="button"], .tab, .item, .stat, .card,
+  [class*="card"], [class*="tile"], [class*="stat"], .script-reader,
+  .script-placeholder, .quickref-card, .knowledge-card, .product-card,
+  .sop-card, .feature-card, .dashboard-card, .module-card, .shortcut-card,
+  .info-card, .section-card, .reader-card, .history-item, .metric,
+  .metric-group, .tablewrap, .table-wrap):not(footer):not(.footer):not(.brand):not(.logo):not(.ashtavakra-mark) {
+  transition: outline-color 200ms ease, box-shadow 200ms ease !important;
+  transform: none !important;
+}
+html body :is(button, .btn, [role="button"], .tab, .item, .stat, .card,
+  [class*="card"], [class*="tile"], [class*="stat"], .script-reader,
+  .script-placeholder, .quickref-card, .knowledge-card, .product-card,
+  .sop-card, .feature-card, .dashboard-card, .module-card, .shortcut-card,
+  .info-card, .section-card, .reader-card, .history-item, .metric,
+  .metric-group, .tablewrap, .table-wrap):not(footer):not(.footer):not(.brand):not(.logo):not(.ashtavakra-mark):hover {
+  outline: 1px solid #54243B !important;
+  outline-offset: 1px !important;
+  box-shadow: 0 0 0 2px rgba(84,36,59,.13), 0 0 14px rgba(84,36,59,.30) !important;
+  background-color: inherit !important;
+  background-image: none !important;
+  color: inherit !important;
+  filter: none !important;
+}
+/* Sidebar: outline/glow the icon itself, not a filled navigation tile. */
+html body aside.side #nav button:hover,
+html body aside.side .sidebar-quick-actions button:hover {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  transform: none !important;
+}
+html body aside.side #nav button:hover .nav-icon,
+html body aside.side .sidebar-quick-actions button:hover .nav-icon,
+html body aside.side .nav-icon:hover {
+  outline: 1px solid #54243B !important;
+  outline-offset: 3px !important;
+  border-radius: 7px !important;
+  box-shadow: 0 0 0 2px rgba(84,36,59,.13), 0 0 12px rgba(84,36,59,.30) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #54243B !important;
+  stroke: #54243B !important;
+  filter: none !important;
+  transform: none !important;
+  transition: outline-color 200ms ease, box-shadow 200ms ease !important;
+}
+/* Brand/logo and footer are explicitly excluded from hover treatment. */
+html body aside.side .brand,
+html body aside.side .brand *,
+html body footer,
+html body footer *,
+html body .footer,
+html body .footer * {
+  outline: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+</style>
