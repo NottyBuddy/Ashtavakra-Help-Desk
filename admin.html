@@ -886,3 +886,69 @@ html body textarea,html body select {
   box-shadow:none!important;outline:none!important;
 }
 </style>
+
+<style id="ashtavakra-admin-visual-restore">
+/* Restore normal Team Lead Console structure and legible content. */
+html body {background:#F7F7F5!important;color:#54243B!important}
+html body .wrap {display:block!important;visibility:visible!important;opacity:1!important;max-width:1240px!important}
+html body .wrap header.top {display:flex!important;visibility:visible!important;opacity:1!important}
+html body .wrap .panel,
+html body .wrap .panel:hover {
+  display:block!important;visibility:visible!important;opacity:1!important;
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+  border:1px solid rgba(84,36,59,.16)!important;box-shadow:none!important;
+  transform:none!important;filter:none!important;
+}
+html body .wrap .panel :is(h1,h2,h3,h4,p,span,small,b,strong,label,th,td,summary,code,pre,.muted,.eyebrow,.empty,.status),
+html body .wrap .panel:hover :is(h1,h2,h3,h4,p,span,small,b,strong,label,th,td,summary,code,pre,.muted,.eyebrow,.empty,.status) {
+  display:revert!important;visibility:visible!important;opacity:1!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+}
+html body .wrap .analytics-grid {
+  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:14px!important;visibility:visible!important;opacity:1!important;
+}
+html body .wrap .metric-group,
+html body .wrap .metric {
+  display:block!important;visibility:visible!important;opacity:1!important;
+  background:transparent!important;background-color:transparent!important;background-image:none!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+  border:1px solid rgba(84,36,59,.16)!important;border-radius:14px!important;
+  box-shadow:none!important;transform:none!important;
+}
+html body .wrap .metric-group h3,
+html body .wrap .metric-group .metric span,
+html body .wrap .metric-group .metric b,
+html body .wrap .metric-group .metric small {
+  display:block!important;visibility:visible!important;opacity:1!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+}
+html body .wrap .metric-group:hover {
+  background:#54243B!important;background-color:#54243B!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  border-color:#54243B!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body .wrap .metric-group:hover :is(h3,span,b,small,p) {
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  background:transparent!important;background-color:transparent!important;
+}
+html body .wrap .metric-group:hover .metric {
+  background:transparent!important;background-color:transparent!important;
+  border-color:rgba(247,247,245,.22)!important;
+}
+html body .wrap button {background:transparent!important;color:#54243B!important;border:1px solid rgba(84,36,59,.28)!important}
+html body .wrap button:hover {
+  background:#54243B!important;background-color:#54243B!important;color:#F7F7F5!important;
+  -webkit-text-fill-color:#F7F7F5!important;border-color:#54243B!important;
+  box-shadow:none!important;transform:none!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body .wrap button:hover * {background:transparent!important;color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;fill:#F7F7F5!important;stroke:#F7F7F5!important}
+html body .wrap input,html body .wrap textarea,html body .wrap select {
+  background:#FFFFFF!important;color:#17171B!important;-webkit-text-fill-color:#17171B!important;
+}
+@media(max-width:850px){html body .wrap .analytics-grid{grid-template-columns:1fr 1fr!important}}
+@media(max-width:560px){html body .wrap .analytics-grid{grid-template-columns:1fr!important}}
+</style>
