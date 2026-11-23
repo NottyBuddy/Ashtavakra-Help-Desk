@@ -2594,3 +2594,44 @@ html, body, .main, #view {
 .sidebar-action[hidden],#adminConsole[hidden]{display:none!important}
 @media(max-width:760px){.sidebar-action{justify-content:center;padding:11px 6px!important}.sidebar-action .navtext{display:none}}
 </style>
+<style id="ashtavakra-unified-sidebar-icons">
+/* One consistent icon treatment for every sidebar destination and utility action */
+.side #nav button,
+.side .sidebar-quick-actions button{
+ display:flex!important;align-items:center!important;gap:12px!important;
+ min-height:40px!important;padding:8px 12px!important;
+}
+.side #nav .nav-icon,
+.side .sidebar-quick-actions .nav-icon{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:20px!important;height:20px!important;min-width:20px!important;flex:0 0 20px!important;
+ margin:0!important;padding:0!important;border:0!important;border-radius:0!important;
+ background:transparent!important;box-shadow:none!important;
+ color:#54243B!important;stroke:#54243B!important;fill:none!important;
+ font-size:17px!important;line-height:1!important;font-weight:500!important;
+}
+.side #nav .nav-icon svg,
+.side .sidebar-quick-actions .nav-icon svg,
+.side #nav .nav-icon .ui-icon,
+.side .sidebar-quick-actions .nav-icon .ui-icon{
+ display:block!important;width:18px!important;height:18px!important;
+ min-width:18px!important;min-height:18px!important;
+ color:#54243B!important;stroke:#54243B!important;stroke-width:1.8!important;fill:none!important;
+}
+.side #nav button.active,
+.side #nav button:hover,
+.side .sidebar-quick-actions button:hover,
+.side .sidebar-quick-actions button:focus{
+ background:transparent!important;color:#54243B!important;border-color:transparent!important;
+ box-shadow:none!important;transform:none!important;
+}
+.side #nav button.active .nav-icon,
+.side #nav button:hover .nav-icon,
+.side .sidebar-quick-actions button:hover .nav-icon{
+ background:transparent!important;color:#54243B!important;stroke:#54243B!important;
+ box-shadow:none!important;filter:none!important;transform:none!important;
+}
+.side #nav .navtext,.side .sidebar-quick-actions .navtext{
+ color:#54243B!important;font-size:12px!important;font-weight:500!important;line-height:1.3!important;
+}
+</style>
