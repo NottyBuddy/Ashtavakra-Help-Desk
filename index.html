@@ -1595,7 +1595,7 @@ body .brand:hover .logo svg * {
 <button data-page="cx"><span class="nav-icon" data-icon="headphones" aria-hidden="true"></span><span class="navtext">CX Questions</span></button>
 <button data-page="quickRefs"><span class="nav-icon" data-icon="library" aria-hidden="true"></span><span class="navtext">Quick References</span></button>
 </nav><div class="sidebar-quick-actions">
-<button type="button" class="sidebar-action" id="sidebarAskAI" onclick="openAssist()"><span class="nav-icon" aria-hidden="true">✦</span><span class="navtext">Ask AI</span></button>
+<button type="button" class="sidebar-action" id="sidebarAskAI" onclick="openAssist()"><span class="nav-icon" data-icon="sparkles" aria-hidden="true"></span><span class="navtext">Ask AI</span></button>
 <button type="button" class="sidebar-action" id="adminConsole" hidden><span class="nav-icon" data-icon="shield" aria-hidden="true"></span><span class="navtext">Team Lead Console</span></button>
 <button type="button" class="sidebar-action" id="portalSignOut"><span class="nav-icon" data-icon="log-out" aria-hidden="true"></span><span class="navtext">Sign out</span></button>
 </div><div class="sidefoot"><button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Collapse sidebar" title="Collapse sidebar" onclick="toggleSidebar()"><span class="toggle-glyph" aria-hidden="true">‹</span></button><div class="profile-card"><span class="profile-avatar">IF</span><span class="profile-copy"><b id="profileName">Agent workspace</b><small id="profileRole">Secure portal access</small></span><span class="profile-chevron">⌄</span></div><div class="profile-meta">Secure Workspace<br>Internal Use Only<br>© 2026 Ashtavakra</div></div></aside>
@@ -1955,8 +1955,8 @@ function cxAnswer(i){
  return '<div class="cx-answer-label">APPROVED CUSTOMER RESPONSE</div><div class="script-dialogue"><b>Agent can say:</b><br>'+escapeScriptText(a[0])+'</div><div class="script-dialogue"><b>Agent action / SOP guidance:</b><br>'+escapeScriptText(a[1])+'</div>';
 }
 function cxPage(){return H("CUSTOMER POV QUESTIONS","Customer Questions & Answers","Search all configured agent/customer questions. Every question has a dedicated customer-ready response and agent action mapped from the FAQ Bank, Brand & Product SOP and Final Pre-Sales Script.")+'<div class="search"><input id="cxSearch" placeholder="Search price, warranty, renovation, installation..." oninput="filterList(&quot;cxSearch&quot;,&quot;cxList&quot;)"></div><div class="list" id="cxList">'+cx.map((q,i)=>'<details class="item"><summary><b>Q'+(i+1)+'. '+q+'</b></summary>'+cxAnswer(i)+'</details>').join("")+'</div><small>Questions captured: '+cx.length+'. Each question has its own mapped response and SOP action. Commercial, technical and policy exceptions are routed to the authorised team rather than guessed.</small>'}
-function iconSvg(name,cls){const p={"home":"<path d=\"m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z\"/>","file-text":"<path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><path d=\"M14 2v6h6M8 13h8M8 17h8\"/>","panels-top-left":"<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M9 3v18M3 9h6\"/>","building":"<rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"2\"/><path d=\"M9 22v-4h6v4M8 6h1m6 0h1M8 10h1m6 0h1M8 14h1m6 0h1\"/>","settings":"<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.6.9l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.6-.9l-1.7.7-1.4-2.4 1.4-1.1a7 7 0 0 1 0-1.9l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.6-.9l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.6.9l1.7-.7 1.4 2.4-1.4 1.1a7 7 0 0 1 0 1.9z\"/>","messages":"<path d=\"M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z\"/>","users":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"10\" cy=\"7\" r=\"4\"/><path d=\"M20 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8\"/>","bell":"<path d=\"M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4\"/>","headphones":"<path d=\"M3 14v-3a9 9 0 0 1 18 0v3\"/><rect x=\"3\" y=\"13\" width=\"4\" height=\"7\" rx=\"2\"/><rect x=\"17\" y=\"13\" width=\"4\" height=\"7\" rx=\"2\"/>","library":"<path d=\"m4 19 0-14 16-2v14zM8 7v9m4-10v9m4-10v9\"/>","chart-no-axes-column-increasing":"<path d=\"M3 3v18h18\"/><path d=\"M8 16V9m5 7V5m5 11v-4\"/>","sparkles":"<path d=\"m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-2-5.8L4 11l6-2.2zM19 14l1.2 2.8L23 18l-2.8 1.2L19 22l-1.2-2.8L15 18l2.8-1.2z\"/>","search":"<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-4-4\"/>","map-pin":"<path d=\"M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/>","clipboard-check":"<rect x=\"5\" y=\"4\" width=\"14\" height=\"17\" rx=\"2\"/><path d=\"M9 4.5h6V2H9zM8 13l2.5 2.5L16 10\"/>","phone":"<path d=\"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 2.8a2 2 0 0 1-.6 1.8L7.7 9.6a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.8-.6l2.8.5a2 2 0 0 1 1.7 2z\"/>","check-circle":"<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"m8 12 2.5 2.5L16 9\"/>","book-open":"<path d=\"M12 7v14M3 18V5a2 2 0 0 1 2-2h3a4 4 0 0 1 4 4 4 4 0 0 1 4-4h3a2 2 0 0 1 2 2v13h-5a4 4 0 0 0-4 3 4 4 0 0 0-4-3z\"/>"}[name]||'<circle cx="12" cy="12" r="8"/>';return '<svg class="'+(cls||'ui-icon')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
-function paintIcons(){document.querySelectorAll('#nav .nav-icon[data-icon]').forEach(e=>e.innerHTML=iconSvg(e.dataset.icon));document.querySelectorAll('.stat-symbol[data-icon]').forEach(e=>e.innerHTML=iconSvg(e.dataset.icon));}
+function iconSvg(name,cls){const p={"home":"<path d=\"m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z\"/>","file-text":"<path d=\"M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z\"/><path d=\"M14 2v6h6M8 13h8M8 17h8\"/>","panels-top-left":"<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><path d=\"M9 3v18M3 9h6\"/>","building":"<rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"2\"/><path d=\"M9 22v-4h6v4M8 6h1m6 0h1M8 10h1m6 0h1M8 14h1m6 0h1\"/>","settings":"<circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.6.9l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.6-.9l-1.7.7-1.4-2.4 1.4-1.1a7 7 0 0 1 0-1.9l-1.4-1.1 1.4-2.4 1.7.7a8 8 0 0 1 1.6-.9l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.6.9l1.7-.7 1.4 2.4-1.4 1.1a7 7 0 0 1 0 1.9z\"/>","messages":"<path d=\"M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z\"/>","users":"<path d=\"M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"10\" cy=\"7\" r=\"4\"/><path d=\"M20 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8\"/>","bell":"<path d=\"M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4\"/>","headphones":"<path d=\"M3 14v-3a9 9 0 0 1 18 0v3\"/><rect x=\"3\" y=\"13\" width=\"4\" height=\"7\" rx=\"2\"/><rect x=\"17\" y=\"13\" width=\"4\" height=\"7\" rx=\"2\"/>","library":"<path d=\"m4 19 0-14 16-2v14zM8 7v9m4-10v9m4-10v9\"/>","shield":"<path d=\"M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z\"/><path d=\"m9 12 2 2 4-4\"/>","log-out":"<path d=\"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4\"/><path d=\"m16 17 5-5-5-5M21 12H9\"/>","chart-no-axes-column-increasing":"<path d=\"M3 3v18h18\"/><path d=\"M8 16V9m5 7V5m5 11v-4\"/>","sparkles":"<path d=\"m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-2-5.8L4 11l6-2.2zM19 14l1.2 2.8L23 18l-2.8 1.2L19 22l-1.2-2.8L15 18l2.8-1.2z\"/>","search":"<circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-4-4\"/>","map-pin":"<path d=\"M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/>","clipboard-check":"<rect x=\"5\" y=\"4\" width=\"14\" height=\"17\" rx=\"2\"/><path d=\"M9 4.5h6V2H9zM8 13l2.5 2.5L16 10\"/>","phone":"<path d=\"M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7l.5 2.8a2 2 0 0 1-.6 1.8L7.7 9.6a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 1.8-.6l2.8.5a2 2 0 0 1 1.7 2z\"/>","check-circle":"<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"m8 12 2.5 2.5L16 9\"/>","book-open":"<path d=\"M12 7v14M3 18V5a2 2 0 0 1 2-2h3a4 4 0 0 1 4 4 4 4 0 0 1 4-4h3a2 2 0 0 1 2 2v13h-5a4 4 0 0 0-4 3 4 4 0 0 0-4-3z\"/>"}[name]||'<circle cx="12" cy="12" r="8"/>';return '<svg class="'+(cls||'ui-icon')+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
+function paintIcons(){document.querySelectorAll('.side .nav-icon[data-icon]').forEach(e=>e.innerHTML=iconSvg(e.dataset.icon));document.querySelectorAll('.stat-symbol[data-icon]').forEach(e=>e.innerHTML=iconSvg(e.dataset.icon));}
 
 function escapeSearchText(v){return String(v||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function openGlobalSearch(){const l=document.getElementById("globalSearchLayer");if(l){l.hidden=false;setTimeout(()=>document.getElementById("globalSearchInput")?.focus(),30)}}
@@ -2703,5 +2703,36 @@ body .side .sidebar-quick-actions .sidebar-action:active{
 @media(max-width:760px){
  body .side .sidebar-quick-actions .sidebar-action{justify-content:center!important;padding:8px 6px!important}
  body .side .sidebar-quick-actions .sidebar-action .navtext{display:none!important}
+}
+</style>
+<style id="ashtavakra-sidebar-neutral-state">
+/* Sidebar rows must remain transparent in every state, including the active page. */
+body .side #nav button,
+body .side #nav button.active,
+body .side #nav button:hover,
+body .side #nav button:focus,
+body .side #nav button:focus-visible,
+body .side .sidebar-quick-actions button,
+body .side .sidebar-quick-actions button:hover,
+body .side .sidebar-quick-actions button:focus,
+body .side .sidebar-quick-actions button:active{
+ background:transparent!important;background-color:transparent!important;
+ background-image:none!important;border-color:transparent!important;
+ box-shadow:none!important;filter:none!important;transform:none!important;
+}
+body .side #nav button .nav-icon,
+body .side .sidebar-quick-actions button .nav-icon{
+ background:transparent!important;background-color:transparent!important;
+ background-image:none!important;box-shadow:none!important;filter:none!important;
+ color:#54243B!important;stroke:#54243B!important;
+}
+body .side #nav button .navtext,
+body .side .sidebar-quick-actions button .navtext{
+ color:#54243B!important;
+}
+body .side #nav button:hover .nav-icon,
+body .side #nav button:focus-visible .nav-icon,
+body .side .sidebar-quick-actions button:hover .nav-icon{
+ filter:none!important;box-shadow:none!important;transform:none!important;
 }
 </style>
