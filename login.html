@@ -859,3 +859,45 @@ html body input,html body input:hover,html body input:focus {
   box-shadow:none!important;outline:none!important;
 }
 </style>
+
+<style id="ashtavakra-login-visual-restore">
+/* Restore the approved login card presentation; never recolour the page on hover. */
+html body main.panel,html body main.panel:hover {
+  display:block!important;visibility:visible!important;opacity:1!important;
+  width:min(100%,500px)!important;min-height:0!important;
+  padding:clamp(26px,5vw,42px)!important;
+  background:#54243B!important;background-color:#54243B!important;background-image:none!important;
+  border:1px solid rgba(84,36,59,.18)!important;border-radius:0!important;
+  box-shadow:none!important;color:#F7F7F5!important;
+}
+html body main.panel :is(.brand,h1,p,label,a,.tag,.switch,.hint,.msg),
+html body main.panel:hover :is(.brand,h1,p,label,a,.tag,.switch,.hint,.msg) {
+  display:revert!important;visibility:visible!important;opacity:1!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+}
+html body main.panel .brand {letter-spacing:2px!important;font-weight:700!important}
+html body main.panel h1 {font-size:clamp(32px,7vw,42px)!important;line-height:1.08!important}
+html body main.panel form {display:block!important;visibility:visible!important;opacity:1!important}
+html body main.panel form.hidden {display:none!important}
+html body main.panel input,
+html body main.panel input:hover,
+html body main.panel input:focus {
+  display:block!important;width:100%!important;visibility:visible!important;opacity:1!important;
+  background:#E8F0FE!important;background-color:#E8F0FE!important;color:#17171B!important;
+  -webkit-text-fill-color:#17171B!important;border:1px solid #D9D5D0!important;
+}
+html body main.panel button,
+html body main.panel button.primary {
+  background:#EACBD5!important;background-color:#EACBD5!important;
+  color:#54243B!important;-webkit-text-fill-color:#54243B!important;
+  border:0!important;border-radius:999px!important;box-shadow:none!important;
+}
+html body main.panel button:hover,
+html body main.panel button.primary:hover {
+  background:#54243B!important;background-color:#54243B!important;
+  color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important;
+  border:1px solid #F7F7F5!important;box-shadow:none!important;transform:none!important;
+  transition:background-color 200ms ease,color 200ms ease,border-color 200ms ease!important;
+}
+html body main.panel button:hover * {background:transparent!important;color:#F7F7F5!important;-webkit-text-fill-color:#F7F7F5!important}
+</style>
