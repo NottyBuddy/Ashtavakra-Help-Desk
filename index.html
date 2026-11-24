@@ -1735,3 +1735,61 @@ html body aside.side .brand,html body aside.side .brand *,html body footer,html 
 </style>
 <style id="indiframe-directory-quickref-hover-visibility">
 </style>
+
+<style id="ashtavakra-sidebar-always-expanded-final">
+/* Keep the full sidebar expanded on every screen and every route. */
+html body aside.side{
+  width:250px!important;min-width:250px!important;max-width:250px!important;
+  padding:0 12px 12px!important;overflow-x:hidden!important;
+}
+html body .main{margin-left:250px!important}
+html body aside.side .brand{justify-content:flex-start!important;padding:10px 12px!important}
+html body aside.side .brand .brandtext,
+html body aside.side .label,
+html body aside.side .navtext,
+html body aside.side .sidefoot,
+html body aside.side .toggle-label,
+html body aside.side .profile-copy,
+html body aside.side .profile-chevron,
+html body aside.side .profile-meta{display:initial!important}
+html body aside.side .brand .brandtext{display:flex!important;flex-direction:column!important}
+html body aside.side .label{display:block!important}
+html body aside.side .sidefoot{display:block!important}
+html body aside.side #nav button,
+html body aside.side .sidebar-quick-actions button{
+  justify-content:flex-start!important;text-align:left!important;
+  padding:10px 12px!important;gap:12px!important;
+}
+html body aside.side #nav .nav-icon,
+html body aside.side .sidebar-quick-actions .nav-icon{
+  width:22px!important;height:22px!important;min-width:22px!important;
+  flex:0 0 22px!important;margin:0!important;
+}
+html body aside.side .sidebar-toggle{display:none!important}
+@media(max-width:850px){
+  html body aside.side{width:250px!important;min-width:250px!important;max-width:250px!important;padding:0 12px 12px!important}
+  html body .main{margin-left:250px!important}
+  html body aside.side .brand .brandtext,
+  html body aside.side .label,
+  html body aside.side .navtext,
+  html body aside.side .sidefoot,
+  html body aside.side .profile-copy,
+  html body aside.side .profile-meta{display:initial!important}
+  html body aside.side .brand .brandtext{display:flex!important;flex-direction:column!important}
+  html body aside.side .label{display:block!important}
+  html body aside.side .sidefoot{display:block!important}
+  html body aside.side #nav button,
+  html body aside.side .sidebar-quick-actions button{justify-content:flex-start!important;text-align:left!important;padding:10px 12px!important;gap:12px!important}
+}
+</style>
+<script id="ashtavakra-enforce-expanded-sidebar">
+(function(){
+  function keepSidebarExpanded(){
+    document.body.classList.remove("sidebar-collapsed");
+    try{localStorage.setItem("hrhSidebarCollapsed","0")}catch(e){}
+  }
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",keepSidebarExpanded,{once:true});
+  else keepSidebarExpanded();
+  window.addEventListener("pageshow",keepSidebarExpanded);
+})();
+</script>
